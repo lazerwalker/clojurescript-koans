@@ -1,0 +1,8 @@
+{"version":3,
+ "file":
+ "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/core.js",
+ "sources":
+ ["/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/src/koans/core.cljs"],
+ "lineCount":6,
+ "mappings":";;AAECA;AACAC",
+ "names":["console", "hello-world"]}

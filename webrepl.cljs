@@ -1,5 +1,9 @@
-(ns webrepl
+(ns repl
   (:require [cljs.repl :as repl]))
+
+(defn ^:export hello-world []
+  (.log js/console "HI MOM")
+  )
 
 (def append-dom)
 
