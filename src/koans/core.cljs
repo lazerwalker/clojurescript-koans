@@ -1,4 +1,4 @@
 (ns koans.core)
 
-(. js/console (log "Hello world!"))
+(. js/console (log "Helloooo world!"))
 (repl/hello-world)
