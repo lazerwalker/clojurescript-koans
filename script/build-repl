@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Make sure we don't overwrite the leiningen-produced `out` folder
+# (the webrepl output lives in the `repl.out` folder)
+mv out out.bak
+
+cljsc webrepl.cljs > webrepl.js
+
+rm -rf repl.out
+mv out repl.out
+mv out.bak out
+
+# To avoid namespace collisions, we need to rename pretty much everything,
+# from the clojure core namespaces to the Google Closure Library
+
+# TODO: The extra '' after the -i flag is necessary for the OS X version of sed.
+# Including it might not work on Linux systems.
+
+sed -i '' 's/goog/replgoog/g' webrepl.js
+sed -i '' 's/^var goog = goog || {}/var replgoog = replgoog || {}/' repl.out/goog/base.js
+find repl.out -type f -print0 | xargs -0 sed -i '' 's/goog\./replgoog\./g'
+find repl.out -type f -print0 | xargs -0 sed -i '' 's/cljs\./cljsrepl\./g'
+find repl.out -type f -print0 | xargs -0 sed -i '' 's/clojure\./replclojure\./g'
+
