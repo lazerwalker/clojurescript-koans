@@ -20,7 +20,9 @@
     (dommy/text (sel1 :.after))]))
 
 (defn evaluate-koan []
-  (.log js/console (input-string)))
+  (let [text (input-string)]
+    (.log js/console "Evaluating" text)
+    (repl/evaluate text)))
 
 (defn show-koan [& {:keys [before after]}]
   (let [input (input-with-code before after)]
@@ -30,4 +32,11 @@
         (evaluate-koan))))))
 
 (set! (.-onready js/document) (fn []
-  (show-koan :before "before", :after "after")))
+  (show-koan :before "(=", :after "2)")))
+
+(defn repl-print [thing other-thing]
+  (.log js/console thing other-thing))
+
+(set! (.-output js/repl) repl-print)
+(set! (.-error js/repl) repl-print)
+(set! (.-print js/repl) repl-print)
