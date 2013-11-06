@@ -1,7 +1,10 @@
 (ns koans.core
   (:require
     [dommy.utils :as utils]
-    [dommy.core :as dommy])
+    [dommy.core :as dommy]
+    [cljs.core.async :as async
+    :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
+  (:require-macros [cljs.core.async.macros :refer [go alt!]])
   (:use-macros
     [dommy.macros :only [node sel sel1 deftemplate]]))
 
@@ -20,9 +23,7 @@
     (dommy/text (sel1 :.after))]))
 
 (defn evaluate-koan []
-  (let [text (input-string)]
-    (.log js/console "Evaluating" text)
-    (repl/evaluate text)))
+  (repl/evaluate (input-string)))
 
 (defn show-koan [& {:keys [before after]}]
   (let [input (input-with-code before after)]
@@ -34,9 +35,22 @@
 (set! (.-onready js/document) (fn []
   (show-koan :before "(=", :after "2)")))
 
-(defn repl-print [thing other-thing]
-  (.log js/console thing other-thing))
+(def output-chan (chan))
+(def error-chan (chan))
 
-(set! (.-output js/repl) repl-print)
-(set! (.-error js/repl) repl-print)
-(set! (.-print js/repl) repl-print)
+(defn listen-for-output [chans]
+  (go
+    (while true
+      (let [[text chan] (alts! chans)]
+        (if (= text "true")
+          (.log js/console "TRUE")
+          (.log js/console "FALSE"))))))
+
+(defn channel-piping-fn [chan]
+  (fn [text] (go (>! chan text))))
+
+(set! (.-output js/repl) (channel-piping-fn output-chan))
+(set! (.-error js/repl) (channel-piping-fn error-chan))
+(set! (.-print js/repl) #()) ;TODO: What should be done with printed output?
+
+(listen-for-output [output-chan error-chan])
