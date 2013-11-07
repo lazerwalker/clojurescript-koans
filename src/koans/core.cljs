@@ -43,6 +43,7 @@
 (defn render-koan [koan]
   (let [input (input-with-code koan)]
     (dommy/append! (sel1 :body) input)
+    (.focus (sel1 :.user-input))
     (dommy/listen! input :keypress (fn [e]
       (if (= (.-charCode e) enter-key)
         (evaluate-koan))))))
