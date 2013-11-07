@@ -13,8 +13,8 @@
 (def enter-key 13)
 
 (defn load-next-koan []
-  (reset! current-koan-index (inc @current-koan-index))
   (remove-active-koan)
+  (reset! current-koan-index (inc @current-koan-index))
   (load-koan @current-koan-index))
 
 (defn load-koan [n]
@@ -22,7 +22,7 @@
     (render-koan koan)))
 
 (deftemplate input-with-code [koan]
-  [:div {:id "koan"}
+  [:div {:class (str "koan koan-" @current-koan-index)}
     [:div {:class "description"} (:description koan)]
     [:div {:class "code"}
       [:span {:class "before"} (:before koan)]
@@ -39,7 +39,7 @@
   (repl/evaluate (input-string)))
 
 (defn remove-active-koan []
-  (dommy/remove! (sel1 :#koan)))
+  (dommy/remove! (sel1 :.koan)))
 
 (defn render-koan [koan]
   (let [input (input-with-code koan)]

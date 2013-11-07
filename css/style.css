@@ -6,13 +6,27 @@ body {
   font-size: 28px;
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9); }
 
-#koan {
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+
+  1% {
+    display: block;
+    opacity: 0; }
+
+  100% {
+    display: block;
+    opacity: 1; } }
+
+.koan {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: fadeIn;
   max-width: 900px;
   margin: auto;
   text-align: center; }
-  #koan .description {
+  .koan .description {
     margin: 20px; }
-  #koan .code {
+  .koan .code {
     background: rgba(255, 255, 255, 0.7);
     display: inline-block;
     color: #003744;
@@ -22,7 +36,7 @@ body {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px; }
-  #koan input {
+  .koan input {
     background-color: transparent;
     border: none;
     color: #003744;
@@ -33,5 +47,5 @@ body {
     min-width: 70px;
     max-width: 100px;
     -webkit-appearance: none; }
-    #koan input:focus {
+    .koan input:focus {
       outline: none; }
