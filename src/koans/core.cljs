@@ -1,5 +1,6 @@
 (ns koans.core
   (:require
+    [koans.meditations :as meditations]
     [dommy.utils :as utils]
     [dommy.core :as dommy]
     [cljs.core.async :as async
@@ -8,13 +9,24 @@
   (:use-macros
     [dommy.macros :only [node sel sel1 deftemplate]]))
 
+(def current-koan-index (atom 0))
 (def enter-key 13)
 
-(deftemplate input-with-code [before after]
-  [:div {:id "code"}
-    [:span {:class "before"} before]
+(defn load-next-koan []
+  (reset! current-koan-index (inc @current-koan-index))
+  (remove-active-koan)
+  (load-koan @current-koan-index))
+
+(defn load-koan [n]
+  (let [koan (meditations/nth-koan n)]
+    (render-koan koan)))
+
+(deftemplate input-with-code [koan]
+  [:div {:id "koan"}
+    [:div {:class "description"} (:description koan)]
+    [:span {:class "before"} (:before koan)]
     [:input {:class "user-input"}]
-    [:span {:class "after"} after]])
+    [:span {:class "after"} (:after koan)]])
 
 (defn input-string []
   (clojure.string/join " " [
@@ -25,15 +37,18 @@
 (defn evaluate-koan []
   (repl/evaluate (input-string)))
 
-(defn show-koan [& {:keys [before after]}]
-  (let [input (input-with-code before after)]
+(defn remove-active-koan []
+  (dommy/remove! (sel1 :#koan)))
+
+(defn render-koan [koan]
+  (let [input (input-with-code koan)]
     (dommy/append! (sel1 :body) input)
     (dommy/listen! input :keypress (fn [e]
       (if (= (.-charCode e) enter-key)
         (evaluate-koan))))))
 
 (set! (.-onready js/document) (fn []
-  (show-koan :before "(=", :after "2)")))
+  (load-koan @current-koan-index)))
 
 (def output-chan (chan))
 (def error-chan (chan))
@@ -43,8 +58,9 @@
     (while true
       (let [[text chan] (alts! chans)]
         (if (= text "true")
-          (.log js/console "TRUE")
-          (.log js/console "FALSE"))))))
+          (load-next-koan)
+          () ;TODO: Display error message
+          )))))
 
 (defn channel-piping-fn [chan]
   (fn [text] (go (>! chan text))))
