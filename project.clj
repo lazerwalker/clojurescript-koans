@@ -3,11 +3,11 @@
   :url "http://example.com/FIXME"
 
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-1978"]
+                 [org.clojure/clojurescript "0.0-2014"]
                  [prismatic/dommy "0.1.2"]
                  [org.clojure/core.async "0.1.242.0-44b1e3-alpha"]]
 
-  :plugins [[lein-cljsbuild "0.3.4"]]
+  :plugins [[lein-cljsbuild "1.0.0-alpha2"]]
 
   :source-paths ["src"]
 
