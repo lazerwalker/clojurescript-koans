@@ -24,9 +24,10 @@
 (deftemplate input-with-code [koan]
   [:div {:id "koan"}
     [:div {:class "description"} (:description koan)]
-    [:span {:class "before"} (:before koan)]
-    [:input {:class "user-input"}]
-    [:span {:class "after"} (:after koan)]])
+    [:div {:class "code"}
+      [:span {:class "before"} (:before koan)]
+      [:input {:class "user-input"}]
+      [:span {:class "after"} (:after koan)]]])
 
 (defn input-string []
   (clojure.string/join " " [

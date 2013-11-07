@@ -1,0 +1,37 @@
+body {
+  background: url("../images/paper.jpg");
+  padding-top: 10%;
+  color: #444444;
+  font-family: "Sorts Mill Goudy", serif;
+  font-size: 28px;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9); }
+
+#koan {
+  max-width: 900px;
+  margin: auto;
+  text-align: center; }
+  #koan .description {
+    margin: 20px; }
+  #koan .code {
+    background: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    color: #003744;
+    font-size: 24px;
+    font-family: Monaco, Inconsolata, Menlo, Courier;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px; }
+  #koan input {
+    background-color: transparent;
+    border: none;
+    color: #003744;
+    font-size: 24px;
+    font-family: Monaco, Inconsolata, Menlo, Courier;
+    color: #0068a7;
+    text-align: center;
+    min-width: 70px;
+    max-width: 100px;
+    -webkit-appearance: none; }
+    #koan input:focus {
+      outline: none; }
