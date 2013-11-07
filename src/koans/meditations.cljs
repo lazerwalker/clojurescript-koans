@@ -10,14 +10,8 @@
   "You can test equality of many things"
   (= (+ 3 4) 7 (+ 2 :__))
 
-  "Some things may appear different, but be the same"
-  (= :__ (= 2 2/1))
-
-  "You cannot generally float to heavens of integers"
-  (= :__ (= 2 2.0))
-
-  "But a looser equality is also possible"
-  (= :__ (== 2.0 2))
+  "But you may not string yourself along"
+  (= :__ (= 2 "2"))
 
   "Something is not equal to nothing"
   (= :__ (not (= 1 nil)))
