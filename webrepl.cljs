@@ -5,7 +5,7 @@
 
 (set! (.-onload js/window) (fn []
   (repl/init)
-  (set! *out* #(print % "out"))
+  (set! *out* #(print-fn % "out"))
   (set! *rtn* #(output % "rtn"))
   (set! *err* #(error % "err"))
   (set! *print-fn* #(*out* %1))
