@@ -6,7 +6,7 @@
     [dommy.core :as dommy])
   (:use-macros
     [dommy.macros :only [node sel sel1 deftemplate]]))
-;
+
 (def current-koan-index (atom 0))
 (def enter-key 13)
 
@@ -14,6 +14,7 @@
   [:div {:class (str "koan koan-" @current-koan-index)}
     [:div {:class "description"} (:description koan)]
     [:div {:class "code"}
+      [:span {:class "shadow"}]
       [:span {:class "before"} (:before koan)]
       [:input {:class "user-input"}]
       [:span {:class "after"} (:after koan)]]])
@@ -28,12 +29,17 @@
   (repl/eval (input-string)))
 
 (defn render-koan [koan]
-  (let [input (input-with-code koan)]
-    (dommy/append! (sel1 :body) input)
-    (.focus (sel1 :.user-input))
-    (dommy/listen! input :keypress (fn [e]
-      (if (= (.-charCode e) enter-key)
-        (evaluate-koan))))))
+  (let [elem (input-with-code koan)]
+    (dommy/append! (sel1 :body) elem)
+    (let [input (sel1 :.user-input)
+          shadow (sel1 :.shadow)]
+      (.focus input)
+      (dommy/listen! input :keypress (fn [e]
+        (if (= (.-charCode e) enter-key)
+          (evaluate-koan))))
+      (dommy/listen! input :input (fn [e]
+        (dommy/set-text! shadow (dommy/value input))
+        (dommy/set-px! input :width (.-width (.getBoundingClientRect shadow))))))))
 
 (defn remove-active-koan []
   (dommy/remove! (sel1 :.koan)))
@@ -57,4 +63,3 @@
   ))
 
 (repl/listen-for-output [repl/output-chan repl/input-chan] handler)
-

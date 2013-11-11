@@ -36,6 +36,9 @@ body {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px; }
+  .koan .shadow {
+    position: absolute;
+    visibility: hidden; }
   .koan input {
     background-color: transparent;
     border: none;
@@ -44,8 +47,7 @@ body {
     font-family: Monaco, Inconsolata, Menlo, Courier;
     color: #0068a7;
     text-align: center;
-    min-width: 70px;
-    max-width: 100px;
+    width: 14px;
     -webkit-appearance: none; }
     .koan input:focus {
       outline: none; }
