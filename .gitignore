@@ -3,3 +3,4 @@ repl.out/*
 *.js
 target/*
 .lein-repl-history
+koans.sublime*
