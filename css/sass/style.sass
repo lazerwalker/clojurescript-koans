@@ -1,9 +1,10 @@
+@import "compass/css3/transition"
+
 @mixin code-font
   color: #003744
   font:
     size: 24px
     family: Monaco, Inconsolata, Menlo, Courier
-
 
 body
   background: url("../images/paper.jpg")
@@ -56,7 +57,8 @@ body
     +code-font
     color: darken(#0088DA, 10%)
     text-align: center
-    width: 14px
+    +transition(width 0.2s ease-in-out)
+    width: 18px
 
     -webkit-appearance: none
     &:focus

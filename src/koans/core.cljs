@@ -39,7 +39,7 @@
           (evaluate-koan))))
       (dommy/listen! input :input (fn [e]
         (dommy/set-text! shadow (dommy/value input))
-        (dommy/set-px! input :width (.-width (.getBoundingClientRect shadow))))))))
+        (dommy/set-px! input :width (+ 14 (.-width (.getBoundingClientRect shadow)))))))))
 
 (defn remove-active-koan []
   (dommy/remove! (sel1 :.koan)))

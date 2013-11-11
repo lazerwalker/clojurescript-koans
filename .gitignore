@@ -4,3 +4,4 @@ repl.out/*
 target/*
 .lein-repl-history
 koans.sublime*
+.sass-cache
