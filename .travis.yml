@@ -1,2 +1,6 @@
-language: clojure
-script: lein cljsbuild test
+language:
+  - clojure
+  - ruby
+script:
+  - xvfb-run rspec
+  - lein cljsbuild test
