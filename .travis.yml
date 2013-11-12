@@ -1,6 +1,7 @@
 language:
   - clojure
   - ruby
+lein: lein2
 script:
   - xvfb-run rspec
   - lein cljsbuild test
