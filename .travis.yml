@@ -1,8 +1,3 @@
-language:
-  - clojure
-  - ruby
+language: clojure
 lein: lein2
-install: bundle
-script:
-  - bundle exec xvfb-run rspec
-  - lein2 cljsbuild test
+script: lein2 cljsbuild test
