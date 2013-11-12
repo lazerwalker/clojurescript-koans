@@ -1,4 +1,4 @@
-(ns koans.core-spec
+(ns koans.meditations-spec
   (:require-macros [specljs.core :refer [describe it should should-not
     should= should-not-be-same]])
   (:require [specljs.core]

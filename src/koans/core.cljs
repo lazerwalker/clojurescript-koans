@@ -3,12 +3,16 @@
     [koans.meditations :as meditations]
     [koans.repl :as repl]
     [dommy.utils :as utils]
-    [dommy.core :as dommy])
+    [dommy.core :as dommy]
+    [cljs.core.async :as async
+      :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
   (:use-macros
-    [dommy.macros :only [node sel sel1 deftemplate]]))
+    [dommy.macros :only [node sel sel1 deftemplate]])
+  (:require-macros [cljs.core.async.macros :refer [go alt!]]))
 
 (def current-koan-index (atom 0))
 (def fadeout-time 600)
+(def char-width 14)
 (def enter-key 13)
 
 (deftemplate input-with-code [koan]
@@ -29,21 +33,41 @@
 (defn evaluate-koan []
   (repl/eval (input-string)))
 
+(def resize-chan (chan))
+
 (defn render-koan [koan]
   (let [elem (input-with-code koan)]
     (js/setTimeout #(
       (dommy/append! (sel1 :body) elem)
       (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0)
-      (let [input (sel1 :.user-input)
-            shadow (sel1 :.shadow)]
+      (let [input (sel1 :.user-input)]
         (.focus input)
         (dommy/listen! input :keypress (fn [e]
           (if (= (.-charCode e) enter-key)
             (evaluate-koan))))
         (dommy/listen! input :input (fn [e]
-          (dommy/set-text! shadow (dommy/value input))
-          (dommy/set-px! input :width (+ 14 (.-width (.getBoundingClientRect shadow)))))))
+          (go (>! resize-chan e)))))
       ) fadeout-time)))
+
+
+(defn resize-input []
+  (defn remove-spaces [text] (clojure.string/replace text " " "_"))
+
+  (let [input (sel1 :.user-input)
+        shadow (sel1 :.shadow)]
+    (dommy/set-text! shadow (remove-spaces (dommy/value input)))
+      (let [shadow-width (.-width (.getBoundingClientRect shadow))
+            input-width (.-width (.getBoundingClientRect input))]
+        (cond
+          (>= shadow-width input-width)
+            (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))
+          (>= (- input-width (* 4 char-width)) shadow-width)
+            (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))))))
+
+(go
+  (while true
+    (let [e (<! resize-chan)]
+      (resize-input))))
 
 (defn remove-active-koan []
   (let [koan (sel1 :.koan)]
