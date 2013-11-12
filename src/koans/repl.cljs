@@ -16,7 +16,7 @@
 (defn ^:export eval [input-string]
   (.evaluate js/repl input-string))
 
-(defn ^:export listen-for-output [chans handler]
+(defn ^:export listen-for-output [handler]
   (go
     (while true
       (let [[text chan] (alts! [output-chan])]

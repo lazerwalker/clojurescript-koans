@@ -92,4 +92,4 @@
     () ;TODO: Display error message
   ))
 
-(repl/listen-for-output [repl/output-chan repl/input-chan] handler)
+(repl/listen-for-output handler)
