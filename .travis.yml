@@ -3,5 +3,5 @@ language:
   - ruby
 lein: lein2
 script:
-  - xvfb-run rspec
+  - bundle exec xvfb-run rspec
   - lein cljsbuild test
