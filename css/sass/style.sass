@@ -15,24 +15,16 @@ body
     size: 28px
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9)
 
-@-webkit-keyframes fadeIn
-  0%
-    display:none
-    opacity: 0
-  1%
-    display: block
-    opacity: 0
-  100%
-    display: block
-    opacity: 1
-
 .koan
-  -webkit-animation-duration: 1s
-  -webkit-animation-name: fadeIn
-
   max-width: 900px
   margin: auto
+  opacity: 0
   text-align: center
+  +transition(opacity 0.8s)
+
+  &.unfaded
+    opacity: 1
+
 
   .description
     margin: 20px

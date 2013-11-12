@@ -8,38 +8,26 @@ body {
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9);
 }
 
-@-webkit-keyframes fadeIn {
-  /* line 19, sass/style.sass */
-  0% {
-    opacity: 0;
-  }
-
-  /* line 22, sass/style.sass */
-  1% {
-    display: block;
-    opacity: 0;
-  }
-
-  /* line 25, sass/style.sass */
-  100% {
-    display: block;
-    opacity: 1;
-  }
-}
-
-/* line 29, sass/style.sass */
+/* line 18, sass/style.sass */
 .koan {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-name: fadeIn;
   max-width: 900px;
   margin: auto;
+  opacity: 0;
   text-align: center;
+  -webkit-transition: opacity 0.8s;
+  -moz-transition: opacity 0.8s;
+  -o-transition: opacity 0.8s;
+  transition: opacity 0.8s;
 }
-/* line 37, sass/style.sass */
+/* line 25, sass/style.sass */
+.koan.unfaded {
+  opacity: 1;
+}
+/* line 29, sass/style.sass */
 .koan .description {
   margin: 20px;
 }
-/* line 40, sass/style.sass */
+/* line 32, sass/style.sass */
 .koan .code {
   background: rgba(255, 255, 255, 0.7);
   display: inline-block;
@@ -51,12 +39,12 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 50, sass/style.sass */
+/* line 42, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 54, sass/style.sass */
+/* line 46, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -72,7 +60,7 @@ body {
   width: 18px;
   -webkit-appearance: none;
 }
-/* line 64, sass/style.sass */
+/* line 56, sass/style.sass */
 .koan input:focus {
   outline: none;
 }

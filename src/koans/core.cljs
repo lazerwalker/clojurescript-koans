@@ -8,6 +8,7 @@
     [dommy.macros :only [node sel sel1 deftemplate]]))
 
 (def current-koan-index (atom 0))
+(def fadeout-time 600)
 (def enter-key 13)
 
 (deftemplate input-with-code [koan]
@@ -30,19 +31,24 @@
 
 (defn render-koan [koan]
   (let [elem (input-with-code koan)]
-    (dommy/append! (sel1 :body) elem)
-    (let [input (sel1 :.user-input)
-          shadow (sel1 :.shadow)]
-      (.focus input)
-      (dommy/listen! input :keypress (fn [e]
-        (if (= (.-charCode e) enter-key)
-          (evaluate-koan))))
-      (dommy/listen! input :input (fn [e]
-        (dommy/set-text! shadow (dommy/value input))
-        (dommy/set-px! input :width (+ 14 (.-width (.getBoundingClientRect shadow)))))))))
+    (js/setTimeout #(
+      (dommy/append! (sel1 :body) elem)
+      (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0)
+      (let [input (sel1 :.user-input)
+            shadow (sel1 :.shadow)]
+        (.focus input)
+        (dommy/listen! input :keypress (fn [e]
+          (if (= (.-charCode e) enter-key)
+            (evaluate-koan))))
+        (dommy/listen! input :input (fn [e]
+          (dommy/set-text! shadow (dommy/value input))
+          (dommy/set-px! input :width (+ 14 (.-width (.getBoundingClientRect shadow)))))))
+      ) fadeout-time)))
 
 (defn remove-active-koan []
-  (dommy/remove! (sel1 :.koan)))
+  (let [koan (sel1 :.koan)]
+    (dommy/remove-class! koan "unfaded")
+    (js/setTimeout #(dommy/remove! koan) fadeout-time)))
 
 (defn load-koan [n]
   (let [koan (meditations/nth-koan n)]

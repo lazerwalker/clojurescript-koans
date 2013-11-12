@@ -15,8 +15,8 @@ describe "koans", js: true do
       it "should load a new koan" do
         fill_in "code", :with => "true\r"
 
-        page.should_not have_content "We shall contemplate truth by testing reality, via equality"
         page.should have_content "To understand reality, we must compare our expectations against reality"
+        page.should_not have_content "We shall contemplate truth by testing reality, via equality"
       end
     end
 
