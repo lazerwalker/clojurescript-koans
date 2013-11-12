@@ -16,7 +16,7 @@
     [:div {:class "code"}
       [:span {:class "shadow"}]
       [:span {:class "before"} (:before koan)]
-      [:input {:class "user-input"}]
+      [:input {:class "user-input", :name "code"}]
       [:span {:class "after"} (:after koan)]]])
 
 (defn input-string []
