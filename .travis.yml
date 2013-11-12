@@ -5,4 +5,4 @@ lein: lein2
 install: bundle
 script:
   - bundle exec xvfb-run rspec
-  - lein cljsbuild test
+  - lein2 cljsbuild test
