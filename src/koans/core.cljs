@@ -10,7 +10,9 @@
     [dommy.macros :only [node sel sel1 deftemplate]])
   (:require-macros [cljs.core.async.macros :refer [go alt!]]))
 
-(def current-koan-index (atom 0))
+(defn current-koan-index [] (int (subs (.-hash js/location) 1)))
+(defn update-koan-index [] (set! (.-hash js/location) (inc current-koan-index)))
+
 (def fadeout-time 600)
 (def char-width 14)
 (def enter-key 13)
@@ -19,7 +21,7 @@
   (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0))
 
 (deftemplate input-with-code [koan]
-  [:div {:class (str "koan koan-" @current-koan-index)}
+  [:div {:class (str "koan koan-" (current-koan-index))}
     [:div {:class "description"} (:description koan)]
     [:div {:class "code"}
       [:span {:class "shadow"}]
@@ -88,11 +90,12 @@
 
 (defn load-next-koan []
   (remove-active-koan)
-  (reset! current-koan-index (inc @current-koan-index))
-  (load-koan @current-koan-index))
+  (update-koan-index)
+  (load-koan current-koan-index))
 
 (set! (.-onready js/document) (fn []
-  (load-koan @current-koan-index)))
+  (if (= 0 (current-koan-index)) (set! (.-hash js/location) 1))
+  (load-koan (current-koan-index))))
 
 (defn show-error-message []
   (if (dommy/has-class? (sel1 :.code) "incorrect")

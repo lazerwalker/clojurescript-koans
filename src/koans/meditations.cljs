@@ -31,7 +31,7 @@
 (defrecord Koan [description before after])
 
 (defn nth-koan [n]
-  (let [item (nth (partition 2 meditations) n)
+  (let [item (nth (partition 2 meditations) (dec n))
         description (first item)
         [before after] (clojure.string/split (pr-str (last item)) #":__")]
     (Koan. description before after)))
