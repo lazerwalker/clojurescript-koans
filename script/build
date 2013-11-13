@@ -1,0 +1,4 @@
+#!/bin/sh
+
+lein cljsbuild clean && lein cljsbuild once
+script/build-repl
