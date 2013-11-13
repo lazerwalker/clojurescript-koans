@@ -22,6 +22,9 @@
   (let [index (inc (utils/index-of (:category koan) (keys meditations)))]
     (nth (keys meditations) index)))
 
+(defn expr-to-string [expr]
+  (clojure.string/replace (pr-str expr) #"\(quote \((.*?)\)\)" #(str "'(" %2 ")")))
+
 (defn next-koan-index [koan]
   (let [next-in-category (KoanIndex. (:category koan) (inc (:index koan)))]
     (if (has-koan? next-in-category)
@@ -32,5 +35,6 @@
   (let [category-list (category-with-name (:category koan-index))
         item (nth category-list (:index koan-index))
         description (first item)
-        [before after] (clojure.string/split (pr-str (last item)) #":__")]
+        full-text (expr-to-string (last item))
+        [before after] (clojure.string/split full-text #":__")]
     (Koan. description before after)))
