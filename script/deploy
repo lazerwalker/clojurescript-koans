@@ -1,0 +1,15 @@
+#!/bin/sh
+
+### WARNING: This script makes some very dangerous assumptions:
+# 1. merging master into gh-pages will succeed without conflict
+#    (it'll try to commit and push despite the dirty state)
+# 2. You have no files that are unversioned and not in your .gitignore
+#    (they'll get added on gh-pages as part of the merge commit)
+###
+
+git checkout gh-pages
+git merge master --no-edit
+
+script/build && git add -A && git commit --amend -CHEAD && git push origin gh-pages
+
+git checkout -
