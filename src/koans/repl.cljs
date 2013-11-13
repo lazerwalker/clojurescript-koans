@@ -19,6 +19,6 @@
 (defn ^:export listen-for-output [handler]
   (go
     (while true
-      (let [[text chan] (alts! [output-chan])]
+      (let [[text chan] (alts! [error-chan output-chan])]
         (.log js/console text)
         (handler text)))))
