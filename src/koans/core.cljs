@@ -31,10 +31,12 @@
   [:div {:class "error"} "You have not yet attained enlightenment."])
 
 (defn input-string []
-  (clojure.string/join " " [
-    (dommy/text (sel1 :.before))
-    (dommy/value (sel1 :input))
-    (dommy/text (sel1 :.after))]))
+  (let [before  (dommy/text (sel1 :.before))
+        input   (dommy/value (sel1 :input))
+        after   (dommy/text (sel1 :.after))]
+    (if (clojure.string/blank? input)
+      ""
+      (clojure.string/join " " [before input after]))))
 
 (defn evaluate-koan []
   (repl/eval (input-string)))
