@@ -15,6 +15,9 @@
 (def char-width 14)
 (def enter-key 13)
 
+(defn fade-in! [elem]
+  (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0))
+
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" @current-koan-index)}
     [:div {:class "description"} (:description koan)]
@@ -23,6 +26,9 @@
       [:span {:class "before"} (:before koan)]
       [:input {:class "user-input", :name "code"}]
       [:span {:class "after"} (:after koan)]]])
+
+(deftemplate error-message []
+  [:div {:class "error"} "You have not yet attained enlightenment."])
 
 (defn input-string []
   (clojure.string/join " " [
@@ -39,7 +45,7 @@
   (let [elem (input-with-code koan)]
     (js/setTimeout #(
       (dommy/append! (sel1 :body) elem)
-      (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0)
+      (fade-in! elem)
       (let [input (sel1 :.user-input)]
         (.focus input)
         (dommy/listen! input :keypress (fn [e]
@@ -86,10 +92,25 @@
 (set! (.-onready js/document) (fn []
   (load-koan @current-koan-index)))
 
-(defn handler [text]
+(defn show-error-message []
+  (if (dommy/has-class? (sel1 :.code) "incorrect")
+    (do (let [code-box (sel1 :.code)
+              error (sel1 :.error)]
+      (dommy/remove-class! code-box "incorrect")
+      (dommy/remove-class! error "unfaded")
+      (js/setTimeout #(
+        (dommy/add-class! code-box "incorrect")
+        (dommy/add-class! error "unfaded")
+      ) 300)))
+    (do (let [error (error-message)]
+      (dommy/append! (sel1 :.koan) error)
+      (fade-in! error)
+      (dommy/add-class! (sel1 :.code) "incorrect")))))
+
+(defn evaluate-response [text]
   (if (= text "true")
     (load-next-koan)
-    () ;TODO: Display error message
+    (show-error-message)
   ))
 
-(repl/listen-for-output handler)
+(repl/listen-for-output evaluate-response)

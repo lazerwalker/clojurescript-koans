@@ -6,6 +6,12 @@
     size: 24px
     family: Monaco, Inconsolata, Menlo, Courier
 
+@mixin fadeable
+  opacity: 0
+  +transition(opacity 0.8s)
+  &.unfaded
+    opacity: 1
+
 body
   background: url("../images/paper.jpg")
   padding-top: 10%
@@ -15,16 +21,17 @@ body
     size: 28px
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9)
 
+.error
+  color: #D33
+  font-size: 18px
+  padding-top: 10px
+  +fadeable
+
 .koan
+  +fadeable
   max-width: 900px
   margin: auto
-  opacity: 0
   text-align: center
-  +transition(opacity 0.8s)
-
-  &.unfaded
-    opacity: 1
-
 
   .description
     margin: 20px
@@ -33,6 +40,12 @@ body
     background: rgba(255, 255, 255, 0.7)
     display: inline-block
     +code-font
+    text-shadow: none
+    +transition(background-color 1s)
+
+    &.incorrect
+      background-color: rgba(255, 0, 0, 0.2)
+
     padding:
       left: 20px
       right: 20px

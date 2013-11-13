@@ -1,4 +1,4 @@
-/* line 9, sass/style.sass */
+/* line 15, sass/style.sass */
 body {
   background: url("../images/paper.jpg");
   padding-top: 10%;
@@ -8,43 +8,68 @@ body {
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9);
 }
 
-/* line 18, sass/style.sass */
-.koan {
-  max-width: 900px;
-  margin: auto;
+/* line 24, sass/style.sass */
+.error {
+  color: #dd3333;
+  font-size: 18px;
+  padding-top: 10px;
   opacity: 0;
-  text-align: center;
   -webkit-transition: opacity 0.8s;
   -moz-transition: opacity 0.8s;
   -o-transition: opacity 0.8s;
   transition: opacity 0.8s;
 }
-/* line 25, sass/style.sass */
+/* line 12, sass/style.sass */
+.error.unfaded {
+  opacity: 1;
+}
+
+/* line 30, sass/style.sass */
+.koan {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  -moz-transition: opacity 0.8s;
+  -o-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+/* line 12, sass/style.sass */
 .koan.unfaded {
   opacity: 1;
 }
-/* line 29, sass/style.sass */
+/* line 36, sass/style.sass */
 .koan .description {
   margin: 20px;
 }
-/* line 32, sass/style.sass */
+/* line 39, sass/style.sass */
 .koan .code {
   background: rgba(255, 255, 255, 0.7);
   display: inline-block;
   color: #003744;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
+  text-shadow: none;
+  -webkit-transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 42, sass/style.sass */
+/* line 46, sass/style.sass */
+.koan .code.incorrect {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+/* line 55, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 46, sass/style.sass */
+/* line 59, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -60,7 +85,7 @@ body {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 56, sass/style.sass */
+/* line 69, sass/style.sass */
 .koan input:focus {
   outline: none;
 }

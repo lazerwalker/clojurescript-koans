@@ -21,10 +21,20 @@ describe "koans", js: true do
     end
 
     context "when the wrong answer has been entered" do
-      it "should do nothing" do
+      before do
         fill_in "code", :with => "false\r"
+      end
 
+      it "should do nothing" do
         page.should have_content "We shall contemplate truth by testing reality, via equality"
+      end
+
+      it "should show an error message" do
+        page.should have_content "You have not yet attained enlightenment"
+      end
+
+      it "should make the input angry" do
+        page.should have_selector ".code.incorrect"
       end
     end
   end
