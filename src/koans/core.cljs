@@ -10,8 +10,17 @@
     [dommy.macros :only [node sel sel1 deftemplate]])
   (:require-macros [cljs.core.async.macros :refer [go alt!]]))
 
-(defn current-koan-index [] (int (subs (.-hash js/location) 1)))
-(defn update-koan-index [] (set! (.-hash js/location) (inc current-koan-index)))
+(defn hash-objects [] (clojure.string/split (.-hash js/location) "/" ))
+
+(defn current-koan-index [] (meditations/KoanIndex.
+  (subs (first (hash-objects)) 1)
+  (dec (last (hash-objects)))))
+
+(defn current-koan [] (meditations/koan-for-index (current-koan-index)))
+
+(defn update-location-hash []
+  (let [koan (meditations/next-koan-index (current-koan-index))]
+    (set! (.-hash js/location) (str (:category koan) "/" (inc (:index koan))))))
 
 (def fadeout-time 600)
 (def char-width 14)
@@ -59,7 +68,6 @@
           (go (>! resize-chan e)))))
       ) fadeout-time)))
 
-
 (defn resize-input []
   (defn remove-spaces [text] (clojure.string/replace text " " "_"))
 
@@ -84,18 +92,16 @@
     (dommy/remove-class! koan "unfaded")
     (js/setTimeout #(dommy/remove! koan) fadeout-time)))
 
-(defn load-koan [n]
-  (let [koan (meditations/nth-koan n)]
-    (render-koan koan)))
 
 (defn load-next-koan []
   (remove-active-koan)
-  (update-koan-index)
-  (load-koan current-koan-index))
+  (update-location-hash)
+  (render-koan (current-koan)))
 
 (set! (.-onready js/document) (fn []
-  (if (= 0 (current-koan-index)) (set! (.-hash js/location) 1))
-  (load-koan (current-koan-index))))
+  (if (clojure/string.blank? (.-hash js/location))
+    (set! (.-hash js/location) "equality/1"))
+  (render-koan (current-koan))))
 
 (defn show-error-message []
   (if (dommy/has-class? (sel1 :.code) "incorrect")

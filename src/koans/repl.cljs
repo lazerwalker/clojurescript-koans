@@ -20,5 +20,4 @@
   (go
     (while true
       (let [[text chan] (alts! [error-chan output-chan])]
-        (.log js/console text)
         (handler text)))))
