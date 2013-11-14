@@ -12,13 +12,13 @@
   (= :__ ((fn [n] (* 5 n)) 2))
 
   "Or using an even shorter syntax"
-  (= :__ (#(* 15 %) 4))
+  "(= :__ (#(* 15 %) 4))"
 
   "Even anonymous functions may take multiple arguments"
-  (= :__ (#(+ %1 %2 %3) 4 5 6))
+  "(= :__ (#(+ %1 %2 %3) 4 5 6))"
 
   "Arguments can also be skipped"
-  (= :__ (#(* 15 %2) 1 2))
+  "(= :__ (#(* 15 %2) 1 2))"
 
   "One function can beget another"
   (= 9 (((fn [] :__)) 4 5))

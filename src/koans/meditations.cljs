@@ -36,7 +36,9 @@
     (nth (keys meditations) index)))
 
 (defn expr-to-string [expr]
-  (clojure.string/replace (pr-str expr) #"\(quote (.*?)\)" #(str "'" %2)))
+  (if (string? expr)
+    expr
+    (clojure.string/replace (pr-str expr) #"\(quote (.*?)\)" #(str "'" %2))))
 
 (defn next-koan-index [koan]
   (let [next-in-category (KoanIndex. (:category koan) (inc (:index koan)))]
