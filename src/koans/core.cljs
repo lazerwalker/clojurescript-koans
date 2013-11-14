@@ -97,7 +97,7 @@
     (let [e (<! resize-chan)]
       (resize-input))))
 
-(set! (.-onready js/document) (fn []
+(set! (.-onload js/window) (fn []
   (if (clojure/string.blank? (.-hash js/location))
     (set! (.-hash js/location) "equality/1")
     (render-koan (current-koan)))))
@@ -121,9 +121,10 @@
       (dommy/add-class! (sel1 :.code) "incorrect")))))
 
 (defn evaluate-response [text]
-  (if (= text "true")
-    (load-next-koan)
-    (show-error-message)
-  ))
+  (cond
+    (= text "true")
+      (load-next-koan)
+    (= text "false")
+      (show-error-message)))
 
-(repl/listen-for-output evaluate-response)
+  (repl/listen-for-output evaluate-response)

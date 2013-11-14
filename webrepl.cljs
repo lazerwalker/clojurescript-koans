@@ -3,11 +3,11 @@
 
 (defn ^:export evaluate [text] (repl/eval-print text))
 
-(set! (.-onload js/window) (fn []
-  (repl/init)
+(defn ^:export init-with-pipes [output error print-fn]
   (set! *out* #(print-fn % "out"))
-  (set! *rtn* #(output % "rtn"))
-  (set! *err* #(error % "err"))
+  (set! *rtn* #(output %))
+  (set! *err* #(error %))
   (set! *print-fn* #(*out* %1))
-))
+  (repl/init)
+)
 
