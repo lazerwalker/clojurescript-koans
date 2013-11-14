@@ -1,4 +1,4 @@
-(ns koans.equality)
+(ns koans.meditations.equality)
 
 (def koans '(
   "We shall contemplate truth by testing reality, via equality"

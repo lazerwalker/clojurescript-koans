@@ -1,4 +1,4 @@
-(ns koans.lists)
+(ns koans.meditations.lists)
 
 (def koans '(
   "Lists can be expressed by function or a quoted form"
@@ -6,7 +6,7 @@
 
   "They are Clojure seqs (sequences), so they allow access to the first"
   (= :__ (first '(1 2 3 4 5)))
-
+;
   "As well as the rest"
   (= :__ (rest '(1 2 3 4 5)))
 

@@ -1,12 +1,18 @@
 (ns koans.meditations
   (:require
     [koans.utils :as utils]
-    [koans.equality :as equality]
-    [koans.lists :as lists]))
+    [koans.meditations.equality :as equality]
+    [koans.meditations.lists :as lists]
+    [koans.meditations.vectors :as vectors]
+    [koans.meditations.sets :as sets]
+    [koans.meditations.maps :as maps]))
 
 (def meditations {
   "equality" equality/koans
   "lists" lists/koans
+  "vectors" vectors/koans
+  "sets" sets/koans
+  "maps" maps/koans
 })
 
 (defrecord Koan [description before after])
