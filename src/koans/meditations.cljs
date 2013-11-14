@@ -33,7 +33,9 @@
 
 (defn koan-for-index [koan-index]
   (let [category-list (category-with-name (:category koan-index))
-        item (nth category-list (:index koan-index))
+        item (try
+          (nth category-list (:index koan-index))
+          (catch js/Object _ (first category-list 0)))
         description (first item)
         full-text (expr-to-string (last item))
         [before after] (clojure.string/split full-text #":__")]
