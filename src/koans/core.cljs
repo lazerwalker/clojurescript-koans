@@ -30,7 +30,7 @@
   (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0))
 
 (deftemplate input-with-code [koan]
-  [:div {:class (str "koan koan-" (current-koan-index))}
+  [:div {:class (str "koan koan-" (:index (current-koan-index)))}
     [:div {:class "description"} (:description koan)]
     [:div {:class "code"}
       [:span {:class "shadow"}]
@@ -54,7 +54,17 @@
 
 (def resize-chan (chan))
 
+(defn load-next-koan []
+  (update-location-hash))
+
+(defn remove-active-koan []
+  (let [koan (sel1 :.koan)]
+    (if-not (nil? koan)
+      (do (dommy/remove-class! koan "unfaded")
+          (js/setTimeout #(dommy/remove! koan) fadeout-time)))))
+
 (defn render-koan [koan]
+  (remove-active-koan)
   (let [elem (input-with-code koan)]
     (js/setTimeout #(
       (dommy/append! (sel1 :body) elem)
@@ -87,20 +97,12 @@
     (let [e (<! resize-chan)]
       (resize-input))))
 
-(defn remove-active-koan []
-  (let [koan (sel1 :.koan)]
-    (dommy/remove-class! koan "unfaded")
-    (js/setTimeout #(dommy/remove! koan) fadeout-time)))
-
-
-(defn load-next-koan []
-  (remove-active-koan)
-  (update-location-hash)
-  (render-koan (current-koan)))
-
 (set! (.-onready js/document) (fn []
   (if (clojure/string.blank? (.-hash js/location))
-    (set! (.-hash js/location) "equality/1"))
+    (set! (.-hash js/location) "equality/1")
+    (render-koan (current-koan)))))
+
+(set! (.-onhashchange js/window) (fn []
   (render-koan (current-koan))))
 
 (defn show-error-message []
