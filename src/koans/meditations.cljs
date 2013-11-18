@@ -38,8 +38,8 @@
   (Category. "sequence-comprehensions" sequence-comprehensions/koans)
   (Category. "creating-functions" creating-functions/koans creating-functions/fns)
   (Category. "destructuring" destructuring/koans destructuring/fns)
-  ;"atoms" atoms/koans
-  ;"datatypes" datatypes/koans
+  (Category. "atoms" atoms/koans atoms/fns)
+  ;(Category. "datatypes" datatypes/koans datatypes/fns)
   (Category. "partition" partition/koans)
 ])
 
