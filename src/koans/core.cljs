@@ -121,6 +121,7 @@
       (dommy/add-class! (sel1 :.code) "incorrect")))))
 
 (defn evaluate-response [text]
+  (.log js/console text)
   (cond
     (= text "true")
       (load-next-koan)
