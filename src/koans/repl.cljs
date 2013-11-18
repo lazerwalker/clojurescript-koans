@@ -9,16 +9,14 @@
 (defn channel-piping-fn [chan]
   (fn [text] (go (>! chan text))))
 
-(set! (.-output js/repl) (channel-piping-fn output-chan))
-(set! (.-error js/repl) (channel-piping-fn error-chan))
-(set! (.-print-fn js/repl) #()) ;TODO: What should be done with printed output?
-
 (defn ^:export eval [input-string]
   (.evaluate js/repl input-string))
 
 (defn ^:export listen-for-output [handler]
+  (.init-with-pipes js/repl (channel-piping-fn output-chan)
+                            (channel-piping-fn error-chan)
+                            #(.log js/console %))
   (go
     (while true
-      (let [[text chan] (alts! [output-chan])]
-        (.log js/console text)
+      (let [[text chan] (alts! [error-chan output-chan])]
         (handler text)))))

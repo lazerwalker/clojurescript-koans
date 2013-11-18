@@ -22,8 +22,7 @@
           :source-paths ["src" "spec"]
             :compiler {
               :output-to "out/koans_spec.js"
-              :optimizations :whitespace}
-            :notify-command run-specs}
+              :optimizations :whitespace}}
         :prod {
           :source-paths ["src"]
           :compiler {

@@ -1,0 +1,10 @@
+{"version":3,
+ "file":
+ "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/utils.js",
+ "sources":["utils.cljs"],
+ "lineCount":12,
+ "mappings":
+ ";;;AAECA,0CAAgBC,KAAKC,aAClBC,0BAAOC,4CAAAC,iBAAAC,qBAAmBC,yBAAAN,KAAAK;CAAJD;;;;GAAfH",
+ "names":
+ ["index-of", "item", "coll", "first", "keep-indexed", "p1__25456#",
+  "p2__25455#", "="]}

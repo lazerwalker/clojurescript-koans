@@ -1,0 +1,69 @@
+
+;; Runtime polymorphism
+(defn hello
+  ([] "Hello World!")
+  ([a] (str "Hello, you silly " a "."))
+  ([a & more] (str "Hello to this group: "
+                   (apply str
+                          (interpose ", " (concat (list a) more)))
+                   "!")))
+(defmulti diet (fn [x] (:eater x)))
+(defmethod diet :herbivore [a] :__)
+(defmethod diet :carnivore [a] :__)
+(defmethod diet :default [a] :__)
+
+
+(def meditations '(
+
+  ;; higher-order functions
+
+
+  ;; Run-time polymorphism
+  "Some functions can be used in different ways - with no arguments"
+  (= :__ (hello))
+
+  "With one argument"
+  (= :__ (hello "world"))
+
+  "Or with many arguments"
+  (= :__
+     (hello "Peter" "Paul" "Mary"))
+
+  "Multimethods allow more complex dispatching"
+  (= "Bambi eats veggies."
+     (diet {:species "deer" :name "Bambi" :age 1 :eater :herbivore}))
+
+  "Different methods are used depending on the dispatch function result"
+  (= "Simba eats animals."
+     (diet {:species "lion" :name "Simba" :age 1 :eater :carnivore}))
+
+  "You may use a default method when no others match"
+  (= "I don't know what Rich Hickey eats."
+     (diet {:name "Rich Hickey"}))
+
+  ;; lazy sequences
+  "There are many ways to generate a sequence"
+  (= :__ (range 1 5))
+
+  "The range starts at the beginning by default"
+  (= :__ (range 5))
+
+  "Only take what you need when the sequence is large"
+  (= [0 1 2 3 4 5 6 7 8 9]
+     (take :__ (range 100)))
+
+  "Or limit results by dropping what you don't need"
+  (= [95 96 97 98 99]
+     (drop :__ (range 100)))
+
+  "Iteration provides an infinite lazy sequence"
+  (= :__ (take 20 (iterate inc 0)))
+
+  "Repetition is key"
+  (= [:a :a :a :a :a :a :a :a :a :a ]
+     (repeat 10 :__))
+
+  "Iteration can be used for repetition"
+  (= (repeat 100 :foo)
+     (take 100 (iterate :__ :foo)))
+))

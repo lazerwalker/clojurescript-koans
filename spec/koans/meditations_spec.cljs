@@ -4,7 +4,7 @@
   (:require [specljs.core]
             [koans.meditations :as meditations]))
 
-(describe "nth-koan"
+#_(describe "nth-koan"
   (it "should return a valid Koan object"
     (def koan (meditations/nth-koan 0))
     (should (string? (:description koan)))
