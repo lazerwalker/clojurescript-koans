@@ -1,8 +1,18 @@
 (ns koans.meditations-spec
-  (:require-macros [specljs.core :refer [describe it should should-not
+  (:require-macros [specljs.core :refer [describe context it should should-not
     should= should-not-be-same]])
   (:require [specljs.core]
             [koans.meditations :as meditations]))
+
+(describe "next-koan-index"
+  (context "when there are remaining items in the category"
+    (it "should return the next index"
+      (def original-koan-index (meditations/KoanIndex. "equality" 0))
+      (def expected-koan-index (meditations/KoanIndex. "equality" 1))
+      (should= expected-koan-index (meditations/next-koan-index original-koan-index))))
+
+  (context "when the category is completed")
+    (it "should return the first koan in the next category"))
 
 #_(describe "nth-koan"
   (it "should return a valid Koan object"

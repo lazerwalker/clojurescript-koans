@@ -20,47 +20,38 @@
     [koans.meditations.datatypes :as datatypes]
     [koans.meditations.partition :as partition]))
 
-(def meditations {
-  "equality" equality/koans
-  "lists" lists/koans
-  "vectors" vectors/koans
-  "sets" sets/koans
-  "maps" maps/koans
-  "functions" functions/koans
-  "conditionals" conditionals/koans
-  "higher-order-functions" higher-order-functions/koans
-  "runtime-polymorphism" runtime-polymorphism/koans
-  "lazy-sequences" lazy-sequences/koans
-  "sequence-comprehensions" sequence-comprehensions/koans
-  "creating-functions" creating-functions/koans
-  "destructuring" destructuring/koans
-  ;"atoms" atoms/koans
-  ;"datatypes" datatypes/koans
-  "partition" partition/koans
-})
-
-(def functions {
-  "functions" functions/fns
-  "conditionals" conditionals/fns
-  "runtime-polymorphism" runtime-polymorphism/fns
-  "creating-functions" creating-functions/fns
-  "destructuring" destructuring/fns
-  ;"atoms" atoms/fns
-  ;"datatypes" datatypes/fns
-})
-
 (defrecord Koan [description before after])
 (defrecord KoanIndex [category index])
+(defrecord Category [name koans fns])
 
-(defn category-with-name [category]
-  (partition 2 (category meditations)))
+(def categories [
+  (Category. "equality" equality/koans)
+  (Category. "lists" lists/koans)
+  (Category. "vectors" vectors/koans)
+  (Category. "sets" sets/koans)
+  (Category. "maps" maps/koans)
+  (Category. "functions" functions/koans functions/fns)
+  (Category. "conditionals" conditionals/koans conditionals/fns)
+  (Category. "higher-order-functions" higher-order-functions/koans)
+  (Category. "runtime-polymorphism" runtime-polymorphism/koans runtime-polymorphism/fns)
+  (Category. "lazy-sequences" lazy-sequences/koans)
+  (Category. "sequence-comprehensions" sequence-comprehensions/koans)
+  (Category. "creating-functions" creating-functions/koans creating-functions/fns)
+  (Category. "destructuring" destructuring/koans destructuring/fns)
+  ;"atoms" atoms/koans
+  ;"datatypes" datatypes/koans
+  (Category. "partition" partition/koans)
+])
 
-(defn has-koan? [koan]
-  (< (:index koan) (count (category-with-name (:category koan)))))
+(defn category-from-koan-index [koan-index]
+  (first (filter #(= (:name %) (:category koan-index)) categories)))
 
-(defn next-category [koan]
-  (let [index (inc (utils/index-of (:category koan) (keys meditations)))]
-    (nth (keys meditations) index)))
+(defn koan-exists? [koan-index]
+  (< (:index koan-index) (count (partition 2 (:koans (category-from-koan-index koan-index))))))
+
+(defn next-category [koan-index]
+  (let [index (inc (utils/index-of (category-from-koan-index koan-index) categories))]
+    (:name (nth categories index))))
 
 (defn expr-to-string [expr]
   (if (string? expr)
@@ -69,18 +60,18 @@
 
 (defn next-koan-index [koan]
   (let [next-in-category (KoanIndex. (:category koan) (inc (:index koan)))]
-    (if (has-koan? next-in-category)
+    (if (koan-exists? next-in-category)
       next-in-category
       (KoanIndex. (next-category koan) 0))))
 
 (defn koan-for-index [koan-index]
-  (let [category (:category koan-index)
-        category-list (category-with-name category)
+  (let [category (category-from-koan-index koan-index)
+        category-list (partition 2 (:koans category))
         item (try
           (nth category-list (:index koan-index))
           (catch js/Object _ (first category-list)))
         description (first item)
         full-text (expr-to-string (last item))
         [before after] (clojure.string/split full-text #":__")]
-    (dorun (map #(repl/eval (pr-str %)) (category functions)))
+    (dorun (map #(repl/eval (pr-str %)) (:fns category)))
     (Koan. description before after)))

@@ -76,15 +76,15 @@ specljs.results.pending_QMARK_ = (function pending_QMARK_(result){return cljs.co
 });
 specljs.results.error_QMARK_ = (function error_QMARK_(result){return cljs.core._EQ_.call(null,cljs.core.type.call(null,result),specljs.results.ErrorResult);
 });
-specljs.results.fail_count = (function fail_count(results){return cljs.core.reduce.call(null,(function (p1__18053_SHARP_,p2__18052_SHARP_){if(cljs.core.truth_((function (){var or__3128__auto__ = specljs.results.fail_QMARK_.call(null,p2__18052_SHARP_);if(cljs.core.truth_(or__3128__auto__))
+specljs.results.fail_count = (function fail_count(results){return cljs.core.reduce.call(null,(function (p1__18163_SHARP_,p2__18162_SHARP_){if(cljs.core.truth_((function (){var or__3128__auto__ = specljs.results.fail_QMARK_.call(null,p2__18162_SHARP_);if(cljs.core.truth_(or__3128__auto__))
 {return or__3128__auto__;
 } else
-{return specljs.results.error_QMARK_.call(null,p2__18052_SHARP_);
+{return specljs.results.error_QMARK_.call(null,p2__18162_SHARP_);
 }
 })()))
-{return (p1__18053_SHARP_ + 1);
+{return (p1__18163_SHARP_ + 1);
 } else
-{return p1__18053_SHARP_;
+{return p1__18163_SHARP_;
 }
 }),0,results);
 });

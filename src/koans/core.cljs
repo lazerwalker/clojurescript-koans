@@ -71,6 +71,8 @@
       (fade-in! elem)
       (let [input (sel1 :.user-input)]
         (.focus input)
+        (dommy/listen! (sel1 :.code) :click (fn [e]
+          (.focus input)))
         (dommy/listen! input :keypress (fn [e]
           (if (= (.-charCode e) enter-key)
             (evaluate-koan))))

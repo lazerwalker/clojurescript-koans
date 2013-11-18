@@ -16,7 +16,7 @@ specljs.tags.pass_includes_QMARK_ = (function pass_includes_QMARK_(includes,tags
 specljs.tags.pass_excludes_QMARK_ = (function pass_excludes_QMARK_(excludes,tags){if(cljs.core.empty_QMARK_.call(null,excludes))
 {return true;
 } else
-{return cljs.core.not.call(null,cljs.core.some.call(null,(function (p1__17608_SHARP_){return cljs.core.contains_QMARK_.call(null,excludes,p1__17608_SHARP_);
+{return cljs.core.not.call(null,cljs.core.some.call(null,(function (p1__17718_SHARP_){return cljs.core.contains_QMARK_.call(null,excludes,p1__17718_SHARP_);
 }),tags));
 }
 });
@@ -50,13 +50,13 @@ specljs.tags.tags_for = (function tags_for(context){if(cljs.core.truth_(context)
 {return cljs.core.PersistentHashSet.EMPTY;
 }
 });
-specljs.tags.tag_sets_for = (function tag_sets_for(context){var context_seq = cljs.core.tree_seq.call(null,(function (p1__17609_SHARP_){return !((p1__17609_SHARP_ == null));
-}),(function (p1__17610_SHARP_){return cljs.core.deref.call(null,p1__17610_SHARP_.children);
+specljs.tags.tag_sets_for = (function tag_sets_for(context){var context_seq = cljs.core.tree_seq.call(null,(function (p1__17719_SHARP_){return !((p1__17719_SHARP_ == null));
+}),(function (p1__17720_SHARP_){return cljs.core.deref.call(null,p1__17720_SHARP_.children);
 }),context);return cljs.core.map.call(null,specljs.tags.tags_for,context_seq);
 });
-specljs.tags.context_with_tags_seq = (function context_with_tags_seq(context){var context_seq = cljs.core.tree_seq.call(null,(function (p1__17611_SHARP_){return !((p1__17611_SHARP_ == null));
-}),(function (p1__17612_SHARP_){return cljs.core.deref.call(null,p1__17612_SHARP_.children);
-}),context);return cljs.core.map.call(null,(function (p1__17613_SHARP_){return cljs.core.hash_map.call(null,new cljs.core.Keyword(null,"context","context",1965435169),p1__17613_SHARP_,new cljs.core.Keyword(null,"tag-set","tag-set",3758720801),specljs.tags.tags_for.call(null,p1__17613_SHARP_));
+specljs.tags.context_with_tags_seq = (function context_with_tags_seq(context){var context_seq = cljs.core.tree_seq.call(null,(function (p1__17721_SHARP_){return !((p1__17721_SHARP_ == null));
+}),(function (p1__17722_SHARP_){return cljs.core.deref.call(null,p1__17722_SHARP_.children);
+}),context);return cljs.core.map.call(null,(function (p1__17723_SHARP_){return cljs.core.hash_map.call(null,new cljs.core.Keyword(null,"context","context",1965435169),p1__17723_SHARP_,new cljs.core.Keyword(null,"tag-set","tag-set",3758720801),specljs.tags.tags_for.call(null,p1__17723_SHARP_));
 }),context_seq);
 });
 specljs.tags.describe_filter = (function() {

@@ -14,10 +14,10 @@ goog.require('specljs.config');
 specljs.report.documentation.level_of = (function level_of(component){var component__$1 = cljs.core.deref.call(null,component.parent);var level = 0;while(true){
 if(cljs.core.truth_(component__$1))
 {{
-var G__17606 = cljs.core.deref.call(null,component__$1.parent);
-var G__17607 = (level + 1);
-component__$1 = G__17606;
-level = G__17607;
+var G__17716 = cljs.core.deref.call(null,component__$1.parent);
+var G__17717 = (level + 1);
+component__$1 = G__17716;
+level = G__17717;
 continue;
 }
 } else
