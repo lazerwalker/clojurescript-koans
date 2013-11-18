@@ -127,7 +127,7 @@
   (cond
     (= text "true")
       (load-next-koan)
-    (or (= text "false") (not (nil? (re-find #"\#\<Error:" text))))
+    (or (= text "false") (not (nil? (re-find #"\#\<[A-Za-z]*?Error:" text))))
       (show-error-message)))
 
   (repl/listen-for-output evaluate-response)
