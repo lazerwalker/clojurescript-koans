@@ -2,32 +2,32 @@
 
 (def koans '(
   "Atoms are like refs"
-  (= :__ @atomic-clock)
+  "(= :__ @atomic-clock)"
 
   "You can change at the swap meet"
-  (= :__ (do
+  "(= :__ (do
           (swap! atomic-clock inc)
-          @atomic-clock))
+          @atomic-clock))"
 
   "Keep taxes out of this: swapping requires no transaction"
-  (= 5 (do
+  "(= 5 (do
          :__
-         @atomic-clock))
+         @atomic-clock))"
 
   "Any number of arguments might happen during a swap"
-  (= :__ (do
+  "(= :__ (do
           (swap! atomic-clock + 1 2 3 4 5)
-          @atomic-clock))
+          @atomic-clock))"
 
   "Atomic atoms are atomic"
-  (= :__ (do
+  "(= :__ (do
           (compare-and-set! atomic-clock 100 :fin)
-          @atomic-clock))
+          @atomic-clock))"
 
   "When your expectations are aligned with reality things, proceed that way"
-  (= :fin (do
+  "(= :fin (do
             (compare-and-set! :__)
-            @atomic-clock))
+            @atomic-clock))"
 ))
 
 (def fns [

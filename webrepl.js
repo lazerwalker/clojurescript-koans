@@ -6,4 +6,4 @@ replgoog.addDependency("../cljs/io.js", ['cljs.io'], ['cljs.core']);
 replgoog.addDependency("../cljs/reader.js", ['cljs.reader'], ['cljs.analyzer', 'cljs.core', 'replgoog.string', 'clojure.string']);
 replgoog.addDependency("../cljs/compiler.js", ['cljs.compiler'], ['cljs.io', 'cljs.analyzer', 'cljs.core', 'clojure.string', 'cljs.reader']);
 replgoog.addDependency("../cljs/repl.js", ['cljs.repl'], ['cljs.analyzer', 'cljs.compiler', 'cljs.core', 'cljs.reader']);
-replgoog.addDependency("../guIfA.js", ['repl'], ['cljs.core', 'cljs.repl']);
+replgoog.addDependency("../0aSTr.js", ['repl'], ['cljs.core', 'cljs.repl']);

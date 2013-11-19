@@ -16,8 +16,6 @@
   (subs (first (hash-objects)) 1)
   (dec (last (hash-objects)))))
 
-(defn current-koan [] (meditations/koan-for-index (current-koan-index)))
-
 (defn update-location-hash []
   (let [koan (meditations/next-koan-index (current-koan-index))]
     (set! (.-hash js/location) (str (:category koan) "/" (inc (:index koan))))))
@@ -80,6 +78,12 @@
           (go (>! resize-chan e)))))
       ) fadeout-time)))
 
+(defn render-current-koan []
+  (if (meditations/koan-exists? (current-koan-index))
+    (let [current-koan (meditations/koan-for-index (current-koan-index))]
+      (render-koan current-koan))
+    (update-location-hash)))
+
 (defn resize-input []
   (defn remove-spaces [text] (clojure.string/replace text " " "_"))
 
@@ -102,10 +106,10 @@
 (set! (.-onload js/window) (fn []
   (if (clojure/string.blank? (.-hash js/location))
     (set! (.-hash js/location) "equality/1")
-    (render-koan (current-koan)))))
+    (render-current-koan))))
 
 (set! (.-onhashchange js/window) (fn []
-  (render-koan (current-koan))))
+  (render-current-koan)))
 
 (defn show-error-message []
   (if (dommy/has-class? (sel1 :.code) "incorrect")
@@ -127,7 +131,7 @@
   (cond
     (= text "true")
       (load-next-koan)
-    (= text "false")
+    (or (= text "false") (not (nil? (re-find #"\#\<[A-Za-z]*?Error:" text))))
       (show-error-message)))
 
   (repl/listen-for-output evaluate-response)

@@ -26028,8 +26028,7 @@ koans.meditations.datatypes.koans = cljs.core.list("Holding records is meaningfu
 -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, ".prize", ".prize", -216655267, null), cljs.core.list(new cljs.core.Symbol(null, "Pulitzer.", "Pulitzer.", 2020419954, null), "literature"))), "Records may be treated like maps", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Keyword(null, "prize", "prize", 1120839556), cljs.core.list(new cljs.core.Symbol(null, 
 "Nobel.", "Nobel.", 698073055, null), "physics"))), "While types may not", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Keyword(null, "prize", "prize", 1120839556), cljs.core.list(new cljs.core.Symbol(null, "Pulitzer.", "Pulitzer.", 2020419954, null), "poetry"))), "Further study reveals why", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, 
 "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "map", "map", -1640423659, null), new cljs.core.Symbol(null, "map?", "map?", -1637187556, null), cljs.core.PersistentVector.fromArray([cljs.core.list(new cljs.core.Symbol(null, "Nobel.", "Nobel.", 698073055, null), "chemistry"), cljs.core.list(new cljs.core.Symbol(null, "Pulitzer.", "Pulitzer.", 2020419954, null), "music")], true))), "Either sort of datatype can define methods in a protocol", cljs.core.list(new cljs.core.Symbol(null, 
-"\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "with-out-str", "with-out-str", 825586404, null), cljs.core.list(new cljs.core.Symbol(null, "present", "present", -1958808972, null), cljs.core.list(new cljs.core.Symbol(null, "Oscar.", "Oscar.", 730422423, null), "Best Picture"), "Evil Alien Conquerors"))), "Surely we can implement our own by now", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, 
-null), "You're really the Worst Picture, Final Destination 5... sorry.", cljs.core.list(new cljs.core.Symbol(null, "with-out-str", "with-out-str", 825586404, null), cljs.core.list(new cljs.core.Symbol(null, "present", "present", -1958808972, null), cljs.core.list(new cljs.core.Symbol(null, "Razzie.", "Razzie.", 1013762076, null), "Worst Picture"), "Final Destination 5"))));
+"\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "with-out-str", "with-out-str", 825586404, null), cljs.core.list(new cljs.core.Symbol(null, "present", "present", -1958808972, null), cljs.core.list(new cljs.core.Symbol(null, "Oscar.", "Oscar.", 730422423, null), "Best Picture"), "Evil Alien Conquerors"))));
 koans.meditations.datatypes.fns = cljs.core.PersistentVector.fromArray([cljs.core.list(new cljs.core.Symbol(null, "defrecord", "defrecord", 1623953999, null), new cljs.core.Symbol(null, "Nobel", "Nobel", -1565092671, null), cljs.core.PersistentVector.fromArray([new cljs.core.Symbol(null, "prize", "prize", -1533596213, null)], true)), cljs.core.list(new cljs.core.Symbol(null, "deftype", "deftype", -95157640, null), new cljs.core.Symbol(null, "Pulitzer", "Pulitzer", 1584334, null), cljs.core.PersistentVector.fromArray([new cljs.core.Symbol(null, 
 "prize", "prize", -1533596213, null)], true)), cljs.core.list(new cljs.core.Symbol(null, "defprotocol", "defprotocol", 14006102, null), new cljs.core.Symbol(null, "Award", "Award", -1576860682, null), cljs.core.list(new cljs.core.Symbol(null, "present", "present", -1958808972, null), cljs.core.PersistentVector.fromArray([new cljs.core.Symbol(null, "this", "this", -1636972457, null), new cljs.core.Symbol(null, "recipient", "recipient", -820450350, null)], true))), cljs.core.list(new cljs.core.Symbol(null, 
 "defrecord", "defrecord", 1623953999, null), new cljs.core.Symbol(null, "Oscar", "Oscar", -1564049143, null), cljs.core.PersistentVector.fromArray([new cljs.core.Symbol(null, "category", "category", -1590020425, null)], true), new cljs.core.Symbol(null, "Award", "Award", -1576860682, null), cljs.core.list(new cljs.core.Symbol(null, "present", "present", -1958808972, null), cljs.core.PersistentVector.fromArray([new cljs.core.Symbol(null, "this", "this", -1636972457, null), new cljs.core.Symbol(null, 
@@ -26051,13 +26050,8 @@ cljs.core.list(new cljs.core.Symbol(null, "list", "list", -1637209513, null), ne
 null), cljs.core.list(new cljs.core.Symbol(null, "list", "list", -1637209513, null), new cljs.core.Keyword(null, "__", "__", 1013907282)), cljs.core.list(new cljs.core.Symbol(null, "sort", "sort", -1636995241, null), cljs.core.list(new cljs.core.Symbol(null, "vals", "vals", -1636919509, null), cljs.core.PersistentArrayMap.fromArray([2006, "Torino", 2010, "Vancouver", 2014, "Sochi"], true)))));
 goog.provide("koans.meditations.atoms");
 goog.require("cljs.core");
-koans.meditations.atoms.koans = cljs.core.list("Atoms are like refs", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", -564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null))), "You can change at the swap meet", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, 
-"__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "do", "do", -1640528316, null), cljs.core.list(new cljs.core.Symbol(null, "swap!", "swap!", -1530684761, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null), new cljs.core.Symbol(null, "inc", "inc", -1640427113, null)), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", -564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null)))), 
-"Keep taxes out of this: swapping requires no transaction", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), 5, cljs.core.list(new cljs.core.Symbol(null, "do", "do", -1640528316, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", -564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null)))), "Any number of arguments might happen during a swap", 
-cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "do", "do", -1640528316, null), cljs.core.list(new cljs.core.Symbol(null, "swap!", "swap!", -1530684761, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null), new cljs.core.Symbol(null, "+", "+", -1640531484, null), 1, 2, 3, 4, 5), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", 
--564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null)))), "Atomic atoms are atomic", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "__", "__", 1013907282), cljs.core.list(new cljs.core.Symbol(null, "do", "do", -1640528316, null), cljs.core.list(new cljs.core.Symbol(null, "compare-and-set!", "compare-and-set!", -1035896874, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, 
-null), 100, new cljs.core.Keyword(null, "fin", "fin", 1014005629)), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", -564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null)))), "When your expectations are aligned with reality things, proceed that way", cljs.core.list(new cljs.core.Symbol(null, "\x3d", "\x3d", -1640531466, null), new cljs.core.Keyword(null, "fin", "fin", 1014005629), cljs.core.list(new cljs.core.Symbol(null, 
-"do", "do", -1640528316, null), cljs.core.list(new cljs.core.Symbol(null, "compare-and-set!", "compare-and-set!", -1035896874, null), new cljs.core.Keyword(null, "__", "__", 1013907282)), cljs.core.list(new cljs.core.Symbol("clojure.core", "deref", "clojure.core/deref", -564909588, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null)))));
+koans.meditations.atoms.koans = cljs.core.list("Atoms are like refs", "(\x3d :__ @atomic-clock)", "You can change at the swap meet", "(\x3d :__ (do\n          (swap! atomic-clock inc)\n          @atomic-clock))", "Keep taxes out of this: swapping requires no transaction", "(\x3d 5 (do\n         :__\n         @atomic-clock))", "Any number of arguments might happen during a swap", "(\x3d :__ (do\n          (swap! atomic-clock + 1 2 3 4 5)\n          @atomic-clock))", "Atomic atoms are atomic", "(\x3d :__ (do\n          (compare-and-set! atomic-clock 100 :fin)\n          @atomic-clock))", 
+"When your expectations are aligned with reality things, proceed that way", "(\x3d :fin (do\n            (compare-and-set! :__)\n            @atomic-clock))");
 koans.meditations.atoms.fns = cljs.core.PersistentVector.fromArray([cljs.core.list(new cljs.core.Symbol(null, "def", "def", -1640432194, null), new cljs.core.Symbol(null, "atomic-clock", "atomic-clock", 1878504357, null), cljs.core.list(new cljs.core.Symbol(null, "atom", "atom", -1637526774, null), 0))], true);
 goog.provide("koans.meditations.partition");
 goog.require("cljs.core");
@@ -32805,7 +32799,7 @@ koans.meditations.map__GT_Category = function map__GT_Category(G__12587) {
 };
 koans.meditations.categories = cljs.core.PersistentVector.fromArray([new koans.meditations.Category("equality", koans.meditations.equality.koans), new koans.meditations.Category("lists", koans.meditations.lists.koans), new koans.meditations.Category("vectors", koans.meditations.vectors.koans), new koans.meditations.Category("sets", koans.meditations.sets.koans), new koans.meditations.Category("maps", koans.meditations.maps.koans), new koans.meditations.Category("functions", koans.meditations.functions.koans, 
 koans.meditations.functions.fns), new koans.meditations.Category("conditionals", koans.meditations.conditionals.koans, koans.meditations.conditionals.fns), new koans.meditations.Category("higher-order-functions", koans.meditations.higher_order_functions.koans), new koans.meditations.Category("runtime-polymorphism", koans.meditations.runtime_polymorphism.koans, koans.meditations.runtime_polymorphism.fns), new koans.meditations.Category("lazy-sequences", koans.meditations.lazy_sequences.koans), new koans.meditations.Category("sequence-comprehensions", 
-koans.meditations.sequence_comprehensions.koans), new koans.meditations.Category("creating-functions", koans.meditations.creating_functions.koans, koans.meditations.creating_functions.fns), new koans.meditations.Category("destructuring", koans.meditations.destructuring.koans, koans.meditations.destructuring.fns), new koans.meditations.Category("partition", koans.meditations.partition.koans)], true);
+koans.meditations.sequence_comprehensions.koans), new koans.meditations.Category("creating-functions", koans.meditations.creating_functions.koans, koans.meditations.creating_functions.fns), new koans.meditations.Category("destructuring", koans.meditations.destructuring.koans, koans.meditations.destructuring.fns), new koans.meditations.Category("atoms", koans.meditations.atoms.koans, koans.meditations.atoms.fns), new koans.meditations.Category("partition", koans.meditations.partition.koans)], true);
 koans.meditations.category_from_koan_index = function category_from_koan_index(koan_index) {
   return cljs.core.first.call(null, cljs.core.filter.call(null, function(p1__12591_SHARP_) {
     return cljs.core._EQ_.call(null, (new cljs.core.Keyword(null, "name", "name", 1017277949)).cljs$core$IFn$_invoke$arity$1(p1__12591_SHARP_), (new cljs.core.Keyword(null, "category", "category", 1064415344)).cljs$core$IFn$_invoke$arity$1(koan_index))
@@ -32832,7 +32826,19 @@ koans.meditations.next_koan_index = function next_koan_index(koan) {
   if(cljs.core.truth_(koans.meditations.koan_exists_QMARK_.call(null, next_in_category))) {
     return next_in_category
   }else {
-    return new koans.meditations.KoanIndex(koans.meditations.next_category.call(null, koan), 0)
+    if(koans.meditations.category_from_koan_index.call(null, koan) == null) {
+      return new koans.meditations.KoanIndex("equality", 0)
+    }else {
+      if(cljs.core.truth_(isNaN((new cljs.core.Keyword(null, "index", "index", 1114250308)).cljs$core$IFn$_invoke$arity$1(next_in_category)))) {
+        return new koans.meditations.KoanIndex((new cljs.core.Keyword(null, "category", "category", 1064415344)).cljs$core$IFn$_invoke$arity$1(koan), 0)
+      }else {
+        if(new cljs.core.Keyword(null, "else", "else", 1017020587)) {
+          return new koans.meditations.KoanIndex(koans.meditations.next_category.call(null, koan), 0)
+        }else {
+          return null
+        }
+      }
+    }
   }
 };
 koans.meditations.koan_for_index = function koan_for_index(koan_index) {
@@ -35673,9 +35679,6 @@ koans.core.hash_objects = function hash_objects() {
 koans.core.current_koan_index = function current_koan_index() {
   return new koans.meditations.KoanIndex(cljs.core.subs.call(null, cljs.core.first.call(null, koans.core.hash_objects.call(null)), 1), cljs.core.last.call(null, koans.core.hash_objects.call(null)) - 1)
 };
-koans.core.current_koan = function current_koan() {
-  return koans.meditations.koan_for_index.call(null, koans.core.current_koan_index.call(null))
-};
 koans.core.update_location_hash = function update_location_hash() {
   var koan = koans.meditations.next_koan_index.call(null, koans.core.current_koan_index.call(null));
   return location.hash = [cljs.core.str((new cljs.core.Keyword(null, "category", "category", 1064415344)).cljs$core$IFn$_invoke$arity$1(koan)), cljs.core.str("/"), cljs.core.str((new cljs.core.Keyword(null, "index", "index", 1114250308)).cljs$core$IFn$_invoke$arity$1(koan) + 1)].join("")
@@ -35871,6 +35874,14 @@ koans.core.render_koan = function render_koan(koan) {
     }())
   }, koans.core.fadeout_time)
 };
+koans.core.render_current_koan = function render_current_koan() {
+  if(cljs.core.truth_(koans.meditations.koan_exists_QMARK_.call(null, koans.core.current_koan_index.call(null)))) {
+    var current_koan = koans.meditations.koan_for_index.call(null, koans.core.current_koan_index.call(null));
+    return koans.core.render_koan.call(null, current_koan)
+  }else {
+    return koans.core.update_location_hash.call(null)
+  }
+};
 koans.core.resize_input = function resize_input() {
   koans.core.remove_spaces = function remove_spaces(text) {
     return clojure.string.replace.call(null, text, " ", "_")
@@ -36006,11 +36017,11 @@ window.onload = function() {
   if(cljs.core.truth_(clojure.string.blank_QMARK_.call(null, location.hash))) {
     return location.hash = "equality/1"
   }else {
-    return koans.core.render_koan.call(null, koans.core.current_koan.call(null))
+    return koans.core.render_current_koan.call(null)
   }
 };
 window.onhashchange = function() {
-  return koans.core.render_koan.call(null, koans.core.current_koan.call(null))
+  return koans.core.render_current_koan.call(null)
 };
 koans.core.show_error_message = function show_error_message() {
   if(cljs.core.truth_(dommy.core.has_class_QMARK_.call(null, dommy.utils.__GT_Array.call(null, document.getElementsByClassName("code"))[0], "incorrect"))) {
@@ -36033,7 +36044,7 @@ koans.core.evaluate_response = function evaluate_response(text) {
   if(cljs.core._EQ_.call(null, text, "true")) {
     return koans.core.load_next_koan.call(null)
   }else {
-    if(cljs.core._EQ_.call(null, text, "false")) {
+    if(cljs.core._EQ_.call(null, text, "false") || !(cljs.core.re_find.call(null, /\#\<[A-Za-z]*?Error:/, text) == null)) {
       return koans.core.show_error_message.call(null)
     }else {
       return null

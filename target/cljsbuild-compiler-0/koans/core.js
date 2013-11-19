@@ -16,8 +16,6 @@ koans.core.hash_objects = (function hash_objects(){return clojure.string.split.c
 });
 koans.core.current_koan_index = (function current_koan_index(){return (new koans.meditations.KoanIndex(cljs.core.subs.call(null,cljs.core.first.call(null,koans.core.hash_objects.call(null)),1),(cljs.core.last.call(null,koans.core.hash_objects.call(null)) - 1)));
 });
-koans.core.current_koan = (function current_koan(){return koans.meditations.koan_for_index.call(null,koans.core.current_koan_index.call(null));
-});
 koans.core.update_location_hash = (function update_location_hash(){var koan = koans.meditations.next_koan_index.call(null,koans.core.current_koan_index.call(null));return location.hash = [cljs.core.str(new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(koan)),cljs.core.str("/"),cljs.core.str((new cljs.core.Keyword(null,"index","index",1114250308).cljs$core$IFn$_invoke$arity$1(koan) + 1))].join('');
 });
 koans.core.fadeout_time = 600;
@@ -161,6 +159,12 @@ return c__5380__auto__;
 })());
 }),koans.core.fadeout_time);
 });
+koans.core.render_current_koan = (function render_current_koan(){if(cljs.core.truth_(koans.meditations.koan_exists_QMARK_.call(null,koans.core.current_koan_index.call(null))))
+{var current_koan = koans.meditations.koan_for_index.call(null,koans.core.current_koan_index.call(null));return koans.core.render_koan.call(null,current_koan);
+} else
+{return koans.core.update_location_hash.call(null);
+}
+});
 koans.core.resize_input = (function resize_input(){koans.core.remove_spaces = (function remove_spaces(text){return clojure.string.replace.call(null,text," ","_");
 });
 var input = (dommy.utils.__GT_Array.call(null,document.getElementsByClassName("user-input"))[0]);var shadow = (dommy.utils.__GT_Array.call(null,document.getElementsByClassName("shadow"))[0]);dommy.core.set_text_BANG_.call(null,shadow,koans.core.remove_spaces.call(null,dommy.core.value.call(null,input)));
@@ -258,10 +262,10 @@ return statearr_12565;
 window.onload = (function (){if(cljs.core.truth_(clojure.string.blank_QMARK_.call(null,location.hash)))
 {return location.hash = "equality/1";
 } else
-{return koans.core.render_koan.call(null,koans.core.current_koan.call(null));
+{return koans.core.render_current_koan.call(null);
 }
 });
-window.onhashchange = (function (){return koans.core.render_koan.call(null,koans.core.current_koan.call(null));
+window.onhashchange = (function (){return koans.core.render_current_koan.call(null);
 });
 koans.core.show_error_message = (function show_error_message(){if(cljs.core.truth_(dommy.core.has_class_QMARK_.call(null,(dommy.utils.__GT_Array.call(null,document.getElementsByClassName("code"))[0]),"incorrect")))
 {var code_box = (dommy.utils.__GT_Array.call(null,document.getElementsByClassName("code"))[0]);var error = (dommy.utils.__GT_Array.call(null,document.getElementsByClassName("error"))[0]);dommy.core.remove_class_BANG_.call(null,code_box,"incorrect");
@@ -278,7 +282,7 @@ koans.core.evaluate_response = (function evaluate_response(text){console.log(tex
 if(cljs.core._EQ_.call(null,text,"true"))
 {return koans.core.load_next_koan.call(null);
 } else
-{if(cljs.core._EQ_.call(null,text,"false"))
+{if((cljs.core._EQ_.call(null,text,"false")) || (!((cljs.core.re_find.call(null,/\#\<[A-Za-z]*?Error:/,text) == null))))
 {return koans.core.show_error_message.call(null);
 } else
 {return null;
