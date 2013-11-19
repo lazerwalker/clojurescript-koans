@@ -9,6 +9,18 @@ body {
 }
 
 /* line 24, sass/style.sass */
+.circle {
+  background: url("../images/zencircle.png");
+  background-size: cover;
+  height: 55%;
+  width: 27%;
+  opacity: 0.1;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* line 34, sass/style.sass */
 .error {
   color: #dd3333;
   font-size: 18px;
@@ -24,7 +36,7 @@ body {
   opacity: 1;
 }
 
-/* line 30, sass/style.sass */
+/* line 40, sass/style.sass */
 .koan {
   opacity: 0;
   -webkit-transition: opacity 0.8s;
@@ -39,11 +51,11 @@ body {
 .koan.unfaded {
   opacity: 1;
 }
-/* line 36, sass/style.sass */
+/* line 46, sass/style.sass */
 .koan .description {
   margin: 20px;
 }
-/* line 39, sass/style.sass */
+/* line 49, sass/style.sass */
 .koan .code {
   background: rgba(255, 255, 255, 0.7);
   display: inline-block;
@@ -60,16 +72,16 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 46, sass/style.sass */
+/* line 56, sass/style.sass */
 .koan .code.incorrect {
   background-color: rgba(255, 0, 0, 0.2);
 }
-/* line 55, sass/style.sass */
+/* line 65, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 59, sass/style.sass */
+/* line 69, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -85,7 +97,7 @@ body {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 69, sass/style.sass */
+/* line 79, sass/style.sass */
 .koan input:focus {
   outline: none;
 }
