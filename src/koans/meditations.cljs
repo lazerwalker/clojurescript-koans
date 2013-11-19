@@ -60,9 +60,15 @@
 
 (defn next-koan-index [koan]
   (let [next-in-category (KoanIndex. (:category koan) (inc (:index koan)))]
-    (if (koan-exists? next-in-category)
-      next-in-category
-      (KoanIndex. (next-category koan) 0))))
+    (cond
+      (koan-exists? next-in-category)
+        next-in-category
+      (nil? (category-from-koan-index koan))
+        (KoanIndex. "equality" 0)
+      (js/isNaN (:index next-in-category))
+        (KoanIndex. (:category koan) 0)
+      :else
+        (KoanIndex. (next-category koan) 0))))
 
 (defn koan-for-index [koan-index]
   (let [category (category-from-koan-index koan-index)
