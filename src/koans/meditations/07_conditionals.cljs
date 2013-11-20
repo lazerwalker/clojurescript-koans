@@ -2,41 +2,41 @@
 
 (def koans '(
   "You will face many decisions"
-  (= :__ (if (false? (= 4 5))
-          :a
-          :b))
+  "(= :__ (if (false? (= 4 5))
+         :a
+         :b))"
 
   "Some of them leave you no alternative"
-  (= :__ (if (> 4 3)
-          []))
+  "(= :__ (if (> 4 3)
+         []))"
 
   "And in such a situation you may have nothing"
-  (= :__ (if (nil? 0)
-          [:a :b :c]))
+  "(= :__ (if (nil? 0)
+          [:a :b :c]))"
 
   "In others your alternative may be interesting"
-  (= :glory (if (not (empty? ()))
+  "(= :glory (if (not (empty? ()))
               :doom
-              :__))
+              :__))"
 
   "You may have a multitude of possible paths"
-  (let [x 5]
+  "(let [x 5]
     (= :your-road (cond (= x :__) :road-not-taken
                         (= x :__) :another-road-not-taken
-                        :else :__)))
+                        :else :__)))"
 
   "Or your fate may be sealed"
-  (= :__ (if-not (zero? :__)
+  "(= :__ (if-not (zero? :__)
           'doom
-          'doom))
+          'doom))"
 
   "In case of emergency, sound the alarms"
-  (= :sirens
-     (explain-defcon-level :__))
+  "(= :sirens
+     (explain-defcon-level :__))"
 
   "But admit it when you don't know what to do"
-  (= :__
-     (explain-defcon-level :yo-mama))
+  "(= :__
+     (explain-defcon-level :yo-mama))"
 ))
 
 (def fns [

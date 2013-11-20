@@ -34,11 +34,15 @@
     [:div {:class "description"} (:description koan)]
     [:div {:class "code-box"}
       (for [text (:code-strings koan)]
-        (if (= text "INPUT")
-          [:span {:class "code"}
-            [:span {:class "shadow"}]
-            [:input {:name "code"}]]
-          [:span {:class "text"} text]))]])
+        (cond
+          (= text :input)
+            [:span {:class "code"}
+              [:span {:class "shadow"}]
+              [:input {:name "code"}]]
+          (= text :newline)
+            [:br]
+          :else
+            [:pre {:class "text"} text]))]])
 
 (deftemplate error-message []
   [:div {:class "error"} "You have not yet attained enlightenment."])
@@ -143,7 +147,7 @@
 (defn evaluate-response [text]
   (log text)
   (cond
-    (= text "true")
+  (= text "true")
       (load-next-koan)
     (or (= text "false") (not (nil? (re-find #"\#\<[A-Za-z]*?Error:" text))))
       (show-error-message)))

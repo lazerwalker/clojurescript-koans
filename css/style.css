@@ -62,6 +62,7 @@ body {
   color: #003744;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
+  text-align: left;
   text-shadow: none;
   -webkit-transition: background-color 1s;
   -moz-transition: background-color 1s;
@@ -72,16 +73,23 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 56, sass/style.sass */
+/* line 57, sass/style.sass */
 .koan .code-box.incorrect {
   background-color: rgba(255, 0, 0, 0.2);
 }
-/* line 65, sass/style.sass */
+/* line 66, sass/style.sass */
+.koan .text {
+  color: #003744;
+  font-size: 24px;
+  font-family: Monaco, Inconsolata, Menlo, Courier;
+  display: inline;
+}
+/* line 70, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 69, sass/style.sass */
+/* line 74, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -97,7 +105,7 @@ body {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 79, sass/style.sass */
+/* line 84, sass/style.sass */
 .koan input:focus {
   outline: none;
 }

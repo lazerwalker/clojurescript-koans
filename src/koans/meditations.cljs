@@ -71,13 +71,14 @@
         (KoanIndex. (next-category koan) 0))))
 
 (defn expr-to-array [expr]
-  (def full-text (expr-to-string expr))
-  (def splitted (clojure.string/split full-text #":__"))
-  (apply concat (map (fn [text]
-    (if (= text (last splitted))
-      [text]
-      [text "INPUT"]
-    )) splitted)))
+  (let [full-text (expr-to-string expr)
+        splitted (clojure.string/split full-text #":__")]
+  (->> splitted
+    (map (fn [text]
+        (if (= text (last splitted))
+          [text]
+          [text :input])))
+    (apply concat))))
 
 (defn koan-for-index [koan-index]
   (let [category (category-from-koan-index koan-index)
