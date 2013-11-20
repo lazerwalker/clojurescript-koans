@@ -1,6 +1,7 @@
 goog.addDependency("base.js", ['goog'], []);
 goog.addDependency("../cljs/core.js", ['cljs.core'], ['goog.string', 'goog.array', 'goog.object', 'goog.string.StringBuffer']);
 goog.addDependency("../koans/utils.js", ['koans.utils'], ['cljs.core']);
+goog.addDependency("../jayq/util.js", ['jayq.util'], ['cljs.core']);
 goog.addDependency("../koans/meditations/runtime_polymorphism.js", ['koans.meditations.runtime_polymorphism'], ['cljs.core']);
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['cljs.core', 'goog.string', 'goog.string.StringBuffer']);
 goog.addDependency("../dommy/attrs.js", ['dommy.attrs'], ['cljs.core', 'clojure.string']);
@@ -25,12 +26,14 @@ goog.addDependency("../cljs/core/async/impl/ioc_helpers.js", ['cljs.core.async.i
 goog.addDependency("../cljs/core/async/impl/channels.js", ['cljs.core.async.impl.channels'], ['cljs.core.async.impl.buffers', 'cljs.core', 'cljs.core.async.impl.dispatch', 'cljs.core.async.impl.protocols']);
 goog.addDependency("../cljs/core/async/impl/timers.js", ['cljs.core.async.impl.timers'], ['cljs.core', 'cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core.async.impl.protocols']);
 goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.async.impl.ioc_helpers', 'cljs.core.async.impl.buffers', 'cljs.core', 'cljs.core.async.impl.channels', 'cljs.core.async.impl.dispatch', 'cljs.core.async.impl.protocols', 'cljs.core.async.impl.timers']);
-goog.addDependency("../koans/repl.js", ['koans.repl'], ['cljs.core', 'cljs.core.async']);
+goog.addDependency("../koans/repl.js", ['koans.repl'], ['cljs.core', 'jayq.util', 'cljs.core.async']);
 goog.addDependency("../koans/meditations/functions.js", ['koans.meditations.functions'], ['cljs.core', 'koans.repl']);
 goog.addDependency("../koans/meditations/lists.js", ['koans.meditations.lists'], ['cljs.core']);
 goog.addDependency("../koans/meditations.js", ['koans.meditations'], ['koans.meditations.sequence_comprehensions', 'koans.meditations.datatypes', 'koans.meditations.maps', 'cljs.core', 'koans.meditations.atoms', 'koans.meditations.partition', 'koans.meditations.creating_functions', 'koans.meditations.lazy_sequences', 'koans.utils', 'koans.meditations.conditionals', 'koans.meditations.equality', 'koans.meditations.sets', 'koans.meditations.vectors', 'koans.meditations.destructuring', 'koans.repl', 'koans.meditations.runtime_polymorphism', 'koans.meditations.functions', 'koans.meditations.higher_order_functions', 'koans.meditations.lists']);
-goog.addDependency("../dommy/utils.js", ['dommy.utils'], ['cljs.core']);
+goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['cljs.core', 'goog.string']);
+goog.addDependency("../jayq/core.js", ['jayq.core'], ['cljs.core', 'clojure.string', 'cljs.reader']);
 goog.addDependency("../dommy/template.js", ['dommy.template'], ['dommy.attrs', 'cljs.core', 'clojure.string']);
+goog.addDependency("../dommy/utils.js", ['dommy.utils'], ['cljs.core']);
 goog.addDependency("../dommy/core.js", ['dommy.core'], ['dommy.attrs', 'cljs.core', 'dommy.template', 'dommy.utils', 'clojure.string']);
-goog.addDependency("../koans/core.js", ['koans.core'], ['cljs.core', 'dommy.utils', 'koans.repl', 'cljs.core.async', 'koans.meditations', 'dommy.core']);
+goog.addDependency("../koans/core.js", ['koans.core'], ['cljs.core', 'koans.repl', 'jayq.util', 'cljs.core.async', 'koans.meditations', 'jayq.core', 'dommy.core']);
 goog.addDependency("../koans/meditations/recursion.js", ['koans.meditations.recursion'], ['cljs.core']);

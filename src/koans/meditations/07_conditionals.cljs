@@ -19,20 +19,16 @@
               :doom
               :__))
 
-  #_(
-    "You may have a multitude of possible paths"
-  (let [x 5]\n
+  "You may have a multitude of possible paths"
+  (let [x 5]
     (= :your-road (cond (= x :__) :road-not-taken
                         (= x :__) :another-road-not-taken
                         :else :__)))
-  )
 
-  #_(
   "Or your fate may be sealed"
   (= :__ (if-not (zero? :__)
           'doom
           'doom))
-  )
 
   "In case of emergency, sound the alarms"
   (= :sirens

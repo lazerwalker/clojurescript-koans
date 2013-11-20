@@ -1,4 +1,5 @@
 (ns koans.repl
+  (:use [jayq.util :only [log wait]])
   (:require [cljs.core.async :as async
     :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go alt!]]))
@@ -15,7 +16,7 @@
 (defn ^:export listen-for-output [handler]
   (.init-with-pipes js/repl (channel-piping-fn output-chan)
                             (channel-piping-fn error-chan)
-                            #(.log js/console %))
+                            #(log %))
   (go
     (while true
       (let [[text chan] (alts! [error-chan output-chan])]

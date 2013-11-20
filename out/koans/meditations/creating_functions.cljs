@@ -14,12 +14,10 @@
   (= 20 (let [multiply-by-5 (partial * 5)]
           (:__)))
 
-  #_(
   "Don't forget: first things first"
   (= [:__]
        (let [ab-adder (partial concat [:a :b])]
          (ab-adder [:__])))
-  )
 
   "Functions can join forces as one 'composed' function"
   (= 25 (let [inc-and-square (comp square inc)]

@@ -19,14 +19,12 @@
      (for [index :__ :when (odd? index)]
        index))
 
-  #_(
-    "Combinations of these transformations is trivial"
+  "Combinations of these transformations is trivial"
   (= '(1 9 25 49 81)
      (map (fn [index] (* index index))
           (filter odd? (range 10)))
      (for [index (range 10) :when :__]
        :__))
-  )
 
   "More complex transformations simply take multiple binding forms"
   (= [[:top :left] [:top :middle] [:top :right]
