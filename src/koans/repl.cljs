@@ -1,4 +1,5 @@
 (ns koans.repl
+  (:use [jayq.util :only [log wait]])
   (:require [cljs.core.async :as async
     :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
   (:require-macros [cljs.core.async.macros :refer [go alt!]]))

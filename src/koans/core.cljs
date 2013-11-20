@@ -1,16 +1,15 @@
 (ns koans.core
-  (:use [jayq.core :only [$ add-class append-to append focus find on document-ready remove remove-class]]
+  (:use [jayq.core :only [$]]
         [jayq.util :only [log wait]])
   (:require
     [koans.meditations :as meditations]
     [koans.repl :as repl]
     [jayq.core :as $]
-    [dommy.utils :as utils]
     [dommy.core :as dommy]
     [cljs.core.async :as async
       :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
   (:use-macros
-    [dommy.macros :only [node sel sel1 deftemplate]])
+    [dommy.macros :only [deftemplate]])
   (:require-macros [cljs.core.async.macros :refer [go alt!]]))
 
 (defn hash-objects [] (clojure.string/split (.-hash js/location) "/" ))
@@ -28,7 +27,7 @@
 (def enter-key 13)
 
 (defn fade-in! [elem]
-  (wait 0 (fn [] (add-class ($ elem) "unfaded"))))
+  (wait 0 (fn [] ($/add-class ($ elem) "unfaded"))))
 
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
@@ -51,13 +50,13 @@
 
     (if is-empty?
       ""
-      (->> (sel (sel1 :.code-box) ".text, input")
+      (->> ($ ".text, input")
         (mapv (fn [el]
           (cond
-            (= "text" (.-className el))
-              (dommy/text el)
-            (= "INPUT" (.-tagName el))
-              (dommy/value el))))
+            (= "text" (.-className (first el)))
+              ($/text el)
+            (= "INPUT" (.-tagName (first el)))
+              ($/val el))))
         (clojure.string/join " ")))))
 
 (defn evaluate-koan []
@@ -72,16 +71,16 @@
 (defn remove-active-koan []
   (let [koan ($ :.koan)]
     (if-not (= 0 (.-length koan))
-      (do (remove-class koan "unfaded")
-          (wait fadeout-time #(remove koan))))))
+      (do ($/remove-class koan "unfaded")
+          (wait fadeout-time #($/remove koan))))))
 
 (defn render-koan [koan]
   (remove-active-koan)
   (let [$elem ($ (input-with-code koan))]
     (wait fadeout-time #(
-      (append ($ :body) $elem)
+      ($/append ($ :body) $elem)
       (fade-in! $elem)
-      (.focus (first (find $elem :input)))))))
+      (.focus (first ($/find $elem :input)))))))
 
 (defn render-current-koan []
   (if (meditations/koan-exists? (current-koan-index))
@@ -90,33 +89,34 @@
     (update-location-hash)))
 
 (defn resize-input [input]
+  (def $input ($ input))
   (defn remove-spaces [text] (clojure.string/replace text " " "_"))
 
-  (let [parent (dommy/closest input :.code-box)
-        shadow (sel1 parent :.shadow)]
+  (let [$parent ($/parent $input)
+        $shadow ($/find $parent :.shadow)]
 
-    (dommy/set-text! shadow (remove-spaces (dommy/value input)))
+    ($/text $shadow (remove-spaces ($/val $input)))
 
-    (let [shadow-width (.-width (.getBoundingClientRect shadow))
-          input-width (.-width (.getBoundingClientRect input))]
+    (let [shadow-width ($/width $shadow)
+          input-width ($/width $input)]
       (cond
         (>= shadow-width input-width)
-          (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))
+          ($/width $input (+ shadow-width (* 4 char-width)))
         (>= (- input-width (* 4 char-width)) shadow-width)
-          (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))))))
+          ($/width $input (+ shadow-width (* 4 char-width)))))))
 
 (go
   (while true
     (let [e (<! resize-chan)]
       (resize-input (.-target e)))))
 
-(document-ready (fn []
-  (on ($ js/document) :click :.text (fn [e]
+($/document-ready (fn []
+  ($/on ($ js/document) :click :.text (fn [e]
     (.focus (first ($ :input)))))
-  (on ($ js/document) :keypress :input (fn [e]
+  ($/on ($ js/document) :keypress :input (fn [e]
     (when (= (.-charCode e) enter-key)
       (evaluate-koan))))
-  (on ($ js/document) :input :input (fn [e]
+  ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
 
   (if (clojure/string.blank? (.-hash js/location))
@@ -127,19 +127,18 @@
   (render-current-koan)))
 
 (defn show-error-message []
-  (if (dommy/has-class? (sel1 :.code-box) "incorrect")
-    (do (let [code-box (sel1 :.code-box)
-              error (sel1 :.error)]
-      (dommy/remove-class! code-box "incorrect")
-      (dommy/remove-class! error "unfaded")
-      (js/setTimeout #(
-        (dommy/add-class! code-box "incorrect")
-        (dommy/add-class! error "unfaded")
-      ) 300)))
-    (do (let [error (error-message)]
-      (dommy/append! (sel1 :.koan) error)
-      (fade-in! error)
-      (dommy/add-class! (sel1 :.code-box) "incorrect")))))
+  (def $code-box ($ :.code-box))
+  (if ($/has-class $code-box "incorrect")
+    (do (let [$error ($ :.error)]
+      ($/remove-class $code-box "incorrect")
+      ($/remove-class $error "unfaded")
+      (wait 300 #(
+        ($/add-class $code-box "incorrect")
+        ($/add-class $error "unfaded")))))
+    (do (let [$error ($ (error-message))]
+      ($/add-class $code-box "incorrect")
+      ($/append ($ :.koan) $error)
+      (fade-in! $error)))))
 
 (defn evaluate-response [text]
   (log text)
