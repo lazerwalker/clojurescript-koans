@@ -19,11 +19,6 @@
 
   :cljsbuild ~(let [run-specs ["phantomjs" "bin/specljs_runner.js" "repl.out/goog/base.js" "webrepl.js" "spec/stubs.js" "out/koans_spec.js"]]
     { :builds {
-        :dev {
-          :source-paths ["src" "spec"]
-            :compiler {
-              :output-to "out/koans_spec.js"
-              :optimizations :whitespace}}
         :prod {
           :source-paths ["src"]
           :compiler {

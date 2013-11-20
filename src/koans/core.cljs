@@ -1,8 +1,10 @@
 (ns koans.core
-  (:use [jayq.core :only [$ html val]])
+  (:use [jayq.core :only [$ add-class append-to append focus find on document-ready remove remove-class]]
+        [jayq.util :only [log wait]])
   (:require
     [koans.meditations :as meditations]
     [koans.repl :as repl]
+    [jayq.core :as $]
     [dommy.utils :as utils]
     [dommy.core :as dommy]
     [cljs.core.async :as async
@@ -26,12 +28,7 @@
 (def enter-key 13)
 
 (defn fade-in! [elem]
-  (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0))
-
-(defn listen-seq! [elems event handler]
-  (mapv
-    (fn [el] (dommy/listen! el event handler))
-    elems))
+  (wait 0 (fn [] (add-class ($ elem) "unfaded"))))
 
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
@@ -64,7 +61,7 @@
         (clojure.string/join " ")))))
 
 (defn evaluate-koan []
-  (.log js/console "Evaluating " (input-string))
+  (log "Evaluating " (input-string))
   (repl/eval (input-string)))
 
 (def resize-chan (chan))
@@ -73,32 +70,18 @@
   (update-location-hash))
 
 (defn remove-active-koan []
-  (let [koan (sel1 :.koan)]
-    (if-not (nil? koan)
-      (do (dommy/remove-class! koan "unfaded")
-          (js/setTimeout #(dommy/remove! koan) fadeout-time)))))
+  (let [koan ($ :.koan)]
+    (if-not (= 0 (.-length koan))
+      (do (remove-class koan "unfaded")
+          (wait fadeout-time #(remove koan))))))
 
 (defn render-koan [koan]
   (remove-active-koan)
-  (let [elem (input-with-code koan)]
-    (js/setTimeout #(
-      (dommy/append! (sel1 :body) elem)
-      (fade-in! elem)
-      (let [inputs (sel :input)
-            texts  (sel :.text)]
-        (.focus (first inputs))
-        (listen-seq! texts :click (fn [e]
-          (.focus (first inputs))))
-
-        (listen-seq! inputs :keypress
-          (fn [e]
-            (when (= (.-charCode e) enter-key)
-              (evaluate-koan))))
-
-        (listen-seq! inputs :input (fn [e]
-          (go (>! resize-chan e)))))
-
-      ) fadeout-time)))
+  (let [$elem ($ (input-with-code koan))]
+    (wait fadeout-time #(
+      (append ($ :body) $elem)
+      (fade-in! $elem)
+      (.focus (first (find $elem :input)))))))
 
 (defn render-current-koan []
   (if (meditations/koan-exists? (current-koan-index))
@@ -127,7 +110,15 @@
     (let [e (<! resize-chan)]
       (resize-input (.-target e)))))
 
-(set! (.-onload js/window) (fn []
+(document-ready (fn []
+  (on ($ js/document) :click :.text (fn [e]
+    (.focus (first ($ :input)))))
+  (on ($ js/document) :keypress :input (fn [e]
+    (when (= (.-charCode e) enter-key)
+      (evaluate-koan))))
+  (on ($ js/document) :input :input (fn [e]
+    (go (>! resize-chan e))))
+
   (if (clojure/string.blank? (.-hash js/location))
     (set! (.-hash js/location) "equality/1")
     (render-current-koan))))
@@ -151,7 +142,7 @@
       (dommy/add-class! (sel1 :.code-box) "incorrect")))))
 
 (defn evaluate-response [text]
-  (.log js/console text)
+  (log text)
   (cond
     (= text "true")
       (load-next-koan)

@@ -15,7 +15,7 @@
 (defn ^:export listen-for-output [handler]
   (.init-with-pipes js/repl (channel-piping-fn output-chan)
                             (channel-piping-fn error-chan)
-                            #(.log js/console %))
+                            #(log %))
   (go
     (while true
       (let [[text chan] (alts! [error-chan output-chan])]
