@@ -28,12 +28,10 @@
      (let [{street-address :street-address, city :city, state :state} test-address]
        :__))
 
-  #_(
-    "Or more succinctly"
-    (= "123 Test Lane, Testerville, TX"
-     (let [{:keys [street-address :__ :__]} test-address]
-       :__))
-  )
+  "Or more succinctly"
+  (= "123 Test Lane, Testerville, TX"
+   (let [{:keys [street-address :__]} test-address]
+     :__))
 
   "All together now!"
   (= "Test Testerson, 123 Test Lane, Testerville, TX"
