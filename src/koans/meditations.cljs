@@ -20,7 +20,7 @@
     [koans.meditations.datatypes :as datatypes]
     [koans.meditations.partition :as partition]))
 
-(defrecord Koan [description before after])
+(defrecord Koan [description code-strings])
 (defrecord KoanIndex [category index])
 (defrecord Category [name koans fns])
 
@@ -70,6 +70,15 @@
       :else
         (KoanIndex. (next-category koan) 0))))
 
+(defn expr-to-array [expr]
+  (def full-text (expr-to-string expr))
+  (def splitted (clojure.string/split full-text #":__"))
+  (apply concat (map (fn [text]
+    (if (= text (last splitted))
+      [text]
+      [text "INPUT"]
+    )) splitted)))
+
 (defn koan-for-index [koan-index]
   (let [category (category-from-koan-index koan-index)
         category-list (partition 2 (:koans category))
@@ -77,7 +86,6 @@
           (nth category-list (:index koan-index))
           (catch js/Object _ (first category-list)))
         description (first item)
-        full-text (expr-to-string (last item))
-        [before after] (clojure.string/split full-text #":__")]
+        code-strings (expr-to-array (last item))]
     (dorun (map #(repl/eval (pr-str %)) (:fns category)))
-    (Koan. description before after)))
+    (Koan. description code-strings)))

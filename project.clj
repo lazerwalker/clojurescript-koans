@@ -8,6 +8,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2014"]
                  [prismatic/dommy "0.1.2"]
+                 [jayq "2.5.0"]
                  [org.clojure/core.async "0.1.242.0-44b1e3-alpha"]]
 
   :plugins [[lein-cljsbuild "1.0.0-alpha2"]

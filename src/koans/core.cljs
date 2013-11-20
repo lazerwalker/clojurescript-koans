@@ -1,4 +1,5 @@
 (ns koans.core
+  (:use [jayq.core :only [$ html val]])
   (:require
     [koans.meditations :as meditations]
     [koans.repl :as repl]
@@ -27,27 +28,43 @@
 (defn fade-in! [elem]
   (js/setTimeout (fn [] (dommy/add-class! elem "unfaded")) 0))
 
+(defn listen-seq! [elems event handler]
+  (mapv
+    (fn [el] (dommy/listen! el event handler))
+    elems))
+
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
     [:div {:class "description"} (:description koan)]
-    [:div {:class "code"}
-      [:span {:class "shadow"}]
-      [:span {:class "before"} (:before koan)]
-      [:input {:class "user-input", :name "code"}]
-      [:span {:class "after"} (:after koan)]]])
+    [:div {:class "code-box"}
+      (for [text (:code-strings koan)]
+        (if (= text "INPUT")
+          [:span {:class "code"}
+            [:span {:class "shadow"}]
+            [:input {:name "code"}]]
+          [:span {:class "text"} text]))]])
 
 (deftemplate error-message []
   [:div {:class "error"} "You have not yet attained enlightenment."])
 
 (defn input-string []
-  (let [before  (dommy/text (sel1 :.before))
-        input   (dommy/value (sel1 :input))
-        after   (dommy/text (sel1 :.after))]
-    (if (clojure.string/blank? input)
+  (let [inputs ($ :input)
+        inputs-are-empty? (map (fn [el] (clojure.string/blank? (.-value el))) ($ :input))
+        is-empty? (reduce (fn [val result] (or val result)) inputs-are-empty?)]
+
+    (if is-empty?
       ""
-      (clojure.string/join " " [before input after]))))
+      (->> (sel (sel1 :.code-box) ".text, input")
+        (mapv (fn [el]
+          (cond
+            (= "text" (.-className el))
+              (dommy/text el)
+            (= "INPUT" (.-tagName el))
+              (dommy/value el))))
+        (clojure.string/join " ")))))
 
 (defn evaluate-koan []
+  (.log js/console "Evaluating " (input-string))
   (repl/eval (input-string)))
 
 (def resize-chan (chan))
@@ -67,15 +84,20 @@
     (js/setTimeout #(
       (dommy/append! (sel1 :body) elem)
       (fade-in! elem)
-      (let [input (sel1 :.user-input)]
-        (.focus input)
-        (dommy/listen! (sel1 :.code) :click (fn [e]
-          (.focus input)))
-        (dommy/listen! input :keypress (fn [e]
-          (if (= (.-charCode e) enter-key)
-            (evaluate-koan))))
-        (dommy/listen! input :input (fn [e]
+      (let [inputs (sel :input)
+            texts  (sel :.text)]
+        (.focus (first inputs))
+        (listen-seq! texts :click (fn [e]
+          (.focus (first inputs))))
+
+        (listen-seq! inputs :keypress
+          (fn [e]
+            (when (= (.-charCode e) enter-key)
+              (evaluate-koan))))
+
+        (listen-seq! inputs :input (fn [e]
           (go (>! resize-chan e)))))
+
       ) fadeout-time)))
 
 (defn render-current-koan []
@@ -84,24 +106,26 @@
       (render-koan current-koan))
     (update-location-hash)))
 
-(defn resize-input []
+(defn resize-input [input]
   (defn remove-spaces [text] (clojure.string/replace text " " "_"))
 
-  (let [input (sel1 :.user-input)
-        shadow (sel1 :.shadow)]
+  (let [parent (dommy/closest input :.code-box)
+        shadow (sel1 parent :.shadow)]
+
     (dommy/set-text! shadow (remove-spaces (dommy/value input)))
-      (let [shadow-width (.-width (.getBoundingClientRect shadow))
-            input-width (.-width (.getBoundingClientRect input))]
-        (cond
-          (>= shadow-width input-width)
-            (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))
-          (>= (- input-width (* 4 char-width)) shadow-width)
-            (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))))))
+
+    (let [shadow-width (.-width (.getBoundingClientRect shadow))
+          input-width (.-width (.getBoundingClientRect input))]
+      (cond
+        (>= shadow-width input-width)
+          (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))
+        (>= (- input-width (* 4 char-width)) shadow-width)
+          (dommy/set-px! input :width (+ shadow-width (* 4 char-width)))))))
 
 (go
   (while true
     (let [e (<! resize-chan)]
-      (resize-input))))
+      (resize-input (.-target e)))))
 
 (set! (.-onload js/window) (fn []
   (if (clojure/string.blank? (.-hash js/location))
@@ -112,8 +136,8 @@
   (render-current-koan)))
 
 (defn show-error-message []
-  (if (dommy/has-class? (sel1 :.code) "incorrect")
-    (do (let [code-box (sel1 :.code)
+  (if (dommy/has-class? (sel1 :.code-box) "incorrect")
+    (do (let [code-box (sel1 :.code-box)
               error (sel1 :.error)]
       (dommy/remove-class! code-box "incorrect")
       (dommy/remove-class! error "unfaded")
@@ -124,7 +148,7 @@
     (do (let [error (error-message)]
       (dommy/append! (sel1 :.koan) error)
       (fade-in! error)
-      (dommy/add-class! (sel1 :.code) "incorrect")))))
+      (dommy/add-class! (sel1 :.code-box) "incorrect")))))
 
 (defn evaluate-response [text]
   (.log js/console text)
