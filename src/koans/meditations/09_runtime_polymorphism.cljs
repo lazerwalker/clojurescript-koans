@@ -27,15 +27,15 @@
 ))
 
 (def fns [
-  '(defn hello
-    ([] "Hello World!")
-    ([a] (str "Hello, you silly " a "."))
-    ([a & more] (str "Hello to this group: "
-                     (apply str
-                            (interpose ", " (concat (list a) more)))
-                     "!")))
-  '(defmulti diet (fn [x] (:eater x)))
-  '(defmethod diet :herbivore [a] :__)
-  '(defmethod diet :carnivore [a] :__)
-  '(defmethod diet :default [a] :__)
+  "(defn hello
+  ([] \"Hello World!\")
+  ([a] (str \"Hello, you silly \" a \".\"))
+  ([a & more] (str \"Hello to this group: \"
+                   (apply str
+                          (interpose \", \" (concat (list a) more)))
+                   \"!\")))"
+  #_'(defmulti diet (fn [x] (:eater x)))
+  #_'(defmethod diet :herbivore [a] :__)
+  #_'(defmethod diet :carnivore [a] :__)
+  #_'(defmethod diet :default [a] :__)
 ])

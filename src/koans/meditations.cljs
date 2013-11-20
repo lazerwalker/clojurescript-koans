@@ -1,4 +1,5 @@
 (ns koans.meditations
+  (:use [jayq.util :only [log wait]])
   (:require
     [koans.utils :as utils]
     [koans.repl :as repl]
@@ -20,7 +21,7 @@
     [koans.meditations.datatypes :as datatypes]
     [koans.meditations.partition :as partition]))
 
-(defrecord Koan [description code-strings])
+(defrecord Koan [description code-strings fn-strings])
 (defrecord KoanIndex [category index])
 (defrecord Category [name koans fns])
 
@@ -76,7 +77,7 @@
   (apply concat (map (fn [text]
     (if (= text (last splitted))
       [text]
-      [text "INPUT"]
+      [text :input]
     )) splitted)))
 
 (defn koan-for-index [koan-index]
@@ -86,6 +87,7 @@
           (nth category-list (:index koan-index))
           (catch js/Object _ (first category-list)))
         description (first item)
-        code-strings (expr-to-array (last item))]
+        code-strings (expr-to-array (last item))
+        fn-strings (map #(expr-to-array %) (:fns category))]
     (dorun (map #(repl/eval (pr-str %)) (:fns category)))
-    (Koan. description code-strings)))
+    (Koan. description code-strings fn-strings)))

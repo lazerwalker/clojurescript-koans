@@ -34,11 +34,16 @@
     [:div {:class "description"} (:description koan)]
     [:div {:class "code-box"}
       (for [text (:code-strings koan)]
-        (if (= text "INPUT")
+        (if (= text :input)
           [:span {:class "code"}
             [:span {:class "shadow"}]
             [:input {:name "code"}]]
-          [:span {:class "text"} text]))]])
+          [:span {:class "text"} text]))]
+      (if-not (nil? (:fn-strings koan))
+        [:div {:class "functions"}
+        (for [text (:fn-strings koan)]
+          [:pre {:class "text"} text]
+        )])])
 
 (deftemplate error-message []
   [:div {:class "error"} "You have not yet attained enlightenment."])
@@ -50,7 +55,7 @@
 
     (if is-empty?
       ""
-      (->> ($ ".text, input")
+      (->> ($ ".code-box .text, .code-box input")
         (mapv (fn [el]
           (cond
             (= "text" (.-className (first el)))
@@ -137,7 +142,7 @@
         ($/add-class $error "unfaded")))))
     (do (let [$error ($ (error-message))]
       ($/add-class $code-box "incorrect")
-      ($/append ($ :.koan) $error)
+      ($/after ($ :.code-box) $error)
       (fade-in! $error)))))
 
 (defn evaluate-response [text]

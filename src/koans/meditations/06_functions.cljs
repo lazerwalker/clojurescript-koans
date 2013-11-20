@@ -36,6 +36,6 @@
 ))
 
 (def fns [
-  '(defn multiply-by-ten [n]
-    (* 10 n))
+  "(defn multiply-by-ten [n]
+  (* 10 n))"
   '(defn square [n] (* n n))])

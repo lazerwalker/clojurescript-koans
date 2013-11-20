@@ -33,16 +33,16 @@
   '(defrecord Nobel [prize])
   '(deftype Pulitzer [prize])
 
-  '(defprotocol Award
-    (present [this recipient]))
+  "(defprotocol Award
+    (present [this recipient]))"
 
-  '(defrecord Oscar [category]
+  "(defrecord Oscar [category]
     Award
     (present [this recipient]
-      (print (str "Congratulations on your "
-                  (:category this) " Oscar, "
+      (print (str \"Congratulations on your \"
+                  (:category this) \" Oscar, \"
                   recipient
-                  "!"))))
+                  \"!\"))))"
 
   #_('(deftype Razzie [category]
     Award
