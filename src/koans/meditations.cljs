@@ -89,5 +89,4 @@
         description (first item)
         code-strings (expr-to-array (last item))
         fn-strings (map #(expr-to-array %) (:fns category))]
-    (dorun (map #(repl/eval (pr-str %)) (:fns category)))
     (Koan. description code-strings fn-strings)))

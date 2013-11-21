@@ -41,9 +41,14 @@
           [:span {:class "text"} text]))]
       (if-not (nil? (:fn-strings koan))
         [:div {:class "functions"}
-        (for [text (:fn-strings koan)]
-          [:pre {:class "text"} text]
-        )])])
+          (for [function (:fn-strings koan)]
+            [:div {:class "function"}
+              (for [text function]
+                (if (= text :input)
+                  [:span {:class "code"}
+                    [:span {:class "shadow"}]
+                    [:input {:name "code"}]]
+                  [:pre {:class "text"} text]))])])])
 
 (deftemplate error-message []
   [:div {:class "error"} "You have not yet attained enlightenment."])
@@ -55,14 +60,23 @@
 
     (if is-empty?
       ""
-      (->> ($ ".code-box .text, .code-box input")
-        (mapv (fn [el]
-          (cond
-            (= "text" (.-className (first el)))
-              ($/text el)
-            (= "INPUT" (.-tagName (first el)))
-              ($/val el))))
-        (clojure.string/join " ")))))
+      (let [code (->> ($ ".code-box .text, .code-box input")
+                  (mapv (fn [el]
+                    (cond
+                      (= "text" (.-className (first el)))
+                        ($/text el)
+                      (= "INPUT" (.-tagName (first el)))
+                        ($/val el))))
+                  (clojure.string/join " "))
+            fns (->> ($ ".functions .text, .functions input")
+                (mapv (fn [el]
+                  (cond
+                    (= "text" (.-className (first el)))
+                      ($/text el)
+                    (= "INPUT" (.-tagName (first el)))
+                      ($/val el))))
+                (clojure.string/join " "))]
+      (str fns " " code)))))
 
 (defn evaluate-koan []
   (log "Evaluating " (input-string))
