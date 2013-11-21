@@ -109,7 +109,7 @@
       ($/remove-class $category "unfaded"))
     (wait fadeout-time (fn []
       ($/text $category current-category)
-      ($/append ($ :body) $elem)
+      ($/prepend ($ :body) $elem)
       (fade-in! $elem)
       (fade-in! $category)
       (mapv (fn [el] (.highlightBlock js/hljs (first el))) ($ :pre))
