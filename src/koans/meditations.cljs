@@ -42,6 +42,7 @@
   (Category. "atoms" atoms/koans atoms/fns)
   ;(Category. "datatypes" datatypes/koans datatypes/fns)
   (Category. "partition" partition/koans)
+  (Category. "complete" '(:the :end))
 ])
 
 (defn category-from-koan-index [koan-index]

@@ -229,7 +229,8 @@ return koans.repl.eval.call(null,koans.core.input_string.call(null));
 koans.core.resize_chan = cljs.core.async.chan.call(null);
 koans.core.load_next_koan = (function load_next_koan(){return koans.core.update_location_hash.call(null);
 });
-koans.core.remove_active_koan = (function remove_active_koan(){var koan = jayq.core.$.call(null,new cljs.core.Keyword(null,".koan",".koan",1059683633));if(!(cljs.core._EQ_.call(null,0,koan.length)))
+koans.core.remove_active_koan = (function remove_active_koan(){jayq.core.add_class.call(null,jayq.core.$.call(null,".static"),"hidden");
+var koan = jayq.core.$.call(null,new cljs.core.Keyword(null,".koan",".koan",1059683633));if(!(cljs.core._EQ_.call(null,0,koan.length)))
 {jayq.core.remove_class.call(null,koan,"unfaded");
 return jayq.util.wait.call(null,koans.core.fadeout_time,(function (){return jayq.core.remove.call(null,koan);
 }));
@@ -249,16 +250,38 @@ if(!(cljs.core._EQ_.call(null,jayq.core.text.call(null,$category),current_catego
 } else
 {}
 return jayq.util.wait.call(null,koans.core.fadeout_time,(function (){jayq.core.text.call(null,$category,current_category);
-jayq.core.append.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"body","body",1016933652)),$elem);
+jayq.core.prepend.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"body","body",1016933652)),$elem);
 koans.core.fade_in_BANG_.call(null,$elem);
 koans.core.fade_in_BANG_.call(null,$category);
+cljs.core.mapv.call(null,(function (el){return hljs.highlightBlock(cljs.core.first.call(null,el));
+}),jayq.core.$.call(null,new cljs.core.Keyword(null,"pre","pre",1014015509)));
 return cljs.core.first.call(null,jayq.core.find.call(null,$elem,new cljs.core.Keyword(null,"input","input",1114262332))).focus();
 }));
 });
-koans.core.render_current_koan = (function render_current_koan(){if(cljs.core.truth_(koans.meditations.koan_exists_QMARK_.call(null,koans.core.current_koan_index.call(null))))
+koans.core.render_static_page = (function render_static_page(selector){koans.core.remove_active_koan.call(null);
+jayq.core.remove_class.call(null,jayq.core.$.call(null,".category"),"unfaded");
+return jayq.core.remove_class.call(null,jayq.core.$.call(null,selector),"hidden");
+});
+koans.core.render_current_koan = (function render_current_koan(){if(cljs.core.truth_(clojure.string.blank_QMARK_.call(null,location.hash)))
+{koans.core.remove_active_koan.call(null);
+jayq.core.remove_class.call(null,jayq.core.$.call(null,"#welcome"),"hidden");
+return jayq.core.text.call(null,jayq.core.$.call(null,".category"),"");
+} else
+{if(cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(koans.core.current_koan_index.call(null)),"complete"))
+{koans.core.remove_active_koan.call(null);
+jayq.core.remove_class.call(null,jayq.core.$.call(null,"#the-end"),"hidden");
+return jayq.core.text.call(null,jayq.core.$.call(null,".category"),"");
+} else
+{if(cljs.core.truth_(koans.meditations.koan_exists_QMARK_.call(null,koans.core.current_koan_index.call(null))))
 {var current_koan = koans.meditations.koan_for_index.call(null,koans.core.current_koan_index.call(null));return koans.core.render_koan.call(null,current_koan);
 } else
+{if(new cljs.core.Keyword(null,"else","else",1017020587))
 {return koans.core.update_location_hash.call(null);
+} else
+{return null;
+}
+}
+}
 }
 });
 koans.core.resize_input = (function resize_input(input){koans.core.$input = jayq.core.$.call(null,input);
@@ -410,11 +433,9 @@ return statearr_12756;
 }));
 return c__5377__auto__;
 }));
-if(cljs.core.truth_(clojure.string.blank_QMARK_.call(null,location.hash)))
-{return location.hash = "equality/1";
-} else
-{return koans.core.render_current_koan.call(null);
-}
+koans.core.render_current_koan.call(null);
+return jayq.util.wait.call(null,0,(function (){return jayq.core.add_class.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"body","body",1016933652)),"loaded");
+}));
 }));
 window.onhashchange = (function (){return koans.core.render_current_koan.call(null);
 });

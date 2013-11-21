@@ -1,0 +1,18 @@
+@import "compass/css3/transition"
+
+@mixin code-font
+  font:
+    size: 24px
+    family: Monaco, Inconsolata, Menlo, Courier
+
+@mixin header-font
+  font:
+    family: Optima, PT Sans, Lucida Grande, sans-serif
+    weight: 100
+
+
+@mixin fadeable
+  opacity: 0
+  +transition(opacity 0.8s)
+  &.unfaded
+    opacity: 1
