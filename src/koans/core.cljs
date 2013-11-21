@@ -93,12 +93,24 @@
       (do ($/remove-class koan "unfaded")
           (wait fadeout-time #($/remove koan))))))
 
+(defn category-name [koan-index]
+  (let [category (:category koan-index)]
+    (clojure.string/replace category "-" " ")))
+
 (defn render-koan [koan]
   (remove-active-koan)
-  (let [$elem ($ (input-with-code koan))]
-    (wait fadeout-time #(
+  (let [$elem ($ (input-with-code koan))
+        $category ($ :.category)
+        current-category (category-name (current-koan-index))]
+    (when-not (empty? (:fn-strings koan))
+      ($/add-class $elem "has-functions"))
+    (when (not (= ($/text $category) current-category))
+      ($/remove-class $category "unfaded"))
+    (wait fadeout-time (fn []
+      ($/text $category current-category)
       ($/append ($ :body) $elem)
       (fade-in! $elem)
+      (fade-in! $category)
       (.focus (first ($/find $elem :input)))))))
 
 (defn render-current-koan []
