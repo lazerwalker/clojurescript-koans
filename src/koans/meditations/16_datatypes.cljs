@@ -44,8 +44,8 @@
                   recipient
                   \"!\"))))"
 
-  #_('(deftype Razzie [category]
+  "(deftype Razzie [category]
     Award
     (present [this recipient]
-      :__)))
+      :__))"
 ])

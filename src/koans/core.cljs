@@ -54,8 +54,8 @@
   [:div {:class "error"} "You have not yet attained enlightenment."])
 
 (defn input-string []
-  (let [inputs ($ :input)
-        inputs-are-empty? (map (fn [el] (clojure.string/blank? (.-value el))) ($ :input))
+  (let [$inputs ($ ".code-box input")
+        inputs-are-empty? (map (fn [el] (clojure.string/blank? (.-value el))) $inputs)
         is-empty? (reduce (fn [val result] (or val result)) inputs-are-empty?)]
 
     (if is-empty?
