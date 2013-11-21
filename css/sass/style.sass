@@ -13,7 +13,6 @@
 
 body
   background: url("../images/paper.jpg")
-  padding-top: 10%
   color: #444
   font:
     family: 'Sorts Mill Goudy', serif
@@ -31,12 +30,9 @@ body
     opacity: 0.5
 
 .circle
-  background: url("../images/zencircle.png")
-  background-size: cover
-  height: 55%
-  width: 27%
+  height: 50%
   opacity: 0.1
-  position: absolute
+  position: fixed
   right: 20px
   bottom: 20px
 
@@ -54,22 +50,35 @@ body
   .function
     background-color: rgba(0, 0, 0, 0.05)
     display: inline-block
-    margin: 20px
+    margin: 10px
     max-width: 860px
-    padding: 20px
+    padding:
+      top: 10px
+      bottom: 10px
+      left: 18px
+      right: 18px
     text-align: left
     vertical-align: top
 
     pre, input
       +code-font
       display: inline-block
-      font-size: 18px
+      font-size: 16px
+
+    input
+      border-bottom: 1px dashed #AAA
+      margin-right: 6px
+
 
 .koan
   +fadeable
   max-width: 900px
   margin: auto
+  padding-top: 15%
   text-align: center
+
+  &.has-functions
+    padding-top: 8%
 
   .description
     margin: 20px
