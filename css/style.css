@@ -1,26 +1,43 @@
-/* line 15, sass/style.sass */
+/* line 14, sass/style.sass */
 body {
   background: url("../images/paper.jpg");
-  padding-top: 10%;
   color: #444444;
   font-family: "Sorts Mill Goudy", serif;
   font-size: 28px;
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9);
 }
 
-/* line 24, sass/style.sass */
-.circle {
-  background: url("../images/zencircle.png");
-  background-size: cover;
-  height: 55%;
-  width: 27%;
-  opacity: 0.1;
+/* line 22, sass/style.sass */
+.category {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  -moz-transition: opacity 0.8s;
+  -o-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  left: 40px;
   position: absolute;
+  top: 20px;
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+/* line 11, sass/style.sass */
+.category.unfaded {
+  opacity: 1;
+}
+/* line 29, sass/style.sass */
+.category.unfaded {
+  opacity: 0.5;
+}
+
+/* line 32, sass/style.sass */
+.circle {
+  height: 50%;
+  opacity: 0.1;
+  position: fixed;
   right: 20px;
   bottom: 20px;
 }
 
-/* line 34, sass/style.sass */
+/* line 39, sass/style.sass */
 .error {
   color: #dd3333;
   font-size: 18px;
@@ -31,12 +48,45 @@ body {
   -o-transition: opacity 0.8s;
   transition: opacity 0.8s;
 }
-/* line 12, sass/style.sass */
+/* line 11, sass/style.sass */
 .error.unfaded {
   opacity: 1;
 }
 
-/* line 40, sass/style.sass */
+/* line 45, sass/style.sass */
+.functions {
+  margin: 20px;
+  padding-top: 30px;
+  text-align: center;
+}
+/* line 50, sass/style.sass */
+.functions .function {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin: 10px;
+  max-width: 860px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-align: left;
+  vertical-align: top;
+}
+/* line 64, sass/style.sass */
+.functions .function pre, .functions .function input {
+  font-size: 24px;
+  font-family: Monaco, Inconsolata, Menlo, Courier;
+  display: inline-block;
+  font-size: 16px;
+}
+/* line 69, sass/style.sass */
+.functions .function input {
+  border-bottom: 1px dashed #aaaaaa;
+  margin-right: 6px;
+}
+
+/* line 74, sass/style.sass */
 .koan {
   opacity: 0;
   -webkit-transition: opacity 0.8s;
@@ -45,21 +95,27 @@ body {
   transition: opacity 0.8s;
   max-width: 900px;
   margin: auto;
+  padding-top: 15%;
   text-align: center;
 }
-/* line 12, sass/style.sass */
+/* line 11, sass/style.sass */
 .koan.unfaded {
   opacity: 1;
 }
-/* line 46, sass/style.sass */
+/* line 81, sass/style.sass */
+.koan.has-functions {
+  padding-top: 8%;
+}
+/* line 84, sass/style.sass */
 .koan .description {
   margin: 20px;
+  width: 100%;
 }
-/* line 49, sass/style.sass */
+/* line 88, sass/style.sass */
 .koan .code-box {
   background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.1);
   display: inline-block;
-  color: #003744;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
   text-shadow: none;
@@ -72,20 +128,19 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 56, sass/style.sass */
+/* line 96, sass/style.sass */
 .koan .code-box.incorrect {
   background-color: rgba(255, 0, 0, 0.2);
 }
-/* line 65, sass/style.sass */
+/* line 105, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 69, sass/style.sass */
+/* line 109, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
-  color: #003744;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
   color: #0068a7;
@@ -97,7 +152,7 @@ body {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 79, sass/style.sass */
+/* line 119, sass/style.sass */
 .koan input:focus {
   outline: none;
 }

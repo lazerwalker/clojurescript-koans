@@ -3,5 +3,5 @@
  "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/meditations/runtime_polymorphism.js",
  "sources":["09_runtime_polymorphism.cljs"],
  "lineCount":7,
- "mappings":";;;AAECA;AA0BAC",
+ "mappings":";;;AAECA;AAwBAC",
  "names":["koans", "fns"]}

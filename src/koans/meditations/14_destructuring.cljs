@@ -39,8 +39,8 @@
 ))
 
 (def fns [
-  '(def test-address
-    {:street-address "123 Test Lane"
-     :city "Testerville"
-     :state "TX"})
+  "(def test-address
+  {:street-address \"123 Test Lane\"
+   :city \"Testerville\"
+   :state \"TX\"})"
 ])

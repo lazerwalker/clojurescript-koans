@@ -11,7 +11,6 @@
   (= :__
      (hello "Peter" "Paul" "Mary"))
 
-  #_(
   "Multimethods allow more complex dispatching"
   (= "Bambi eats veggies."
      (diet {:species "deer" :name "Bambi" :age 1 :eater :herbivore}))
@@ -23,19 +22,18 @@
   "You may use a default method when no others match"
   (= "I don't know what Rich Hickey eats."
      (diet {:name "Rich Hickey"}))
-  )
 ))
 
 (def fns [
-  '(defn hello
-    ([] "Hello World!")
-    ([a] (str "Hello, you silly " a "."))
-    ([a & more] (str "Hello to this group: "
-                     (apply str
-                            (interpose ", " (concat (list a) more)))
-                     "!")))
-  '(defmulti diet (fn [x] (:eater x)))
-  '(defmethod diet :herbivore [a] :__)
-  '(defmethod diet :carnivore [a] :__)
-  '(defmethod diet :default [a] :__)
+  "(defn hello
+  ([] \"Hello World!\")
+  ([a] (str \"Hello, you silly \" a \".\"))
+  ([a & more] (str \"Hello to this group: \"
+                   (apply str
+                          (interpose \", \" (concat (list a) more)))
+                   \"!\")))"
+  "(defmulti diet (fn [x] (:eater x)))"
+  "(defmethod diet :herbivore [a] :__)"
+  "(defmethod diet :carnivore [a] :__)"
+  "(defmethod diet :default [a] :__)"
 ])

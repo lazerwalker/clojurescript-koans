@@ -1,7 +1,6 @@
 @import "compass/css3/transition"
 
 @mixin code-font
-  color: #003744
   font:
     size: 24px
     family: Monaco, Inconsolata, Menlo, Courier
@@ -14,20 +13,26 @@
 
 body
   background: url("../images/paper.jpg")
-  padding-top: 10%
   color: #444
   font:
     family: 'Sorts Mill Goudy', serif
     size: 28px
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9)
 
-.circle
-  background: url("../images/zencircle.png")
-  background-size: cover
-  height: 55%
-  width: 27%
-  opacity: 0.1
+.category
+  +fadeable
+  left: 40px
   position: absolute
+  top: 20px
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5)
+
+  &.unfaded
+    opacity: 0.5
+
+.circle
+  height: 50%
+  opacity: 0.1
+  position: fixed
   right: 20px
   bottom: 20px
 
@@ -37,17 +42,52 @@ body
   padding-top: 10px
   +fadeable
 
+.functions
+  margin: 20px
+  padding-top: 30px
+  text-align: center
+
+  .function
+    background-color: rgba(0, 0, 0, 0.05)
+    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.2)
+    display: inline-block
+    margin: 10px
+    max-width: 860px
+    padding:
+      top: 10px
+      bottom: 10px
+      left: 18px
+      right: 18px
+    text-align: left
+    vertical-align: top
+
+    pre, input
+      +code-font
+      display: inline-block
+      font-size: 16px
+
+    input
+      border-bottom: 1px dashed #AAA
+      margin-right: 6px
+
+
 .koan
   +fadeable
   max-width: 900px
   margin: auto
+  padding-top: 15%
   text-align: center
+
+  &.has-functions
+    padding-top: 8%
 
   .description
     margin: 20px
+    width: 100%
 
   .code-box
     background: rgba(255, 255, 255, 0.7)
+    box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.1)
     display: inline-block
     +code-font
     text-shadow: none
