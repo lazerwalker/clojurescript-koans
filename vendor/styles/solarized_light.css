@@ -1,0 +1,92 @@
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+code {
+  display: block; padding: 0.5em;
+  background: #fdf6e3; color: #657b83;
+}
+
+.comment,
+.template_comment,
+.diff .header,
+.doctype,
+.pi,
+.lisp .string,
+.javadoc {
+  color: #93a1a1;
+  font-style: italic;
+}
+
+.keyword,
+.winutils,
+.method,
+.addition,
+.css .tag,
+.request,
+.status,
+.nginx .title {
+  color: #859900;
+}
+
+.number,
+.command,
+.string,
+.tag .value,
+.rules .value,
+.phpdoc,
+.tex .formula,
+.regexp,
+.hexcolor {
+  color: #2aa198;
+}
+
+.title,
+.localvars,
+.chunk,
+.decorator,
+.built_in,
+.identifier,
+.vhdl .literal,
+.id,
+.css .function {
+  color: #268bd2;
+}
+
+.attribute,
+.variable,
+.lisp .body,
+.smalltalk .number,
+.constant,
+.class .title,
+.parent,
+.haskell .type {
+  color: #b58900;
+}
+
+.preprocessor,
+.preprocessor .keyword,
+.pragma,
+.shebang,
+.symbol,
+.symbol .string,
+.diff .change,
+.special,
+.attr_selector,
+.important,
+.subst,
+.cdata,
+.clojure .title,
+.css .pseudo {
+  color: #cb4b16;
+}
+
+.deletion {
+  color: #dc322f;
+}
+
+.tex .formula {
+  background: #eee8d5;
+}
