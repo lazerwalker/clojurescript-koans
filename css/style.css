@@ -62,6 +62,7 @@ body {
 /* line 50, sass/style.sass */
 .functions .function {
   background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.2);
   display: inline-block;
   margin: 10px;
   max-width: 860px;
@@ -72,20 +73,20 @@ body {
   text-align: left;
   vertical-align: top;
 }
-/* line 63, sass/style.sass */
+/* line 64, sass/style.sass */
 .functions .function pre, .functions .function input {
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
   display: inline-block;
   font-size: 16px;
 }
-/* line 68, sass/style.sass */
+/* line 69, sass/style.sass */
 .functions .function input {
   border-bottom: 1px dashed #aaaaaa;
   margin-right: 6px;
 }
 
-/* line 73, sass/style.sass */
+/* line 74, sass/style.sass */
 .koan {
   opacity: 0;
   -webkit-transition: opacity 0.8s;
@@ -101,18 +102,19 @@ body {
 .koan.unfaded {
   opacity: 1;
 }
-/* line 80, sass/style.sass */
+/* line 81, sass/style.sass */
 .koan.has-functions {
   padding-top: 8%;
 }
-/* line 83, sass/style.sass */
+/* line 84, sass/style.sass */
 .koan .description {
   margin: 20px;
   width: 100%;
 }
-/* line 87, sass/style.sass */
+/* line 88, sass/style.sass */
 .koan .code-box {
   background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.1);
   display: inline-block;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
@@ -126,16 +128,16 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-/* line 94, sass/style.sass */
+/* line 96, sass/style.sass */
 .koan .code-box.incorrect {
   background-color: rgba(255, 0, 0, 0.2);
 }
-/* line 103, sass/style.sass */
+/* line 105, sass/style.sass */
 .koan .shadow {
   position: absolute;
   visibility: hidden;
 }
-/* line 107, sass/style.sass */
+/* line 109, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -150,7 +152,7 @@ body {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 117, sass/style.sass */
+/* line 119, sass/style.sass */
 .koan input:focus {
   outline: none;
 }
