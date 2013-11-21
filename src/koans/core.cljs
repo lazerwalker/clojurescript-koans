@@ -88,7 +88,7 @@
   (update-location-hash))
 
 (defn remove-active-koan []
-  ($/add-class ($ "#welcome") "hidden")
+  ($/add-class ($ ".static") "hidden")
   (let [koan ($ :.koan)]
     (if-not (= 0 (.-length koan))
       (do ($/remove-class koan "unfaded")
@@ -115,12 +115,22 @@
       (mapv (fn [el] (.highlightBlock js/hljs (first el))) ($ :pre))
       (.focus (first ($/find $elem :input)))))))
 
+(defn render-static-page [selector]
+  (remove-active-koan)
+  ($/remove-class ($ ".category") "unfaded")
+  ($/remove-class ($ selector) "hidden")
+)
+
 (defn render-current-koan []
   (cond
     (clojure/string.blank? (.-hash js/location))
       (do (remove-active-koan)
           ($/remove-class ($ "#welcome") "hidden")
           ($/text ($ ".category") ""))
+    (= (:category (current-koan-index)) "complete")
+      (do (remove-active-koan)
+        ($/remove-class ($ "#the-end") "hidden")
+        ($/text ($ ".category") ""))
     (meditations/koan-exists? (current-koan-index))
       (let [current-koan (meditations/koan-for-index (current-koan-index))]
         (render-koan current-koan))
@@ -158,7 +168,11 @@
   ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
 
-  (render-current-koan)))
+  (render-current-koan)
+
+  ; If you directly load a koan, we don't want a cross-fade from hiding the intro.
+  ; This doesn't add the fade transition until after we've resolved the hash
+  (wait 0 #($/add-class ($ :body) "loaded"))))
 
 (set! (.-onhashchange js/window) (fn []
   (render-current-koan)))

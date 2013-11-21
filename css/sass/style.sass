@@ -1,5 +1,5 @@
-@import "welcome"
 @import "helpers"
+@import "static"
 
 $input-blue: #0088DA
 
@@ -9,7 +9,7 @@ body
   font:
     family: 'Sorts Mill Goudy', serif
     size: 28px
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.9)
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8)
 
 a
   color: darken($input-blue, 5%)
@@ -17,13 +17,17 @@ a
 
 .category
   +fadeable
+  +header-font
+  font-weight: 200
   left: 40px
   position: absolute
+  text:
+    shadow: 0px 0px 10px rgba(255, 255, 255, 0.5)
+    transform: capitalize
   top: 20px
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5)
 
   &.unfaded
-    opacity: 0.5
+    opacity: 0.7
 
 .circle
   height: 50%

@@ -24,7 +24,7 @@
     <div class='category'></div>
     <img class='circle' src="images/zencircle.png"></div>
 
-    <div id='welcome'>
+    <div id='welcome' class='static'>
       <div class='content'>
         <h1>ClojureScript Koans</h1>
 
@@ -32,8 +32,49 @@
 
         <p>Those unfamiliar with Clojure and ClojureScript may find them quite different from other programming languages. The koans will expose you to the fundamentals of ClojureScript, from basic concepts and syntax through more advanced techniques, in a friendly and supportive manner.</p>
 
+        <noscript>
+          <strong>You will need to enable JavaScript to begin your journey.</strong>
+        </noscript>
+
         <a href="#equality/1" class='start'>Let us begin&nbsp;&nbsp;&rsaquo;</a>
       </div>
     </div>
+
+    <div id='the-end' class='static hidden'>
+      <div class='content'>
+        <h1>The End</h1>
+
+        <p>You have completed the koans, but your true journey is just beginning. Here are a few resources to help you along your way.</p>
+
+        <ul>
+          <li>The <a href="http://clojurescript.com">ClojureScript project</a> on GitHub</a></li>
+          <li><a href="https://github.com/lazerwalker/clojurescript-koans">This project</a> on GitHub</li>
+          <li>An in-browser <a href="http://himera.herokuapp.com/index.html">ClojureScript REPL</a>
+          <li><a href="http://swannodette.github.io/2013/10/27/the-essence-of-clojurescript/">The Essence of ClojureScript</a> and <a href="http://swannodette.github.io/2013/11/07/clojurescript-101/">ClojureScript 101</a></li>
+          <li><a href="http://www.amazon.com/gp/product/1935182641/?tag=cljs-koans-20">The Joy of Clojure</a></li>
+          <li><a href="http://www.amazon.com/Clojure-Programming-Chas-Emerick/dp/1449394701/?tag=cljs-koans-20">Clojure Programming</a></li>
+          <li><a href="http://www.amazon.com/Programming-Clojure-Stuart-Halloway/dp/1934356867/?tag=cljs-koans-20">Programming Clojure</a></li>
+        </ul>
+
+        <div class='share'>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://clojurescriptkoans.com" data-text="I just completed the ClojureScript Koans!" data-size="large" data-count="none" data-dnt="true">Tweet</a>
+          <div class="fb-share-button" data-href="http://clojurescriptkoans.com" data-type="button"></div>
+        </div>
+
+        <p>The ClojureScript Koans were built by <a href="http://lazerwalker.com">Mike Walker</a>, inspired by the <a href="http://clojurekoans.com">Clojure Koans</a>. If you enjoyed them, share them with your friends!</p>
+
+      </div>
+    </div>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=1420628631501258";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   </body>
 </html>
