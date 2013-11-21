@@ -88,6 +88,7 @@
   (update-location-hash))
 
 (defn remove-active-koan []
+  ($/add-class ($ "#welcome") "hidden")
   (let [koan ($ :.koan)]
     (if-not (= 0 (.-length koan))
       (do ($/remove-class koan "unfaded")
@@ -115,10 +116,16 @@
       (.focus (first ($/find $elem :input)))))))
 
 (defn render-current-koan []
-  (if (meditations/koan-exists? (current-koan-index))
-    (let [current-koan (meditations/koan-for-index (current-koan-index))]
-      (render-koan current-koan))
-    (update-location-hash)))
+  (cond
+    (clojure/string.blank? (.-hash js/location))
+      (do (remove-active-koan)
+          ($/remove-class ($ "#welcome") "hidden")
+          ($/text ($ ".category") ""))
+    (meditations/koan-exists? (current-koan-index))
+      (let [current-koan (meditations/koan-for-index (current-koan-index))]
+        (render-koan current-koan))
+    :else
+      (update-location-hash)))
 
 (defn resize-input [input]
   (def $input ($ input))
@@ -151,9 +158,7 @@
   ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
 
-  (if (clojure/string.blank? (.-hash js/location))
-    (set! (.-hash js/location) "equality/1")
-    (render-current-koan))))
+  (render-current-koan)))
 
 (set! (.-onhashchange js/window) (fn []
   (render-current-koan)))
