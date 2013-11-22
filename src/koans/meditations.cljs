@@ -3,7 +3,7 @@
   (:require
     [koans.utils :as utils]
     [koans.repl :as repl]
-    ;[koans.meditations.equality :as equality]
+    [koans.meditations.equality :as equality]
     [koans.meditations.lists :as lists]
     [koans.meditations.vectors :as vectors]
     [koans.meditations.sets :as sets]
