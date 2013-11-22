@@ -18,6 +18,8 @@ If you wish to edit the project's stylesheets, you will need to have [Sass](http
 ### Editing the Koans
 The koans themselves live in the `src/koans/meditations` folder. For a given set, the `koans` variable should contain a sequence of description strings and their matching S-expressions. Within the S-expressions, any instances of `:__` will be replaced by an input box. There are instances where ClojureScript's `pr-str` function will alter the displayed form of an expression (e.g. replacing quote characters with a `(quote)` expression); if this happens, you can quote the entire S-expression to have it displayed exactly as written.
 
+If you need to define new functions for a section, add them to the `fns` vector. Like the koans, a function may either be a quoted S-expression or a string, and any instances of the symbol `:__` will be replaced with an input field. If you wish to specify proper indentation, whitespace is maintained in the string form. In either case, syntax highlighting will automatically be applied.
+
 If you want to create a new category of koans, you will also need to add your category to the structure in `meditations.cljs`.
 
 
