@@ -164,7 +164,7 @@
   ($/on ($ js/document) :click :.text (fn [e]
     (.focus (first ($ :input)))))
   ($/on ($ js/document) :keypress :input (fn [e]
-    (when (= (.-charCode e) enter-key)
+    (when (= (.-which e) enter-key)
       (evaluate-koan))))
   ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
