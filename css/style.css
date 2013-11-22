@@ -60,9 +60,10 @@
   font-weight: 100;
 }
 
-/* line 6, sass/style.sass */
+/* line 5, sass/style.sass */
 body {
-  background: url("../images/paper.jpg");
+  background-color: #f0e8e1;
+  backgound: url("../images/paper.jpg");
   color: #555555;
   font-family: "Sorts Mill Goudy", serif;
   font-size: 28px;
