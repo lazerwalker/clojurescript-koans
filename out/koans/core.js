@@ -375,7 +375,7 @@ return statearr_12807;
 }));
 jayq.core.document_ready.call(null,(function (){jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"click","click",1108654330),new cljs.core.Keyword(null,".text",".text",1059942861),(function (e){return cljs.core.first.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"input","input",1114262332))).focus();
 }));
-jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"keypress","keypress",1530666166),new cljs.core.Keyword(null,"input","input",1114262332),(function (e){if(cljs.core._EQ_.call(null,e.charCode,koans.core.enter_key))
+jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"keypress","keypress",1530666166),new cljs.core.Keyword(null,"input","input",1114262332),(function (e){if(cljs.core._EQ_.call(null,e.which,koans.core.enter_key))
 {return koans.core.evaluate_koan.call(null);
 } else
 {return null;

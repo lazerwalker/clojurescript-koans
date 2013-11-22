@@ -18,7 +18,6 @@ goog.addDependency("../koans/meditations/atoms.js", ['koans.meditations.atoms'],
 goog.addDependency("../koans/meditations/creating_functions.js", ['koans.meditations.creating_functions'], ['cljs.core']);
 goog.addDependency("../koans/meditations/lazy_sequences.js", ['koans.meditations.lazy_sequences'], ['cljs.core']);
 goog.addDependency("../koans/meditations/conditionals.js", ['koans.meditations.conditionals'], ['cljs.core']);
-goog.addDependency("../koans/meditations/equality.js", ['koans.meditations.equality'], ['cljs.core']);
 goog.addDependency("../koans/meditations/sets.js", ['koans.meditations.sets'], ['cljs.core']);
 goog.addDependency("../koans/meditations/vectors.js", ['koans.meditations.vectors'], ['cljs.core']);
 goog.addDependency("../koans/meditations/destructuring.js", ['koans.meditations.destructuring'], ['cljs.core']);
@@ -29,7 +28,7 @@ goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.asy
 goog.addDependency("../koans/repl.js", ['koans.repl'], ['cljs.core', 'jayq.util', 'cljs.core.async']);
 goog.addDependency("../koans/meditations/functions.js", ['koans.meditations.functions'], ['cljs.core', 'koans.repl']);
 goog.addDependency("../koans/meditations/lists.js", ['koans.meditations.lists'], ['cljs.core']);
-goog.addDependency("../koans/meditations.js", ['koans.meditations'], ['koans.meditations.sequence_comprehensions', 'koans.meditations.datatypes', 'koans.meditations.maps', 'cljs.core', 'koans.meditations.atoms', 'koans.meditations.partition', 'koans.meditations.creating_functions', 'koans.meditations.lazy_sequences', 'koans.utils', 'koans.meditations.conditionals', 'koans.meditations.equality', 'koans.meditations.sets', 'koans.meditations.vectors', 'koans.meditations.destructuring', 'koans.repl', 'jayq.util', 'koans.meditations.runtime_polymorphism', 'koans.meditations.functions', 'koans.meditations.higher_order_functions', 'koans.meditations.lists']);
+goog.addDependency("../koans/meditations.js", ['koans.meditations'], ['koans.meditations.sequence_comprehensions', 'koans.meditations.datatypes', 'koans.meditations.maps', 'cljs.core', 'koans.meditations.atoms', 'koans.meditations.partition', 'koans.meditations.creating_functions', 'koans.meditations.lazy_sequences', 'koans.utils', 'koans.meditations.conditionals', 'koans.meditations.sets', 'koans.meditations.vectors', 'koans.meditations.destructuring', 'koans.repl', 'jayq.util', 'koans.meditations.runtime_polymorphism', 'koans.meditations.functions', 'koans.meditations.higher_order_functions', 'koans.meditations.lists']);
 goog.addDependency("../clojure/set.js", ['clojure.set'], ['cljs.core']);
 goog.addDependency("../cljs/reader.js", ['cljs.reader'], ['cljs.core', 'goog.string']);
 goog.addDependency("../jayq/core.js", ['jayq.core'], ['cljs.core', 'clojure.string', 'cljs.reader']);
@@ -38,3 +37,4 @@ goog.addDependency("../dommy/utils.js", ['dommy.utils'], ['cljs.core']);
 goog.addDependency("../dommy/core.js", ['dommy.core'], ['dommy.attrs', 'cljs.core', 'dommy.template', 'dommy.utils', 'clojure.string']);
 goog.addDependency("../koans/core.js", ['koans.core'], ['cljs.core', 'koans.repl', 'clojure.set', 'jayq.util', 'cljs.core.async', 'koans.meditations', 'jayq.core', 'dommy.core']);
 goog.addDependency("../koans/meditations/recursion.js", ['koans.meditations.recursion'], ['cljs.core']);
+goog.addDependency("../koans/meditations/equality.js", ['koans.meditations.equality'], ['cljs.core']);
