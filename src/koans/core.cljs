@@ -111,7 +111,6 @@
       ($/fade-out $category))
     (wait fadeout-time (fn []
       ($/text $category current-category)
-      (log $elem)
       ($/prepend ($ :body) $elem)
       ($/fade-in $elem)
       ($/fade-in $category)
@@ -175,7 +174,8 @@
   (render-current-koan)))
 
 (set! (.-onhashchange js/window) (fn []
-  (render-current-koan)))
+  (render-current-koan)
+  (js/ga "pageview", (subs (.-hash js/location) 1))))
 
 (defn show-error-message []
   (def $code-box ($ :.code-box))

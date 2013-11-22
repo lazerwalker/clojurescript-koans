@@ -247,7 +247,6 @@ if(!(cljs.core._EQ_.call(null,jayq.core.text.call(null,$category),current_catego
 } else
 {}
 return jayq.util.wait.call(null,koans.core.fadeout_time,(function (){jayq.core.text.call(null,$category,current_category);
-jayq.util.log.call(null,$elem);
 jayq.core.prepend.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"body","body",1016933652)),$elem);
 jayq.core.fade_in.call(null,$elem);
 jayq.core.fade_in.call(null,$category);
@@ -431,7 +430,8 @@ return c__5377__auto__;
 }));
 return koans.core.render_current_koan.call(null);
 }));
-window.onhashchange = (function (){return koans.core.render_current_koan.call(null);
+window.onhashchange = (function (){koans.core.render_current_koan.call(null);
+return ga("pageview",cljs.core.subs.call(null,location.hash,1));
 });
 koans.core.show_error_message = (function show_error_message(){koans.core.$code_box = jayq.core.$.call(null,new cljs.core.Keyword(null,".code-box",".code-box",2901198731));
 if(cljs.core.truth_(jayq.core.has_class.call(null,koans.core.$code_box,"incorrect")))
