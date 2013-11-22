@@ -1,7 +1,8 @@
 out/*
 repl.out/*
-*.js
 target/*
 .lein-repl-history
 koans.sublime*
 .sass-cache
+koans.js
+webrepl.js
