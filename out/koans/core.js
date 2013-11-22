@@ -250,8 +250,6 @@ return jayq.util.wait.call(null,koans.core.fadeout_time,(function (){jayq.core.t
 jayq.core.prepend.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"body","body",1016933652)),$elem);
 jayq.core.fade_in.call(null,$elem);
 jayq.core.fade_in.call(null,$category);
-cljs.core.mapv.call(null,(function (el){return hljs.highlightBlock(cljs.core.first.call(null,el));
-}),jayq.core.$.call(null,new cljs.core.Keyword(null,"pre","pre",1014015509)));
 return cljs.core.first.call(null,jayq.core.find.call(null,$elem,new cljs.core.Keyword(null,"input","input",1114262332))).focus();
 }));
 });

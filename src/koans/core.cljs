@@ -114,7 +114,6 @@
       ($/prepend ($ :body) $elem)
       ($/fade-in $elem)
       ($/fade-in $category)
-      (mapv (fn [el] (.highlightBlock js/hljs (first el))) ($ :pre))
       (.focus (first ($/find $elem :input)))))))
 
 (defn render-static-page [selector]
