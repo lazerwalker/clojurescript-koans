@@ -1,28 +1,19 @@
 /* line 1, sass/_static.sass */
-body.loaded .static {
-  -webkit-transition: opacity 0.8s;
-  -moz-transition: opacity 0.8s;
-  -o-transition: opacity 0.8s;
-  transition: opacity 0.8s;
-}
-
-/* line 4, sass/_static.sass */
 .static {
-  margin: auto;
+  display: none;
   font-size: 20px;
   line-height: 1.5em;
-  opacity: 1;
-  position: absolute;
+  margin: auto;
   text-align: justify;
   width: 100%;
 }
-/* line 13, sass/_static.sass */
+/* line 9, sass/_static.sass */
 .static h1 {
   font-family: Optima, PT Sans, Lucida Grande, sans-serif;
   font-weight: 100;
   line-height: 1.5em;
 }
-/* line 17, sass/_static.sass */
+/* line 13, sass/_static.sass */
 .static .start {
   background: #6eaf66;
   box-shadow: 0px 0px 5px 0.5px rgba(0, 0, 0, 0.1);
@@ -36,34 +27,29 @@ body.loaded .static {
   text-align: center;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
-/* line 30, sass/_static.sass */
+/* line 26, sass/_static.sass */
 .static .content {
   margin: auto;
   width: 650px;
 }
-/* line 34, sass/_static.sass */
-.static.hidden {
-  opacity: 0;
-  z-index: -1;
-}
 
-/* line 39, sass/_static.sass */
+/* line 31, sass/_static.sass */
 #the-end .share {
   margin: auto;
   vertical-align: top;
   width: 100px;
 }
-/* line 44, sass/_static.sass */
+/* line 36, sass/_static.sass */
 #the-end .share iframe {
   width: 200px;
   height: 200px;
 }
-/* line 48, sass/_static.sass */
+/* line 40, sass/_static.sass */
 #the-end ul {
   margin-left: 60px;
   margin-bottom: 40px;
 }
-/* line 51, sass/_static.sass */
+/* line 43, sass/_static.sass */
 #the-end a {
   font-family: Optima, PT Sans, Lucida Grande, sans-serif;
   font-weight: 100;
@@ -87,11 +73,7 @@ a {
 
 /* line 19, sass/style.sass */
 .category {
-  opacity: 0;
-  -webkit-transition: opacity 0.8s;
-  -moz-transition: opacity 0.8s;
-  -o-transition: opacity 0.8s;
-  transition: opacity 0.8s;
+  display: none;
   font-family: Optima, PT Sans, Lucida Grande, sans-serif;
   font-weight: 100;
   font-weight: 200;
@@ -100,10 +82,6 @@ a {
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
   text-transform: capitalize;
   top: 20px;
-}
-/* line 17, sass/_helpers.sass */
-.category.unfaded {
-  opacity: 1;
 }
 /* line 30, sass/style.sass */
 .category.unfaded {
@@ -125,15 +103,7 @@ a {
   color: #dd3333;
   font-size: 18px;
   padding-top: 10px;
-  opacity: 0;
-  -webkit-transition: opacity 0.8s;
-  -moz-transition: opacity 0.8s;
-  -o-transition: opacity 0.8s;
-  transition: opacity 0.8s;
-}
-/* line 17, sass/_helpers.sass */
-.error.unfaded {
-  opacity: 1;
+  display: none;
 }
 
 /* line 47, sass/style.sass */
@@ -171,19 +141,11 @@ a {
 
 /* line 76, sass/style.sass */
 .koan {
-  opacity: 0;
-  -webkit-transition: opacity 0.8s;
-  -moz-transition: opacity 0.8s;
-  -o-transition: opacity 0.8s;
-  transition: opacity 0.8s;
+  display: none;
   max-width: 900px;
   margin: auto;
   padding-top: 15%;
   text-align: center;
-}
-/* line 17, sass/_helpers.sass */
-.koan.unfaded {
-  opacity: 1;
 }
 /* line 83, sass/style.sass */
 .koan.has-functions {

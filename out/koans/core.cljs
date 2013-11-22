@@ -2,6 +2,7 @@
   (:use [jayq.core :only [$]]
         [jayq.util :only [log wait]])
   (:require
+    [clojure.set]
     [koans.meditations :as meditations]
     [koans.repl :as repl]
     [jayq.core :as $]
@@ -26,8 +27,7 @@
 (def char-width 14)
 (def enter-key 13)
 
-(defn fade-in! [elem]
-  (wait 0 (fn [] ($/add-class ($ elem) "unfaded"))))
+(defn defer [func] (wait 0 func))
 
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
@@ -88,11 +88,12 @@
   (update-location-hash))
 
 (defn remove-active-koan []
-  ($/add-class ($ ".static") "hidden")
-  (let [koan ($ :.koan)]
-    (if-not (= 0 (.-length koan))
-      (do ($/remove-class koan "unfaded")
-          (wait fadeout-time #($/remove koan))))))
+  (let [$el ($ :.koan)]
+    ($/fade-out $el
+      #($/remove $el))))
+
+(defn remove-static-pages []
+  ($/fade-out ($ :.static)))
 
 (defn category-name [koan-index]
   (let [category (:category koan-index)]
@@ -100,37 +101,38 @@
 
 (defn render-koan [koan]
   (remove-active-koan)
+  (remove-static-pages)
   (let [$elem ($ (input-with-code koan))
         $category ($ :.category)
         current-category (category-name (current-koan-index))]
     (when-not (empty? (:fn-strings koan))
       ($/add-class $elem "has-functions"))
     (when (not (= ($/text $category) current-category))
-      ($/remove-class $category "unfaded"))
+      ($/fade-out $category))
     (wait fadeout-time (fn []
       ($/text $category current-category)
+      (log $elem)
       ($/prepend ($ :body) $elem)
-      (fade-in! $elem)
-      (fade-in! $category)
+      ($/fade-in $elem)
+      ($/fade-in $category)
       (mapv (fn [el] (.highlightBlock js/hljs (first el))) ($ :pre))
       (.focus (first ($/find $elem :input)))))))
 
 (defn render-static-page [selector]
   (remove-active-koan)
-  ($/remove-class ($ ".category") "unfaded")
-  ($/remove-class ($ selector) "hidden")
-)
+  (let [$el ($ selector)
+        $other ($ (first (clojure.set/difference #{"#welcome" "#the-end"} #{selector})))]
+    ($/fade-out $other)
+    (wait fadeout-time (fn []
+      ($/fade-out ($ :.category))
+      ($/fade-in $el)))))
 
 (defn render-current-koan []
   (cond
     (clojure/string.blank? (.-hash js/location))
-      (do (remove-active-koan)
-          ($/remove-class ($ "#welcome") "hidden")
-          ($/text ($ ".category") ""))
+       (render-static-page "#welcome")
     (= (:category (current-koan-index)) "complete")
-      (do (remove-active-koan)
-        ($/remove-class ($ "#the-end") "hidden")
-        ($/text ($ ".category") ""))
+      (render-static-page "#the-end")
     (meditations/koan-exists? (current-koan-index))
       (let [current-koan (meditations/koan-for-index (current-koan-index))]
         (render-koan current-koan))
@@ -168,11 +170,9 @@
   ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
 
-  (render-current-koan)
-
-  ; If you directly load a koan, we don't want a cross-fade from hiding the intro.
-  ; This doesn't add the fade transition until after we've resolved the hash
-  (wait 0 #($/add-class ($ :body) "loaded"))))
+  #_(if-not (clojure/string.blank? (.-hash js/location))
+    ($/hide ($ "#welcome")))
+  (render-current-koan)))
 
 (set! (.-onhashchange js/window) (fn []
   (render-current-koan)))
@@ -182,14 +182,14 @@
   (if ($/has-class $code-box "incorrect")
     (do (let [$error ($ :.error)]
       ($/remove-class $code-box "incorrect")
-      ($/remove-class $error "unfaded")
+      ($/fade-out $error)
       (wait 300 #(
         ($/add-class $code-box "incorrect")
-        ($/add-class $error "unfaded")))))
+        ($/fade-in $error)))))
     (do (let [$error ($ (error-message))]
       ($/add-class $code-box "incorrect")
       ($/after ($ :.code-box) $error)
-      (fade-in! $error)))))
+      ($/fade-in $error)))))
 
 (defn evaluate-response [text]
   (log text)

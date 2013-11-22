@@ -15,9 +15,9 @@ var text = null;if (arguments.length > 1) {
   text = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
 return log__delegate.call(this,v,text);};
 log.cljs$lang$maxFixedArity = 1;
-log.cljs$lang$applyTo = (function (arglist__14013){
-var v = cljs.core.first(arglist__14013);
-var text = cljs.core.rest(arglist__14013);
+log.cljs$lang$applyTo = (function (arglist__14109){
+var v = cljs.core.first(arglist__14109);
+var text = cljs.core.rest(arglist__14109);
 return log__delegate(v,text);
 });
 log.cljs$core$IFn$_invoke$arity$variadic = log__delegate;

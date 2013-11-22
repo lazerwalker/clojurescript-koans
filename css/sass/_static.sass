@@ -1,12 +1,8 @@
-body.loaded .static
-  +transition(opacity 0.8s)
-
 .static
-  margin: auto
+  +fadeable
   font-size: 20px
   line-height: 1.5em
-  opacity: 1
-  position: absolute
+  margin: auto
   text-align: justify
   width: 100%
 
@@ -30,10 +26,6 @@ body.loaded .static
   .content
     margin: auto
     width: 650px
-
-  &.hidden
-    opacity: 0
-    z-index: -1
 
 #the-end
   .share

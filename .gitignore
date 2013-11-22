@@ -1,3 +1,5 @@
 .lein-repl-history
 koans.sublime*
 .sass-cache
+koans.js
+webrepl.js

@@ -77,18 +77,18 @@ return h__3532__auto____$1;
 koans.meditations.Koan.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (this__3682__auto__,k__3683__auto__){var self__ = this;
 var this__3682__auto____$1 = this;return cljs.core._lookup.call(null,this__3682__auto____$1,k__3683__auto__,null);
 });
-koans.meditations.Koan.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12758,else__3685__auto__){var self__ = this;
-var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12758,new cljs.core.Keyword(null,"description","description",3584325486)))
+koans.meditations.Koan.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12824,else__3685__auto__){var self__ = this;
+var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12824,new cljs.core.Keyword(null,"description","description",3584325486)))
 {return self__.description;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k12758,new cljs.core.Keyword(null,"code-strings","code-strings",2204559892)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k12824,new cljs.core.Keyword(null,"code-strings","code-strings",2204559892)))
 {return self__.code_strings;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k12758,new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k12824,new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839)))
 {return self__.fn_strings;
 } else
 {if(new cljs.core.Keyword(null,"else","else",1017020587))
-{return cljs.core.get.call(null,self__.__extmap,k12758,else__3685__auto__);
+{return cljs.core.get.call(null,self__.__extmap,k12824,else__3685__auto__);
 } else
 {return null;
 }
@@ -96,17 +96,17 @@ var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(nul
 }
 }
 });
-koans.meditations.Koan.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12757){var self__ = this;
-var this__3689__auto____$1 = this;var pred__12760 = cljs.core.keyword_identical_QMARK_;var expr__12761 = k__3690__auto__;if(pred__12760.call(null,new cljs.core.Keyword(null,"description","description",3584325486),expr__12761))
-{return (new koans.meditations.Koan(G__12757,self__.code_strings,self__.fn_strings,self__.__meta,self__.__extmap,null));
+koans.meditations.Koan.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12823){var self__ = this;
+var this__3689__auto____$1 = this;var pred__12826 = cljs.core.keyword_identical_QMARK_;var expr__12827 = k__3690__auto__;if(pred__12826.call(null,new cljs.core.Keyword(null,"description","description",3584325486),expr__12827))
+{return (new koans.meditations.Koan(G__12823,self__.code_strings,self__.fn_strings,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__12760.call(null,new cljs.core.Keyword(null,"code-strings","code-strings",2204559892),expr__12761))
-{return (new koans.meditations.Koan(self__.description,G__12757,self__.fn_strings,self__.__meta,self__.__extmap,null));
+{if(pred__12826.call(null,new cljs.core.Keyword(null,"code-strings","code-strings",2204559892),expr__12827))
+{return (new koans.meditations.Koan(self__.description,G__12823,self__.fn_strings,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__12760.call(null,new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839),expr__12761))
-{return (new koans.meditations.Koan(self__.description,self__.code_strings,G__12757,self__.__meta,self__.__extmap,null));
+{if(pred__12826.call(null,new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839),expr__12827))
+{return (new koans.meditations.Koan(self__.description,self__.code_strings,G__12823,self__.__meta,self__.__extmap,null));
 } else
-{return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12757),null));
+{return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12823),null));
 }
 }
 }
@@ -144,8 +144,8 @@ var this__3678__auto____$1 = this;if(cljs.core.truth_((function (){var and__3119
 {return false;
 }
 });
-koans.meditations.Koan.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12757){var self__ = this;
-var this__3681__auto____$1 = this;return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,G__12757,self__.__extmap,self__.__hash));
+koans.meditations.Koan.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12823){var self__ = this;
+var this__3681__auto____$1 = this;return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,G__12823,self__.__extmap,self__.__hash));
 });
 koans.meditations.Koan.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__3680__auto__){var self__ = this;
 var this__3680__auto____$1 = this;return self__.__meta;
@@ -164,7 +164,7 @@ koans.meditations.Koan.cljs$lang$ctorPrWriter = (function (this__3716__auto__,wr
 });
 koans.meditations.__GT_Koan = (function __GT_Koan(description,code_strings,fn_strings){return (new koans.meditations.Koan(description,code_strings,fn_strings));
 });
-koans.meditations.map__GT_Koan = (function map__GT_Koan(G__12759){return (new koans.meditations.Koan(new cljs.core.Keyword(null,"description","description",3584325486).cljs$core$IFn$_invoke$arity$1(G__12759),new cljs.core.Keyword(null,"code-strings","code-strings",2204559892).cljs$core$IFn$_invoke$arity$1(G__12759),new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839).cljs$core$IFn$_invoke$arity$1(G__12759),null,cljs.core.dissoc.call(null,G__12759,new cljs.core.Keyword(null,"description","description",3584325486),new cljs.core.Keyword(null,"code-strings","code-strings",2204559892),new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839))));
+koans.meditations.map__GT_Koan = (function map__GT_Koan(G__12825){return (new koans.meditations.Koan(new cljs.core.Keyword(null,"description","description",3584325486).cljs$core$IFn$_invoke$arity$1(G__12825),new cljs.core.Keyword(null,"code-strings","code-strings",2204559892).cljs$core$IFn$_invoke$arity$1(G__12825),new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839).cljs$core$IFn$_invoke$arity$1(G__12825),null,cljs.core.dissoc.call(null,G__12825,new cljs.core.Keyword(null,"description","description",3584325486),new cljs.core.Keyword(null,"code-strings","code-strings",2204559892),new cljs.core.Keyword(null,"fn-strings","fn-strings",4723129839))));
 });
 
 /**
@@ -202,29 +202,29 @@ return h__3532__auto____$1;
 koans.meditations.KoanIndex.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (this__3682__auto__,k__3683__auto__){var self__ = this;
 var this__3682__auto____$1 = this;return cljs.core._lookup.call(null,this__3682__auto____$1,k__3683__auto__,null);
 });
-koans.meditations.KoanIndex.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12764,else__3685__auto__){var self__ = this;
-var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12764,new cljs.core.Keyword(null,"category","category",1064415344)))
+koans.meditations.KoanIndex.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12830,else__3685__auto__){var self__ = this;
+var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12830,new cljs.core.Keyword(null,"category","category",1064415344)))
 {return self__.category;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k12764,new cljs.core.Keyword(null,"index","index",1114250308)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k12830,new cljs.core.Keyword(null,"index","index",1114250308)))
 {return self__.index;
 } else
 {if(new cljs.core.Keyword(null,"else","else",1017020587))
-{return cljs.core.get.call(null,self__.__extmap,k12764,else__3685__auto__);
+{return cljs.core.get.call(null,self__.__extmap,k12830,else__3685__auto__);
 } else
 {return null;
 }
 }
 }
 });
-koans.meditations.KoanIndex.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12763){var self__ = this;
-var this__3689__auto____$1 = this;var pred__12766 = cljs.core.keyword_identical_QMARK_;var expr__12767 = k__3690__auto__;if(pred__12766.call(null,new cljs.core.Keyword(null,"category","category",1064415344),expr__12767))
-{return (new koans.meditations.KoanIndex(G__12763,self__.index,self__.__meta,self__.__extmap,null));
+koans.meditations.KoanIndex.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12829){var self__ = this;
+var this__3689__auto____$1 = this;var pred__12832 = cljs.core.keyword_identical_QMARK_;var expr__12833 = k__3690__auto__;if(pred__12832.call(null,new cljs.core.Keyword(null,"category","category",1064415344),expr__12833))
+{return (new koans.meditations.KoanIndex(G__12829,self__.index,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__12766.call(null,new cljs.core.Keyword(null,"index","index",1114250308),expr__12767))
-{return (new koans.meditations.KoanIndex(self__.category,G__12763,self__.__meta,self__.__extmap,null));
+{if(pred__12832.call(null,new cljs.core.Keyword(null,"index","index",1114250308),expr__12833))
+{return (new koans.meditations.KoanIndex(self__.category,G__12829,self__.__meta,self__.__extmap,null));
 } else
-{return (new koans.meditations.KoanIndex(self__.category,self__.index,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12763),null));
+{return (new koans.meditations.KoanIndex(self__.category,self__.index,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12829),null));
 }
 }
 });
@@ -261,8 +261,8 @@ var this__3678__auto____$1 = this;if(cljs.core.truth_((function (){var and__3119
 {return false;
 }
 });
-koans.meditations.KoanIndex.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12763){var self__ = this;
-var this__3681__auto____$1 = this;return (new koans.meditations.KoanIndex(self__.category,self__.index,G__12763,self__.__extmap,self__.__hash));
+koans.meditations.KoanIndex.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12829){var self__ = this;
+var this__3681__auto____$1 = this;return (new koans.meditations.KoanIndex(self__.category,self__.index,G__12829,self__.__extmap,self__.__hash));
 });
 koans.meditations.KoanIndex.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__3680__auto__){var self__ = this;
 var this__3680__auto____$1 = this;return self__.__meta;
@@ -281,7 +281,7 @@ koans.meditations.KoanIndex.cljs$lang$ctorPrWriter = (function (this__3716__auto
 });
 koans.meditations.__GT_KoanIndex = (function __GT_KoanIndex(category,index){return (new koans.meditations.KoanIndex(category,index));
 });
-koans.meditations.map__GT_KoanIndex = (function map__GT_KoanIndex(G__12765){return (new koans.meditations.KoanIndex(new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(G__12765),new cljs.core.Keyword(null,"index","index",1114250308).cljs$core$IFn$_invoke$arity$1(G__12765),null,cljs.core.dissoc.call(null,G__12765,new cljs.core.Keyword(null,"category","category",1064415344),new cljs.core.Keyword(null,"index","index",1114250308))));
+koans.meditations.map__GT_KoanIndex = (function map__GT_KoanIndex(G__12831){return (new koans.meditations.KoanIndex(new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(G__12831),new cljs.core.Keyword(null,"index","index",1114250308).cljs$core$IFn$_invoke$arity$1(G__12831),null,cljs.core.dissoc.call(null,G__12831,new cljs.core.Keyword(null,"category","category",1064415344),new cljs.core.Keyword(null,"index","index",1114250308))));
 });
 
 /**
@@ -321,18 +321,18 @@ return h__3532__auto____$1;
 koans.meditations.Category.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (this__3682__auto__,k__3683__auto__){var self__ = this;
 var this__3682__auto____$1 = this;return cljs.core._lookup.call(null,this__3682__auto____$1,k__3683__auto__,null);
 });
-koans.meditations.Category.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12770,else__3685__auto__){var self__ = this;
-var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12770,new cljs.core.Keyword(null,"name","name",1017277949)))
+koans.meditations.Category.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3684__auto__,k12836,else__3685__auto__){var self__ = this;
+var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k12836,new cljs.core.Keyword(null,"name","name",1017277949)))
 {return self__.name;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k12770,new cljs.core.Keyword(null,"koans","koans",1116124532)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k12836,new cljs.core.Keyword(null,"koans","koans",1116124532)))
 {return self__.koans;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k12770,new cljs.core.Keyword(null,"fns","fns",1014005789)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k12836,new cljs.core.Keyword(null,"fns","fns",1014005789)))
 {return self__.fns;
 } else
 {if(new cljs.core.Keyword(null,"else","else",1017020587))
-{return cljs.core.get.call(null,self__.__extmap,k12770,else__3685__auto__);
+{return cljs.core.get.call(null,self__.__extmap,k12836,else__3685__auto__);
 } else
 {return null;
 }
@@ -340,17 +340,17 @@ var this__3684__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(nul
 }
 }
 });
-koans.meditations.Category.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12769){var self__ = this;
-var this__3689__auto____$1 = this;var pred__12772 = cljs.core.keyword_identical_QMARK_;var expr__12773 = k__3690__auto__;if(pred__12772.call(null,new cljs.core.Keyword(null,"name","name",1017277949),expr__12773))
-{return (new koans.meditations.Category(G__12769,self__.koans,self__.fns,self__.__meta,self__.__extmap,null));
+koans.meditations.Category.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3689__auto__,k__3690__auto__,G__12835){var self__ = this;
+var this__3689__auto____$1 = this;var pred__12838 = cljs.core.keyword_identical_QMARK_;var expr__12839 = k__3690__auto__;if(pred__12838.call(null,new cljs.core.Keyword(null,"name","name",1017277949),expr__12839))
+{return (new koans.meditations.Category(G__12835,self__.koans,self__.fns,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__12772.call(null,new cljs.core.Keyword(null,"koans","koans",1116124532),expr__12773))
-{return (new koans.meditations.Category(self__.name,G__12769,self__.fns,self__.__meta,self__.__extmap,null));
+{if(pred__12838.call(null,new cljs.core.Keyword(null,"koans","koans",1116124532),expr__12839))
+{return (new koans.meditations.Category(self__.name,G__12835,self__.fns,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__12772.call(null,new cljs.core.Keyword(null,"fns","fns",1014005789),expr__12773))
-{return (new koans.meditations.Category(self__.name,self__.koans,G__12769,self__.__meta,self__.__extmap,null));
+{if(pred__12838.call(null,new cljs.core.Keyword(null,"fns","fns",1014005789),expr__12839))
+{return (new koans.meditations.Category(self__.name,self__.koans,G__12835,self__.__meta,self__.__extmap,null));
 } else
-{return (new koans.meditations.Category(self__.name,self__.koans,self__.fns,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12769),null));
+{return (new koans.meditations.Category(self__.name,self__.koans,self__.fns,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3690__auto__,G__12835),null));
 }
 }
 }
@@ -388,8 +388,8 @@ var this__3678__auto____$1 = this;if(cljs.core.truth_((function (){var and__3119
 {return false;
 }
 });
-koans.meditations.Category.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12769){var self__ = this;
-var this__3681__auto____$1 = this;return (new koans.meditations.Category(self__.name,self__.koans,self__.fns,G__12769,self__.__extmap,self__.__hash));
+koans.meditations.Category.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3681__auto__,G__12835){var self__ = this;
+var this__3681__auto____$1 = this;return (new koans.meditations.Category(self__.name,self__.koans,self__.fns,G__12835,self__.__extmap,self__.__hash));
 });
 koans.meditations.Category.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__3680__auto__){var self__ = this;
 var this__3680__auto____$1 = this;return self__.__meta;
@@ -408,10 +408,10 @@ koans.meditations.Category.cljs$lang$ctorPrWriter = (function (this__3716__auto_
 });
 koans.meditations.__GT_Category = (function __GT_Category(name,koans__$1,fns){return (new koans.meditations.Category(name,koans__$1,fns));
 });
-koans.meditations.map__GT_Category = (function map__GT_Category(G__12771){return (new koans.meditations.Category(new cljs.core.Keyword(null,"name","name",1017277949).cljs$core$IFn$_invoke$arity$1(G__12771),new cljs.core.Keyword(null,"koans","koans",1116124532).cljs$core$IFn$_invoke$arity$1(G__12771),new cljs.core.Keyword(null,"fns","fns",1014005789).cljs$core$IFn$_invoke$arity$1(G__12771),null,cljs.core.dissoc.call(null,G__12771,new cljs.core.Keyword(null,"name","name",1017277949),new cljs.core.Keyword(null,"koans","koans",1116124532),new cljs.core.Keyword(null,"fns","fns",1014005789))));
+koans.meditations.map__GT_Category = (function map__GT_Category(G__12837){return (new koans.meditations.Category(new cljs.core.Keyword(null,"name","name",1017277949).cljs$core$IFn$_invoke$arity$1(G__12837),new cljs.core.Keyword(null,"koans","koans",1116124532).cljs$core$IFn$_invoke$arity$1(G__12837),new cljs.core.Keyword(null,"fns","fns",1014005789).cljs$core$IFn$_invoke$arity$1(G__12837),null,cljs.core.dissoc.call(null,G__12837,new cljs.core.Keyword(null,"name","name",1017277949),new cljs.core.Keyword(null,"koans","koans",1116124532),new cljs.core.Keyword(null,"fns","fns",1014005789))));
 });
 koans.meditations.categories = cljs.core.PersistentVector.fromArray([(new koans.meditations.Category("equality",koans.meditations.equality.koans)),(new koans.meditations.Category("lists",koans.meditations.lists.koans)),(new koans.meditations.Category("vectors",koans.meditations.vectors.koans)),(new koans.meditations.Category("sets",koans.meditations.sets.koans)),(new koans.meditations.Category("maps",koans.meditations.maps.koans)),(new koans.meditations.Category("functions",koans.meditations.functions.koans,koans.meditations.functions.fns)),(new koans.meditations.Category("conditionals",koans.meditations.conditionals.koans,koans.meditations.conditionals.fns)),(new koans.meditations.Category("higher-order-functions",koans.meditations.higher_order_functions.koans)),(new koans.meditations.Category("runtime-polymorphism",koans.meditations.runtime_polymorphism.koans,koans.meditations.runtime_polymorphism.fns)),(new koans.meditations.Category("lazy-sequences",koans.meditations.lazy_sequences.koans)),(new koans.meditations.Category("sequence-comprehensions",koans.meditations.sequence_comprehensions.koans)),(new koans.meditations.Category("creating-functions",koans.meditations.creating_functions.koans,koans.meditations.creating_functions.fns)),(new koans.meditations.Category("destructuring",koans.meditations.destructuring.koans,koans.meditations.destructuring.fns)),(new koans.meditations.Category("atoms",koans.meditations.atoms.koans,koans.meditations.atoms.fns)),(new koans.meditations.Category("partition",koans.meditations.partition.koans)),(new koans.meditations.Category("complete",cljs.core.list(new cljs.core.Keyword(null,"the","the",1014019043),new cljs.core.Keyword(null,"end","end",1014004813))))], true);
-koans.meditations.category_from_koan_index = (function category_from_koan_index(koan_index){return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__12775_SHARP_){return cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"name","name",1017277949).cljs$core$IFn$_invoke$arity$1(p1__12775_SHARP_),new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(koan_index));
+koans.meditations.category_from_koan_index = (function category_from_koan_index(koan_index){return cljs.core.first.call(null,cljs.core.filter.call(null,(function (p1__12841_SHARP_){return cljs.core._EQ_.call(null,new cljs.core.Keyword(null,"name","name",1017277949).cljs$core$IFn$_invoke$arity$1(p1__12841_SHARP_),new cljs.core.Keyword(null,"category","category",1064415344).cljs$core$IFn$_invoke$arity$1(koan_index));
 }),koans.meditations.categories));
 });
 koans.meditations.koan_exists_QMARK_ = (function koan_exists_QMARK_(koan_index){return (new cljs.core.Keyword(null,"index","index",1114250308).cljs$core$IFn$_invoke$arity$1(koan_index) < cljs.core.count.call(null,cljs.core.partition.call(null,2,new cljs.core.Keyword(null,"koans","koans",1116124532).cljs$core$IFn$_invoke$arity$1(koans.meditations.category_from_koan_index.call(null,koan_index)))));
@@ -421,7 +421,7 @@ koans.meditations.next_category = (function next_category(koan_index){var index 
 koans.meditations.expr_to_string = (function expr_to_string(expr){if(typeof expr === 'string')
 {return expr;
 } else
-{return clojure.string.replace.call(null,cljs.core.pr_str.call(null,expr),/\(quote (.*?)\)/,(function (p1__12777_SHARP_,p2__12776_SHARP_){return [cljs.core.str("'"),cljs.core.str(p2__12776_SHARP_)].join('');
+{return clojure.string.replace.call(null,cljs.core.pr_str.call(null,expr),/\(quote (.*?)\)/,(function (p1__12843_SHARP_,p2__12842_SHARP_){return [cljs.core.str("'"),cljs.core.str(p2__12842_SHARP_)].join('');
 }));
 }
 });
@@ -453,17 +453,17 @@ return cljs.core.apply.call(null,cljs.core.concat,cljs.core.map.call(null,(funct
 }),koans.meditations.splitted));
 });
 koans.meditations.koan_for_index = (function koan_for_index(koan_index){var category = koans.meditations.category_from_koan_index.call(null,koan_index);var category_list = cljs.core.partition.call(null,2,new cljs.core.Keyword(null,"koans","koans",1116124532).cljs$core$IFn$_invoke$arity$1(category));var item = (function (){try{return cljs.core.nth.call(null,category_list,new cljs.core.Keyword(null,"index","index",1114250308).cljs$core$IFn$_invoke$arity$1(koan_index));
-}catch (e12780){if((e12780 instanceof Object))
-{var _ = e12780;return cljs.core.first.call(null,category_list);
+}catch (e12846){if((e12846 instanceof Object))
+{var _ = e12846;return cljs.core.first.call(null,category_list);
 } else
 {if(new cljs.core.Keyword(null,"else","else",1017020587))
-{throw e12780;
+{throw e12846;
 } else
 {return null;
 }
 }
 }})();var description = cljs.core.first.call(null,item);var code_strings = koans.meditations.expr_to_array.call(null,cljs.core.last.call(null,item));var fn_strings = cljs.core.map.call(null,((function (category,category_list,item,description,code_strings){
-return (function (p1__12778_SHARP_){return koans.meditations.expr_to_array.call(null,p1__12778_SHARP_);
+return (function (p1__12844_SHARP_){return koans.meditations.expr_to_array.call(null,p1__12844_SHARP_);
 });})(category,category_list,item,description,code_strings))
 ,new cljs.core.Keyword(null,"fns","fns",1014005789).cljs$core$IFn$_invoke$arity$1(category));return (new koans.meditations.Koan(description,code_strings,fn_strings));
 });
