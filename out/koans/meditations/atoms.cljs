@@ -1,10 +1,13 @@
 (ns koans.meditations.atoms)
 
 (def koans '(
-  "Atoms are like refs"
+  "Atoms are references to values"
+  "(= :__ (deref atomic-clock))"
+
+  "You can get its value more succintly"
   "(= :__ @atomic-clock)"
 
-  "You can change at the swap meet"
+  "You can even change at the swap meet"
   "(= :__ (do
           (swap! atomic-clock inc)
           @atomic-clock))"
