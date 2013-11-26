@@ -2,10 +2,10 @@
 
 (def koans '(
   "The map function relates a sequence to another"
-  (= [:__] (map (fn [x] (* 4 x)) [1 2 3]))
+  (= '(:__) (map (fn [x] (* 4 x)) [1 2 3]))
 
   "You may create that mapping"
-  (= [1 4 9 16 25] (map (fn [x] :__) [1 2 3 4 5]))
+  (= '(1 4 9 16 25) (map (fn [x] :__) [1 2 3 4 5]))
 
   "Or use the names of existing functions"
   (= :__ (map nil? [:a :b nil :c :d]))
