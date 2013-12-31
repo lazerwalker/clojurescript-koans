@@ -27,7 +27,9 @@ If you want to create a new category of koans, you will also need to add your ca
 The `script` folder contains a number of helpful scripts. All are designed to be run from the root project directory.
 
 `build-repl`: Recompiles just the REPL core using cljs-in-cljs.
-`build`: Recompiles the REPL core, and does a clean recompile of the application code
+
+`build`: Recompiles the REPL core, and does a clean recompile of the application code.
+
 `deploy`: If you're hosting the site on GitHub Pages, this will deploy the latest version of your code. It merges your current branch into the `gh-pages` branch, generates a static copy with compiled JS/CSS, and then pushes the `gh-pages` branch to your default remote. See the script's source for caveats.
 
 
