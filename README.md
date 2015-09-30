@@ -4,7 +4,7 @@ http://clojurescriptkoans.com
 
 The ClojureScript Koans are a fun and easy way to get started with ClojureScript. No experience with Clojure or ClojureScript is assumed or required, and since they're run in-browser they don't require a functioning Clojure development environment.
 
-They are adapted from the [Clojure Koans](http://clojurekoans.com), with some minor changes to accomodate the differences between Clojure and ClojureScript.
+They are adapted from the [Clojure Koans](http://clojurekoans.com), with some minor changes to accommodate the differences between Clojure and ClojureScript.
 
 Unlike most other browser-based ClojureScript evaluation environments, the ClojureScript Koans don't require a connection to a server-side REPL. Rather, they are run in a purely in-browser REPL powered by @kanaka's [cljs-in-cljs](https://github.com/kanaka/clojurescript) project. This means that they are nothing more than static HTML, CSS, and ClojureScript files.
 
