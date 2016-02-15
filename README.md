@@ -26,6 +26,7 @@ To be quite honest, I'm skeptical someone will pop out of the woodwork. That bei
 So please, get in touch. I'm happy to help in any way I can if you're interested in helping. If you're new to open source, or new to ClojureScript, this could be a great way to get your feet wet and make a meaningful contribution.
 
 Thanks!
+
 -@lazerwalker
 
 
