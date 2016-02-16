@@ -7,11 +7,9 @@
     [clojure.string]
     [koans.meditations :as meditations]
     [jayq.core :as $]
-    [dommy.core :as dommy]
-    [cljs.core.async :as async :refer [<! >! chan]])
+    [dommy.core :as dommy])
   (:use-macros
-    [dommy.macros :only [deftemplate]])
-  (:require-macros [cljs.core.async.macros :refer [go]]))
+    [dommy.macros :only [deftemplate]]))
 
 (defn hash-objects [] (clojure.string/split (.-hash js/location) "/" ))
 
@@ -75,8 +73,6 @@
                       ($/val el))))
                 (clojure.string/join " "))]
       (str fns " " code)))))
-
-(def resize-chan (chan))
 
 (defn load-next-koan []
   (update-location-hash))
@@ -147,11 +143,6 @@
         (>= (- input-width (* 4 char-width)) shadow-width)
           ($/width $input (+ shadow-width (* 4 char-width)))))))
 
-(go
-  (while true
-    (let [e (<! resize-chan)]
-      (resize-input (.-target e)))))
-
 (defn show-error-message []
   (let [$code-box ($ :.code-box)]
     (if ($/has-class $code-box "incorrect")
@@ -187,7 +178,7 @@
     (when (= (.-which e) enter-key)
       (evaluate-koan))))
   ($/on ($ js/document) :input :input (fn [e]
-    (go (>! resize-chan e))))
+    (resize-input (.-target e))))
 
   #_(if-not (clojure.string/blank? (.-hash js/location))
     ($/hide ($ "#welcome")))
