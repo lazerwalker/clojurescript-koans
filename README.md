@@ -4,14 +4,12 @@ http://clojurescriptkoans.com
 
 The ClojureScript Koans are a fun and easy way to get started with ClojureScript. No experience with Clojure or ClojureScript is assumed or required, and since they're run in-browser they don't require a functioning Clojure development environment.
 
-They are adapted from the [Clojure Koans](http://clojurekoans.com), with some minor changes to accomodate the differences between Clojure and ClojureScript.
-
-Unlike most other browser-based ClojureScript evaluation environments, the ClojureScript Koans don't require a connection to a server-side REPL. Rather, they are run in a purely in-browser REPL powered by @kanaka's [cljs-in-cljs](https://github.com/kanaka/clojurescript) project. This means that they are nothing more than static HTML, CSS, and ClojureScript files.
+They are adapted from the [Clojure Koans](http://clojurekoans.com), with some minor changes to accommodate the differences between Clojure and ClojureScript.
 
 
 Development
 -----------
-You will need both [Leiningen](http://leiningen.org) and a functioning copy of the cljs-in-cljs version of the `cljsc` compiler in your PATH. For instructions on installing cljs-in-cljs, see https://github.com/lazerwalker/clojurescript-in-clojurescript.
+You will need [Leiningen](http://leiningen.org).
 
 If you wish to edit the project's stylesheets, you will need to have [Sass](http://sass-lang.com) and [Compass](http://compass-style.org) installed. The project contains a Compass `config.rb` file.
 
@@ -26,9 +24,7 @@ If you want to create a new category of koans, you will also need to add your ca
 ### Helper Scripts
 The `script` folder contains a number of helpful scripts. All are designed to be run from the root project directory.
 
-`build-repl`: Recompiles just the REPL core using cljs-in-cljs.
-
-`build`: Recompiles the REPL core, and does a clean recompile of the application code.
+`build`: Does a clean recompile of the application code.
 
 `deploy`: If you're hosting the site on GitHub Pages, this will deploy the latest version of your code. It merges your current branch into the `gh-pages` branch, generates a static copy with compiled JS/CSS, and then pushes the `gh-pages` branch to your default remote. See the script's source for caveats.
 
