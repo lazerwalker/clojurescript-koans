@@ -7,7 +7,8 @@
 ;   You must not remove this notice, or any other, from this software.
 
 (ns cljs.reader
-  (:require [goog.string :as gstring]))
+  (:require [goog.string :as gstring])
+  (:import goog.string.StringBuffer))
 
 (defprotocol PushbackReader
   (read-char [reader] "Returns the next char from the Reader,
@@ -77,12 +78,12 @@ nil if the end of stream has been reached")
 
 (defn read-token
   [rdr initch]
-  (loop [sb (gstring/StringBuffer. initch)
+  (loop [sb (StringBuffer. initch)
          ch (read-char rdr)]
     (if (or (nil? ch)
             (whitespace? ch)
             (macro-terminating? ch))
-      (do (unread rdr ch) (. sb (toString)))
+      (do (unread rdr ch) (.toString sb))
       (recur (do (.append sb ch) sb) (read-char rdr)))))
 
 (defn skip-line
@@ -90,54 +91,14 @@ nil if the end of stream has been reached")
   [reader _]
   (loop []
     (let [ch (read-char reader)]
-      (if (or (identical? ch \n) (identical? ch \r) (nil? ch))
+      (if (or (identical? ch \newline) (identical? ch \return) (nil? ch))
         reader
         (recur)))))
 
-(def int-pattern (re-pattern "([-+]?)(?:(0)|([1-9][0-9]*)|0[xX]([0-9A-Fa-f]+)|0([0-7]+)|([1-9][0-9]?)[rR]([0-9A-Za-z]+)|0[0-9]+)(N)?"))
-(def ratio-pattern (re-pattern "([-+]?[0-9]+)/([0-9]+)"))
-(def float-pattern (re-pattern "([-+]?[0-9]+(\\.[0-9]*)?([eE][-+]?[0-9]+)?)(M)?"))
-(def symbol-pattern (re-pattern "[:]?([^0-9/].*/)?([^0-9/][^/]*)"))
-
-(defn- re-find*
-  [re s]
-  (let [matches (.exec re s)]
-    (when-not (nil? matches)
-      (if (== (alength matches) 1)
-        (aget matches 0)
-        matches))))
-
-(defn- match-int
-  [s]
-  (let [groups (re-find* int-pattern s)
-        group3 (aget groups 2)]
-    (if-not (or (nil? group3)
-                (< (alength group3) 1))
-      0
-      (let [negate (if (identical? "-" (aget groups 1)) -1 1)
-            a (cond
-               (aget groups 3) (array (aget groups 3) 10)
-               (aget groups 4) (array (aget groups 4) 16)
-               (aget groups 5) (array (aget groups 5) 8)
-               (aget groups 7) (array (aget groups 7) (js/parseInt (aget groups 7)))
-               :default (array nil nil))
-            n (aget a 0)
-            radix (aget a 1)]
-        (if (nil? n)
-          nil
-          (* negate (js/parseInt n radix)))))))
-
-
-(defn- match-ratio
-  [s]
-  (let [groups (re-find* ratio-pattern s)
-        numinator (aget groups 1)
-        denominator (aget groups 2)]
-    (/ (js/parseInt numinator) (js/parseInt denominator))))
-
-(defn- match-float
-  [s]
-  (js/parseFloat s))
+(def int-pattern (re-pattern "^([-+]?)(?:(0)|([1-9][0-9]*)|0[xX]([0-9A-Fa-f]+)|0([0-7]+)|([1-9][0-9]?)[rR]([0-9A-Za-z]+))(N)?$"))
+(def ratio-pattern (re-pattern "^([-+]?[0-9]+)/([0-9]+)$"))
+(def float-pattern (re-pattern "^([-+]?[0-9]+(\\.[0-9]*)?([eE][-+]?[0-9]+)?)(M)?$"))
+(def symbol-pattern (re-pattern "^[:]?([^0-9/].*/)?([^0-9/][^/]*)$"))
 
 (defn- re-matches*
   [re s]
@@ -147,6 +108,39 @@ nil if the end of stream has been reached")
       (if (== (alength matches) 1)
         (aget matches 0)
         matches))))
+
+(defn- match-int
+  [s]
+  (let [groups (re-matches* int-pattern s)
+        ie8-fix  (aget groups 2)
+        zero     (if (= ie8-fix "") nil ie8-fix)]
+    (if-not (nil? zero)
+      0
+      (let [a (cond
+               (aget groups 3) (array (aget groups 3) 10)
+               (aget groups 4) (array (aget groups 4) 16)
+               (aget groups 5) (array (aget groups 5) 8)
+               (aget groups 6) (array (aget groups 7)
+                                      (js/parseInt (aget groups 6) 10))
+               :else (array nil nil))
+            n (aget a 0)
+            radix (aget a 1)]
+        (when-not (nil? n)
+          (let [parsed (js/parseInt n radix)]
+            (if (identical? "-" (aget groups 1))
+              (- parsed)
+              parsed)))))))
+
+(defn- match-ratio
+  [s]
+  (let [groups (re-matches* ratio-pattern s)
+        numinator (aget groups 1)
+        denominator (aget groups 2)]
+    (/ (js/parseInt numinator 10) (js/parseInt denominator 10))))
+
+(defn- match-float
+  [s]
+  (js/parseFloat s))
 
 (defn- match-number
   [s]
@@ -172,20 +166,20 @@ nil if the end of stream has been reached")
 
 (defn read-2-chars [reader]
   (.toString
-    (gstring/StringBuffer.
+    (StringBuffer.
       (read-char reader)
       (read-char reader))))
 
 (defn read-4-chars [reader]
   (.toString
-    (gstring/StringBuffer.
+    (StringBuffer.
       (read-char reader)
       (read-char reader)
       (read-char reader)
       (read-char reader))))
 
-(def unicode-2-pattern (re-pattern "[0-9A-Fa-f]{2}"))
-(def unicode-4-pattern (re-pattern "[0-9A-Fa-f]{4}"))
+(def unicode-2-pattern (re-pattern "^[0-9A-Fa-f]{2}$"))
+(def unicode-4-pattern (re-pattern "^[0-9A-Fa-f]{4}$"))
 
 (defn validate-unicode-escape [unicode-pattern reader escape-char unicode-str]
   (if (re-matches unicode-pattern unicode-str)
@@ -265,7 +259,7 @@ nil if the end of stream has been reached")
 
 (defn read-unmatched-delimiter
   [rdr ch]
-  (reader-error rdr "Unmached delimiter " ch))
+  (reader-error rdr "Unmatched delimiter " ch))
 
 (defn read-list
   [rdr _]
@@ -291,7 +285,7 @@ nil if the end of stream has been reached")
     (if (or (nil? ch) (whitespace? ch) (macros ch))
       (do
         (unread reader ch)
-        (let [s (. buffer (toString))]
+        (let [s (.toString buffer)]
           (or (match-number s)
               (reader-error reader "Invalid number format [" s "]"))))
       (recur (do (.append buffer ch) buffer) (read-char reader)))))
@@ -307,20 +301,53 @@ nil if the end of stream has been reached")
      (identical? \" ch) (. buffer (toString))
      :default (recur (do (.append buffer ch) buffer) (read-char reader)))))
 
+(defn read-raw-string*
+  [reader _]
+  (loop [buffer (gstring/StringBuffer.)
+         ch (read-char reader)]
+    (cond
+      (nil? ch) (reader-error reader "EOF while reading")
+      (identical? "\\" ch) (do (.append buffer ch)
+                             (let [nch (read-char reader)]
+                               (if (nil? nch)
+                                 (reader-error reader "EOF while reading")
+                                 (recur (doto buffer (.append nch))
+                                        (read-char reader)))))
+      (identical? "\"" ch) (.toString buffer)
+      :else (recur (doto buffer (.append ch)) (read-char reader)))))
+
 (defn special-symbols [t not-found]
   (cond
-   (identical? t "nil") nil
-   (identical? t "true") true
-   (identical? t "false") false
-   :else not-found))
+    (identical? t "nil") nil
+    (identical? t "true") true
+    (identical? t "false") false
+    (identical? t "/") '/
+    :else not-found))
 
 (defn read-symbol
   [reader initch]
   (let [token (read-token reader initch)]
-    (if (gstring/contains token "/")
+    (if (and (gstring/contains token "/")
+             (not (== (.-length token) 1)))
       (symbol (subs token 0 (.indexOf token "/"))
-              (subs token (inc (.indexOf token "/")) (.-length token)))
+              (subs token (inc (.indexOf token "/"))
+                (.-length token)))
       (special-symbols token (symbol token)))))
+
+(defn read-literal
+  [rdr ch]
+  (let [token (read-token rdr ch)
+        chars (subs token 1)]
+    (cond (identical? (.-length chars) 1) chars
+          (identical? chars "tab")       "\t"
+          (identical? chars "return")    "\r"
+          (identical? chars "newline")   "\n"
+          (identical? chars "space")     " "
+          (identical? chars "backspace") "\b"
+          (identical? chars "formfeed")  "\f"
+          (identical? (.charAt chars 0) "u") (make-unicode-char (subs chars 1))
+          (identical? (.charAt chars 0) "o") (not-implemented rdr token)
+          :else (reader-error rdr "Unknown character literal: " token))))
 
 (defn read-keyword
   [reader initch]
@@ -372,7 +399,7 @@ nil if the end of stream has been reached")
 
 (defn read-regex
   [rdr ch]
-  (-> (read-string* rdr ch) re-pattern))
+  (-> (read-raw-string* rdr ch) re-pattern))
 
 (defn read-discard
   [rdr _]
@@ -383,7 +410,7 @@ nil if the end of stream has been reached")
   (cond
    (identical? c \") read-string*
    (identical? c \:) read-keyword
-   (identical? c \;) not-implemented ;; never hit this
+   (identical? c \;) read-comment
    (identical? c \') (wrapping-reader 'quote)
    (identical? c \@) (wrapping-reader 'deref)
    (identical? c \^) read-meta
@@ -395,7 +422,7 @@ nil if the end of stream has been reached")
    (identical? c \]) read-unmatched-delimiter
    (identical? c \{) read-map
    (identical? c \}) read-unmatched-delimiter
-   (identical? c \\) read-char
+   (identical? c \\) read-literal
    (identical? c \#) read-dispatch
    :else nil))
 
@@ -411,7 +438,9 @@ nil if the end of stream has been reached")
 
 (defn read
   "Reads the first object from a PushbackReader. Returns the object read.
-   If EOF, throws if eof-is-error is true. Otherwise returns sentinel."
+   If EOF, throws if eof-is-error is true. Otherwise returns sentinel.
+
+   Only supports edn (similar to clojure.edn/read)"
   [reader eof-is-error sentinel is-recursive]
   (let [ch (read-char reader)]
     (cond
@@ -431,16 +460,17 @@ nil if the end of stream has been reached")
 (defn read-string
   "Reads one object from the string s"
   [s]
+  (when-not (string? s)
+    (throw (js/Error. "Cannot read from non-string object.")))
   (let [r (push-back-reader s)]
-    (read r true nil false)))
-
+    (read r false nil false)))
 
 ;; read instances
 
 (defn ^:private zero-fill-right-and-truncate [s width]
   (cond (= width (count s)) s
         (< width (count s)) (subs s 0 width)
-        :else (loop [b (gstring/StringBuffer. s)]
+        :else (loop [b (StringBuffer. s)]
                 (if (< (.getLength b) width)
                   (recur (.append b "0"))
                   (.toString b)))))
@@ -468,7 +498,7 @@ nil if the end of stream has been reached")
 (def ^:private timestamp-regex #"(\d\d\d\d)(?:-(\d\d)(?:-(\d\d)(?:[T](\d\d)(?::(\d\d)(?::(\d\d)(?:[.](\d+))?)?)?)?)?)?(?:[Z]|([-+])(\d\d):(\d\d))?")
 
 (defn ^:private parse-int [s]
-  (let [n (js/parseInt s)]
+  (let [n (js/parseInt s 10)]
     (if-not (js/isNaN n)
       n)))
 
@@ -525,17 +555,40 @@ nil if the end of stream has been reached")
     (reader-error nil "Queue literal expects a vector for its elements.")))
 
 
+(defn ^:private read-js
+  [form]
+  (cond
+    (vector? form)
+    (let [arr (array)]
+      (doseq [x form]
+        (.push arr x))
+      arr)
+
+    (map? form)
+    (let [obj (js-obj)]
+      (doseq [[k v] form]
+        (aset obj (name k) v))
+      obj)
+    
+    :else
+    (reader-error nil
+      (str "JS literal expects a vector or map containing "
+           "only string or unqualified keyword keys"))))
+
+
 (defn ^:private read-uuid
   [uuid]
   (if (string? uuid)
-    (UUID. uuid)
+    (cljs.core/uuid uuid)
     (reader-error nil "UUID literal expects a string as its representation.")))
 
-(def *tag-table* (atom {"inst"  read-date
-                        "uuid"  read-uuid
-                        "queue" read-queue}))
+(def ^:dynamic *tag-table*
+  (atom {"inst"  read-date
+         "uuid"  read-uuid
+         "queue" read-queue
+         "js"    read-js}))
 
-(def *default-data-reader-fn*
+(def ^:dynamic *default-data-reader-fn*
   (atom nil))
 
 (defn maybe-read-tagged-type

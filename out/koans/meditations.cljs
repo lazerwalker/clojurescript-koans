@@ -1,8 +1,7 @@
 (ns koans.meditations
-  (:use [jayq.util :only [log wait]])
   (:require
+    [clojure.string]
     [koans.utils :as utils]
-    [koans.repl :as repl]
     [koans.meditations.equality :as equality]
     [koans.meditations.lists :as lists]
     [koans.meditations.vectors :as vectors]
@@ -58,7 +57,7 @@
 (defn expr-to-string [expr]
   (if (string? expr)
     expr
-    (clojure.string/replace (pr-str expr) #"\(quote (.*?)\)" #(str "'" %2))))
+    (clojure.string/replace (pr-str expr) #"\(quote (.*?)\)" #(str "'" (%1 1)))))
 
 (defn next-koan-index [koan]
   (let [next-in-category (KoanIndex. (:category koan) (inc (:index koan)))]
@@ -73,13 +72,13 @@
         (KoanIndex. (next-category koan) 0))))
 
 (defn expr-to-array [expr]
-  (def full-text (expr-to-string expr))
-  (def splitted (clojure.string/split full-text #":__"))
-  (apply concat (map (fn [text]
-    (if (= text (last splitted))
-      [text]
-      [text :input]
-    )) splitted)))
+  (let [full-text (expr-to-string expr)
+        splitted (clojure.string/split full-text #":__")]
+    (apply concat (map (fn [text]
+      (if (= text (last splitted))
+        [text]
+        [text :input]
+      )) splitted))))
 
 (defn koan-for-index [koan-index]
   (let [category (category-from-koan-index koan-index)

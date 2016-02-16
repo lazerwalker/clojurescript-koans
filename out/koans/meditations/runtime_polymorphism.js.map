@@ -1,7 +1,1 @@
-{"version":3,
- "file":
- "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/meditations/runtime_polymorphism.js",
- "sources":["09_runtime_polymorphism.cljs"],
- "lineCount":7,
- "mappings":";;;AAECA;AAwBAC",
- "names":["koans", "fns"]}
+{"version":3,"file":"\/Users\/mkremins\/Projects\/clojurescript-koans\/out\/koans\/meditations\/runtime_polymorphism.js","sources":["09_runtime_polymorphism.cljs"],"lineCount":7,"mappings":";AAAA;;AAEA,+CAAA,eAAA,mEAAA,eAAA,oDAAA,iDAAA,eAAA,6DAAA,oBAAA,eAAA,oDAAA,iDAAA,eAAA,2DAAA,UAAA,yBAAA,eAAA,oDAAA,iDAAA,eAAA,2DAAA,QAAA,OAAA,SAAA,8CAAA,eAAA,oDAAA,sBAAA,eAAA,yDAAA,2CAAA,4DAAA,OAAA,qDAAA,QAAA,mDAAA,IAAA,uDAAA,yEAAA,uEAAA,eAAA,oDAAA,sBAAA,eAAA,yDAAA,2CAAA,4DAAA,OAAA,qDAAA,QAAA,mDAAA,IAAA,uDAAA,yEAAA,oDAAA,eAAA,oDAAA,sCAAA,eAAA,yDAAA,2CAAA,qDAAA,5sEAAKA;AAwBL,6CAAA,mFAAA,oQAAA,sCAAA,sCAAA,sCAAA,tfAAKC","names":["koans.meditations.runtime-polymorphism\/koans","koans.meditations.runtime-polymorphism\/fns"]}

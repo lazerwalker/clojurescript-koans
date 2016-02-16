@@ -1,28 +1,42 @@
-// Compiled by ClojureScript 0.0-2014
+// Compiled by ClojureScript 1.7.228 {}
 goog.provide('jayq.util');
 goog.require('cljs.core');
-jayq.util.wait = (function wait(ms,func){return setTimeout(func, ms);
+jayq.util.wait = (function jayq$util$wait(ms,func){
+return setTimeout(func, ms);
 });
-/**
-* @param {...*} var_args
-*/
-jayq.util.log = (function() { 
-var log__delegate = function (v,text){var vs = ((typeof v === 'string')?cljs.core.apply.call(null,cljs.core.str,v,text):v);console.log(vs);
+jayq.util.log = (function jayq$util$log(var_args){
+var args__7207__auto__ = [];
+var len__7200__auto___13183 = arguments.length;
+var i__7201__auto___13184 = (0);
+while(true){
+if((i__7201__auto___13184 < len__7200__auto___13183)){
+args__7207__auto__.push((arguments[i__7201__auto___13184]));
+
+var G__13185 = (i__7201__auto___13184 + (1));
+i__7201__auto___13184 = G__13185;
+continue;
+} else {
+}
+break;
+}
+
+var argseq__7208__auto__ = ((((1) < args__7207__auto__.length))?(new cljs.core.IndexedSeq(args__7207__auto__.slice((1)),(0))):null);
+return jayq.util.log.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__7208__auto__);
+});
+
+jayq.util.log.cljs$core$IFn$_invoke$arity$variadic = (function (v,text){
+var vs = ((typeof v === 'string')?cljs.core.apply.call(null,cljs.core.str,v,text):v);
+console.log(vs);
+
 return v;
-};
-var log = function (v,var_args){
-var text = null;if (arguments.length > 1) {
-  text = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1),0);} 
-return log__delegate.call(this,v,text);};
-log.cljs$lang$maxFixedArity = 1;
-log.cljs$lang$applyTo = (function (arglist__14109){
-var v = cljs.core.first(arglist__14109);
-var text = cljs.core.rest(arglist__14109);
-return log__delegate(v,text);
 });
-log.cljs$core$IFn$_invoke$arity$variadic = log__delegate;
-return log;
-})()
-;
+
+jayq.util.log.cljs$lang$maxFixedArity = (1);
+
+jayq.util.log.cljs$lang$applyTo = (function (seq13181){
+var G__13182 = cljs.core.first.call(null,seq13181);
+var seq13181__$1 = cljs.core.next.call(null,seq13181);
+return jayq.util.log.cljs$core$IFn$_invoke$arity$variadic(G__13182,seq13181__$1);
+});
 
 //# sourceMappingURL=util.js.map

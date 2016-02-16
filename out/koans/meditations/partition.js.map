@@ -1,7 +1,1 @@
-{"version":3,
- "file":
- "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/meditations/partition.js",
- "sources":["17_partition.cljs"],
- "lineCount":6,
- "mappings":";;;AAECA",
- "names":["koans"]}
+{"version":3,"file":"\/Users\/mkremins\/Projects\/clojurescript-koans\/out\/koans\/meditations\/partition.js","sources":["17_partition.cljs"],"lineCount":6,"mappings":";AAAA;;AAEA,oCAAA,eAAA,2DAAA,uCAAA,qEAAA,eAAA,oDAAA,eAAA,2DAAA,eAAA,mDAAA,eAAA,oEAAA,IAAA,mFAAA,gDAAA,+CAAA,gDAAA,+CAAA,yDAAA,6EAAA,eAAA,oDAAA,iDAAA,eAAA,4EAAA,IAAA,eAAA,4DAAA,OAAA,6DAAA,iEAAA,gEAAA,oEAAA,oEAAA,lgDAAKA","names":["koans.meditations.partition\/koans"]}

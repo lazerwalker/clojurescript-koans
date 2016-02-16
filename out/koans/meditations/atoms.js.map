@@ -1,7 +1,1 @@
-{"version":3,
- "file":
- "/Users/michaelwalker/Dropbox/Code/clojurescript-koans-online/out/koans/meditations/atoms.js",
- "sources":["15_atoms.cljs"],
- "lineCount":7,
- "mappings":";;;AAECA;AAiCAC",
- "names":["koans", "fns"]}
+{"version":3,"file":"\/Users\/mkremins\/Projects\/clojurescript-koans\/out\/koans\/meditations\/atoms.js","sources":["15_atoms.cljs"],"lineCount":7,"mappings":";AAAA;;AAEA,gCAAA,eAAA,iCAAA,+BAAA,uCAAA,wBAAA,uCAAA,4EAAA,2DAAA,mDAAA,qDAAA,oFAAA,0BAAA,4FAAA,2EAAA,ztBAAKA;AAiCL,8BAAA,mFAAA,eAAA,sDAAA,wEAAA,eAAA,yDAAA,tUAAKC","names":["koans.meditations.atoms\/koans","koans.meditations.atoms\/fns"]}
