@@ -1,1 +1,0 @@
-([:dependencies ([org.clojure/clojure "1.5.1"] [org.clojure/clojurescript "0.0-2014"] [prismatic/dommy "0.1.2"] [jayq/jayq "2.5.0"] [org.clojure/core.async "0.1.242.0-44b1e3-alpha"] [org.clojure/tools.nrepl "0.2.3" :exclusions ([org.clojure/clojure])] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure])] [specljs/specljs "2.8.0"])])
