@@ -191,7 +191,10 @@
 
   #_(if-not (clojure.string/blank? (.-hash js/location))
     ($/hide ($ "#welcome")))
-  (render-current-koan)))
+  (render-current-koan)
+
+  ;; initialize the cljs.user namespace so that def will actually work
+  (cljs/eval compiler-state '(ns cljs.user) {:eval cljs/js-eval} identity)))
 
 (set! (.-onhashchange js/window) (fn []
   (render-current-koan)
