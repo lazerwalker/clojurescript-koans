@@ -2,16 +2,16 @@
   (:use [jayq.core :only [$]]
         [jayq.util :only [log wait]])
   (:require
+    [cljs.js :as cljs]
     [clojure.set]
+    [clojure.string]
     [koans.meditations :as meditations]
-    [koans.repl :as repl]
     [jayq.core :as $]
     [dommy.core :as dommy]
-    [cljs.core.async :as async
-      :refer [<! >! chan close! sliding-buffer put! alts! timeout]])
+    [cljs.core.async :as async :refer [<! >! chan]])
   (:use-macros
     [dommy.macros :only [deftemplate]])
-  (:require-macros [cljs.core.async.macros :refer [go alt!]]))
+  (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (defn hash-objects [] (clojure.string/split (.-hash js/location) "/" ))
 
@@ -26,8 +26,6 @@
 (def fadeout-time 600)
 (def char-width 14)
 (def enter-key 13)
-
-(defn defer [func] (wait 0 func))
 
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
@@ -78,10 +76,6 @@
                 (clojure.string/join " "))]
       (str fns " " code)))))
 
-(defn evaluate-koan []
-  (log "Evaluating " (input-string))
-  (repl/eval (input-string)))
-
 (def resize-chan (chan))
 
 (defn load-next-koan []
@@ -127,7 +121,7 @@
 
 (defn render-current-koan []
   (cond
-    (clojure/string.blank? (.-hash js/location))
+    (clojure.string/blank? (.-hash js/location))
        (render-static-page "#welcome")
     (= (:category (current-koan-index)) "complete")
       (render-static-page "#the-end")
@@ -138,10 +132,9 @@
       (update-location-hash)))
 
 (defn resize-input [input]
-  (def $input ($ input))
-  (defn remove-spaces [text] (clojure.string/replace text " " "_"))
-
-  (let [$parent ($/parent $input)
+  (let [$input ($ input)
+        remove-spaces (fn [text] (clojure.string/replace text " " "_"))
+        $parent ($/parent $input)
         $shadow ($/find $parent :.shadow)]
 
     ($/text $shadow (remove-spaces ($/val $input)))
@@ -159,6 +152,34 @@
     (let [e (<! resize-chan)]
       (resize-input (.-target e)))))
 
+(defn show-error-message []
+  (let [$code-box ($ :.code-box)]
+    (if ($/has-class $code-box "incorrect")
+      (do (let [$error ($ :.error)]
+        ($/remove-class $code-box "incorrect")
+        ($/fade-out $error)
+        (wait 300 #(
+          ($/add-class $code-box "incorrect")
+          ($/fade-in $error)))))
+      (do (let [$error ($ (error-message))]
+        ($/add-class $code-box "incorrect")
+        ($/after ($ :.code-box) $error)
+        ($/fade-in $error))))))
+
+(defonce compiler-state
+  (cljs/empty-state))
+
+(defn evaluate-koan []
+  (let [input (input-string)]
+    (log "Evaluating " input)
+    (cljs/eval-str compiler-state input nil
+      {:eval cljs/js-eval}
+      (fn [result]
+        (log result)
+        (if (or (:error result) (not= (:value result) true))
+          (show-error-message)
+          (load-next-koan))))))
+
 ($/document-ready (fn []
   ($/on ($ js/document) :click :.text (fn [e]
     (.focus (first ($ :input)))))
@@ -168,34 +189,10 @@
   ($/on ($ js/document) :input :input (fn [e]
     (go (>! resize-chan e))))
 
-  #_(if-not (clojure/string.blank? (.-hash js/location))
+  #_(if-not (clojure.string/blank? (.-hash js/location))
     ($/hide ($ "#welcome")))
   (render-current-koan)))
 
 (set! (.-onhashchange js/window) (fn []
   (render-current-koan)
   (js/ga "pageview", (subs (.-hash js/location) 1))))
-
-(defn show-error-message []
-  (def $code-box ($ :.code-box))
-  (if ($/has-class $code-box "incorrect")
-    (do (let [$error ($ :.error)]
-      ($/remove-class $code-box "incorrect")
-      ($/fade-out $error)
-      (wait 300 #(
-        ($/add-class $code-box "incorrect")
-        ($/fade-in $error)))))
-    (do (let [$error ($ (error-message))]
-      ($/add-class $code-box "incorrect")
-      ($/after ($ :.code-box) $error)
-      ($/fade-in $error)))))
-
-(defn evaluate-response [text]
-  (log text)
-  (cond
-    (= text "true")
-      (load-next-koan)
-    (or (= text "false") (not (nil? (re-find #"\#\<[A-Za-z]*?Error:" text))))
-      (show-error-message)))
-
-  (repl/listen-for-output evaluate-response)

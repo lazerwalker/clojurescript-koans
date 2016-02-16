@@ -1,5 +1,4 @@
-(ns koans.meditations.functions
-  (:require [koans.repl :as repl]))
+(ns koans.meditations.functions)
 
 (def koans '(
  "Calling a function is like giving it a hug with parentheses"
