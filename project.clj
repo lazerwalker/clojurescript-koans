@@ -17,7 +17,7 @@
   :source-paths ["src"]
   :test-paths ["spec"]
 
-  :cljsbuild ~(let [run-specs ["phantomjs" "bin/specljs_runner.js" "repl.out/goog/base.js" "webrepl.js" "spec/stubs.js" "out/koans_spec.js"]]
+  :cljsbuild ~(let [run-specs ["phantomjs" "bin/specljs_runner.js" "out/koans_spec.js"]]
     { :builds {
         :prod {
           :source-paths ["src"]
