@@ -244,52 +244,24 @@ dom13247.appendChild(document.createTextNode("You have not yet attained enlighte
 return dom13247;
 });
 koans.core.input_string = (function koans$core$input_string(){
-var $inputs = jayq.core.$.call(null,".code-box input");
-var inputs_are_empty_QMARK_ = cljs.core.map.call(null,((function ($inputs){
-return (function (el){
+var input_is_empty_QMARK_ = (function koans$core$input_string_$_input_is_empty_QMARK_(el){
 return clojure.string.blank_QMARK_.call(null,el.value);
-});})($inputs))
-,$inputs);
-var is_empty_QMARK_ = cljs.core.reduce.call(null,((function ($inputs,inputs_are_empty_QMARK_){
-return (function (val,result){
-var or__6142__auto__ = val;
-if(cljs.core.truth_(or__6142__auto__)){
-return or__6142__auto__;
+});
+var get_input_string = (function koans$core$input_string_$_get_input_string(el){
+if(cljs.core._EQ_.call(null,"text",el.className)){
+return jayq.core.text.call(null,jayq.core.$.call(null,el));
 } else {
-return result;
+if(cljs.core._EQ_.call(null,"INPUT",el.tagName)){
+return el.value;
+} else {
+return null;
 }
-});})($inputs,inputs_are_empty_QMARK_))
-,inputs_are_empty_QMARK_);
-if(cljs.core.truth_(is_empty_QMARK_)){
+}
+});
+if(cljs.core.truth_(cljs.core.some.call(null,input_is_empty_QMARK_,jayq.core.$.call(null,".code-box input")))){
 return "";
 } else {
-var code = clojure.string.join.call(null," ",cljs.core.mapv.call(null,((function ($inputs,inputs_are_empty_QMARK_,is_empty_QMARK_){
-return (function (el){
-if(cljs.core._EQ_.call(null,"text",cljs.core.first.call(null,el).className)){
-return jayq.core.text.call(null,el);
-} else {
-if(cljs.core._EQ_.call(null,"INPUT",cljs.core.first.call(null,el).tagName)){
-return jayq.core.val.call(null,el);
-} else {
-return null;
-}
-}
-});})($inputs,inputs_are_empty_QMARK_,is_empty_QMARK_))
-,jayq.core.$.call(null,".code-box .text, .code-box input")));
-var fns = clojure.string.join.call(null," ",cljs.core.mapv.call(null,((function (code,$inputs,inputs_are_empty_QMARK_,is_empty_QMARK_){
-return (function (el){
-if(cljs.core._EQ_.call(null,"text",cljs.core.first.call(null,el).className)){
-return jayq.core.text.call(null,el);
-} else {
-if(cljs.core._EQ_.call(null,"INPUT",cljs.core.first.call(null,el).tagName)){
-return jayq.core.val.call(null,el);
-} else {
-return null;
-}
-}
-});})(code,$inputs,inputs_are_empty_QMARK_,is_empty_QMARK_))
-,jayq.core.$.call(null,".functions .text, .functions input")));
-return [cljs.core.str(fns),cljs.core.str(" "),cljs.core.str(code)].join('');
+return clojure.string.join.call(null," ",cljs.core.map.call(null,get_input_string,cljs.core.concat.call(null,jayq.core.$.call(null,".functions .text, .functions input"),jayq.core.$.call(null,".code-box .text, .code-box input"))));
 }
 });
 koans.core.load_next_koan = (function koans$core$load_next_koan(){
@@ -445,31 +417,44 @@ return koans.core.load_next_koan.call(null);
 });})(input))
 );
 });
-jayq.core.document_ready.call(null,(function (){
-jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"click","click",1912301393),new cljs.core.Keyword(null,".text",".text",657723494),(function (e){
+koans.core.handle_document_ready = (function koans$core$handle_document_ready(){
+var $doc_13250 = jayq.core.$.call(null,document);
+jayq.core.on.call(null,$doc_13250,new cljs.core.Keyword(null,"click","click",1912301393),new cljs.core.Keyword(null,".text",".text",657723494),((function ($doc_13250){
+return (function (){
 return cljs.core.first.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"input","input",556931961))).focus();
-}));
+});})($doc_13250))
+);
 
-jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"keypress","keypress",1625181642),new cljs.core.Keyword(null,"input","input",556931961),(function (e){
-if(cljs.core._EQ_.call(null,e.which,koans.core.enter_key)){
+jayq.core.on.call(null,$doc_13250,new cljs.core.Keyword(null,"keypress","keypress",1625181642),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13250){
+return (function (p1__13248_SHARP_){
+if(cljs.core._EQ_.call(null,p1__13248_SHARP_.which,koans.core.enter_key)){
 return koans.core.evaluate_koan.call(null);
 } else {
 return null;
 }
-}));
+});})($doc_13250))
+);
 
-jayq.core.on.call(null,jayq.core.$.call(null,document),new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.Keyword(null,"input","input",556931961),(function (e){
-return koans.core.resize_input.call(null,e.target);
-}));
+jayq.core.on.call(null,$doc_13250,new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13250){
+return (function (p1__13249_SHARP_){
+return koans.core.resize_input.call(null,p1__13249_SHARP_.target);
+});})($doc_13250))
+);
 
-koans.core.render_current_koan.call(null);
-
-return cljs.js.eval.call(null,koans.core.compiler_state,cljs.core.list(new cljs.core.Symbol(null,"ns","ns",2082130287,null),new cljs.core.Symbol(null,"cljs.user","cljs.user",877795071,null)),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"eval","eval",-1103567905),cljs.js.js_eval], null),cljs.core.identity);
-}));
-window.onhashchange = (function (){
+return koans.core.render_current_koan.call(null);
+});
+koans.core.handle_hashchange = (function koans$core$handle_hashchange(){
 koans.core.render_current_koan.call(null);
 
 return ga("pageview",cljs.core.subs.call(null,location.hash,(1)));
 });
+koans.core.init = (function koans$core$init(){
+jayq.core.document_ready.call(null,koans.core.handle_document_ready);
+
+window.onhashchange = koans.core.handle_hashchange;
+
+return cljs.js.eval.call(null,koans.core.compiler_state,cljs.core.list(new cljs.core.Symbol(null,"ns","ns",2082130287,null),new cljs.core.Symbol(null,"cljs.user","cljs.user",877795071,null)),new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"eval","eval",-1103567905),cljs.js.js_eval], null),cljs.core.identity);
+});
+koans.core.init.call(null);
 
 //# sourceMappingURL=core.js.map

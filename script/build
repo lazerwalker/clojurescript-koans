@@ -1,3 +1,5 @@
 #!/bin/sh
 
-lein do clean, cljsbuild once
+rm koans.js
+rm -r out/
+lein cljsbuild once
