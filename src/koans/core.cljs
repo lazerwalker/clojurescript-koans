@@ -50,29 +50,16 @@
   [:div {:class "error"} "You have not yet attained enlightenment."])
 
 (defn input-string []
-  (let [$inputs ($ ".code-box input")
-        inputs-are-empty? (map (fn [el] (clojure.string/blank? (.-value el))) $inputs)
-        is-empty? (reduce (fn [val result] (or val result)) inputs-are-empty?)]
-
-    (if is-empty?
+  (letfn [(input-is-empty? [el] (clojure.string/blank? (.-value el)))
+          (get-input-string [el]
+            (cond (= "text" (.-className el)) ($/text ($ el))
+                  (= "INPUT" (.-tagName el)) (.-value el)))]
+    (if (some input-is-empty? ($ ".code-box input"))
       ""
-      (let [code (->> ($ ".code-box .text, .code-box input")
-                  (mapv (fn [el]
-                    (cond
-                      (= "text" (.-className (first el)))
-                        ($/text el)
-                      (= "INPUT" (.-tagName (first el)))
-                        ($/val el))))
-                  (clojure.string/join " "))
-            fns (->> ($ ".functions .text, .functions input")
-                (mapv (fn [el]
-                  (cond
-                    (= "text" (.-className (first el)))
-                      ($/text el)
-                    (= "INPUT" (.-tagName (first el)))
-                      ($/val el))))
-                (clojure.string/join " "))]
-      (str fns " " code)))))
+      (->> (concat ($ ".functions .text, .functions input")
+                   ($ ".code-box .text, .code-box input"))
+           (map get-input-string)
+           (clojure.string/join " ")))))
 
 (defn load-next-koan []
   (update-location-hash))
@@ -132,9 +119,7 @@
         remove-spaces (fn [text] (clojure.string/replace text " " "_"))
         $parent ($/parent $input)
         $shadow ($/find $parent :.shadow)]
-
     ($/text $shadow (remove-spaces ($/val $input)))
-
     (let [shadow-width ($/width $shadow)
           input-width ($/width $input)]
       (cond
@@ -146,16 +131,16 @@
 (defn show-error-message []
   (let [$code-box ($ :.code-box)]
     (if ($/has-class $code-box "incorrect")
-      (do (let [$error ($ :.error)]
+      (let [$error ($ :.error)]
         ($/remove-class $code-box "incorrect")
         ($/fade-out $error)
         (wait 300 #(
           ($/add-class $code-box "incorrect")
-          ($/fade-in $error)))))
-      (do (let [$error ($ (error-message))]
+          ($/fade-in $error))))
+      (let [$error ($ (error-message))]
         ($/add-class $code-box "incorrect")
         ($/after ($ :.code-box) $error)
-        ($/fade-in $error))))))
+        ($/fade-in $error)))))
 
 (defonce compiler-state
   (cljs/empty-state))
@@ -171,22 +156,21 @@
           (show-error-message)
           (load-next-koan))))))
 
-($/document-ready (fn []
-  ($/on ($ js/document) :click :.text (fn [e]
-    (.focus (first ($ :input)))))
-  ($/on ($ js/document) :keypress :input (fn [e]
-    (when (= (.-which e) enter-key)
-      (evaluate-koan))))
-  ($/on ($ js/document) :input :input (fn [e]
-    (resize-input (.-target e))))
+(defn handle-document-ready []
+  (let [$doc ($ js/document)]
+    ($/on $doc :click :.text #(.focus (first ($ :input))))
+    ($/on $doc :keypress :input #(when (= (.-which %) enter-key) (evaluate-koan)))
+    ($/on $doc :input :input #(resize-input (.-target %))))
+  (render-current-koan))
 
-  #_(if-not (clojure.string/blank? (.-hash js/location))
-    ($/hide ($ "#welcome")))
+(defn handle-hashchange []
   (render-current-koan)
+  (js/ga "pageview" (subs (.-hash js/location) 1)))
 
+(defn init []
+  ($/document-ready handle-document-ready)
+  (set! (.-onhashchange js/window) handle-hashchange)
   ;; initialize the cljs.user namespace so that def will actually work
-  (cljs/eval compiler-state '(ns cljs.user) {:eval cljs/js-eval} identity)))
+  (cljs/eval compiler-state '(ns cljs.user) {:eval cljs/js-eval} identity))
 
-(set! (.-onhashchange js/window) (fn []
-  (render-current-koan)
-  (js/ga "pageview", (subs (.-hash js/location) 1))))
+(init)
