@@ -29,6 +29,11 @@ The `script` folder contains a number of helpful scripts. All are designed to be
 `deploy`: If you're hosting the site on GitHub Pages, this will deploy the latest version of your code. It merges your current branch into the `gh-pages` branch, generates a static copy with compiled JS/CSS, and then pushes the `gh-pages` branch to your default remote. See the script's source for caveats.
 
 
+Related Projects
+----------------
+* [Russian translation](https://clojurescript.ru/koans/) by [Roman Liutikov](https://github.com/roman01la)
+
+
 Contributing
 ------------
 Pull requests are encouraged!
