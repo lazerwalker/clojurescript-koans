@@ -62,9 +62,9 @@
 
 /* line 5, sass/style.sass */
 body {
-  background-color: #f0e8e1;
+  background-color: #F0E8E1;
   backgound: url("../images/paper.jpg");
-  color: #555555;
+  color: #555;
   font-family: "Sorts Mill Goudy", serif;
   font-size: 28px;
   overflow-x: hidden;
@@ -106,7 +106,7 @@ a {
 
 /* line 41, sass/style.sass */
 .error {
-  color: #dd3333;
+  color: #D33;
   font-size: 18px;
   padding-top: 10px;
   display: none;
@@ -141,7 +141,7 @@ a {
 }
 /* line 71, sass/style.sass */
 .functions .function input {
-  border-bottom: 1px dashed #aaaaaa;
+  border-bottom: 1px dashed #AAA;
   margin-right: 6px;
 }
 
@@ -170,9 +170,9 @@ a {
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
   text-shadow: none;
-  -webkit-transition: background-color 1s;
   -moz-transition: background-color 1s;
   -o-transition: background-color 1s;
+  -webkit-transition: background-color 1s;
   transition: background-color 1s;
   padding-left: 20px;
   padding-right: 20px;
@@ -189,6 +189,34 @@ a {
   visibility: hidden;
 }
 /* line 111, sass/style.sass */
+.koan .parentheses-0 {
+  color: #097ACC;
+}
+/* line 114, sass/style.sass */
+.koan .parentheses-1 {
+  color: #FF7E64;
+}
+/* line 117, sass/style.sass */
+.koan .parentheses-2 {
+  color: #25FFE7;
+}
+/* line 120, sass/style.sass */
+.koan .parentheses-3 {
+  color: #CC0D09;
+}
+/* line 123, sass/style.sass */
+.koan .parentheses-4 {
+  color: #4C7899;
+}
+/* line 126, sass/style.sass */
+.koan .parentheses-5 {
+  color: #55CC09;
+}
+/* line 129, sass/style.sass */
+.koan .parentheses-6 {
+  color: #99614C;
+}
+/* line 132, sass/style.sass */
 .koan input {
   background-color: transparent;
   border: none;
@@ -196,14 +224,14 @@ a {
   font-family: Monaco, Inconsolata, Menlo, Courier;
   color: #0068a7;
   text-align: center;
-  -webkit-transition: width 0.2s ease-in-out;
   -moz-transition: width 0.2s ease-in-out;
   -o-transition: width 0.2s ease-in-out;
+  -webkit-transition: width 0.2s ease-in-out;
   transition: width 0.2s ease-in-out;
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 121, sass/style.sass */
+/* line 142, sass/style.sass */
 .koan input:focus {
   outline: none;
 }
