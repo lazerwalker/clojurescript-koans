@@ -12,6 +12,8 @@
   (:use-macros
     [dommy.macros :only [deftemplate]]))
 
+(defonce transitioning? (volatile! false))
+
 (defn hash-objects [] (clojure.string/split (.-hash js/location) "/" ))
 
 (defn current-koan-index [] (meditations/KoanIndex.
@@ -110,7 +112,8 @@
       ($/prepend ($ :body) $elem)
       ($/fade-in $elem)
       ($/fade-in $category)
-      (.focus (first ($/find $elem :input)))))))
+      (.focus (first ($/find $elem :input)))
+      (vreset! transitioning? false)))))
 
 (defn render-static-page [selector]
   (remove-active-koan)
@@ -119,7 +122,8 @@
     ($/fade-out $other)
     (wait fadeout-time (fn []
       ($/fade-out ($ :.category))
-      ($/fade-in $el)))))
+      ($/fade-in $el)
+      (vreset! transitioning? false)))))
 
 (defn render-current-koan []
   (cond
@@ -155,25 +159,29 @@
         ($/fade-out $error)
         (wait 300 #(
           ($/add-class $code-box "incorrect")
-          ($/fade-in $error))))
+          ($/fade-in $error)
+          (vreset! transitioning? false))))
       (let [$error ($ (error-message))]
         ($/add-class $code-box "incorrect")
         ($/after ($ :.code-box) $error)
-        ($/fade-in $error)))))
+        ($/fade-in $error)
+        (vreset! transitioning? false)))))
 
 (defonce compiler-state
   (cljs/empty-state))
 
 (defn evaluate-koan []
-  (let [input (input-string)]
-    (log "Evaluating " input)
-    (cljs/eval-str compiler-state input nil
-      {:eval cljs/js-eval}
-      (fn [result]
-        (log (clj->js result))
-        (if (or (:error result) (not= (:value result) true))
-          (show-error-message)
-          (load-next-koan))))))
+  (when (not @transitioning?)
+    (let [input (input-string)]
+      (vreset! transitioning? true)
+      (log "Evaluating " input)
+      (cljs/eval-str compiler-state input nil
+                     {:eval cljs/js-eval}
+                     (fn [result]
+                       (log (clj->js result))
+                       (if (or (:error result) (not= (:value result) true))
+                         (show-error-message)
+                         (load-next-koan)))))))
 
 (defn handle-document-ready []
   (let [$doc ($ js/document)]
