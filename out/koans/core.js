@@ -169,11 +169,11 @@ return null;
 }
 }),jayq.core.children.call(null,jayq.core.$.call(null,el))));
 });
-koans.core.input_is_empty_QMARK_ = (function koans$core$input_is_empty_QMARK_(el){
-return clojure.string.blank_QMARK_.call(null,jayq.core.val.call(null,jayq.core.$.call(null,el)));
+koans.core.invalid_input_QMARK_ = (function koans$core$invalid_input_QMARK_(el){
+return /^[\s\xa0,'`]*$/.test(jayq.core.val.call(null,jayq.core.$.call(null,el)));
 });
 koans.core.input_string = (function koans$core$input_string(){
-if(cljs.core.truth_(cljs.core.some.call(null,koans.core.input_is_empty_QMARK_,jayq.core.$.call(null,".code-box input")))){
+if(cljs.core.truth_(cljs.core.some.call(null,koans.core.invalid_input_QMARK_,jayq.core.$.call(null,".code-box input")))){
 return "";
 } else {
 return clojure.string.join.call(null," ",cljs.core.map.call(null,koans.core.input_with_element_content,cljs.core.concat.call(null,jayq.core.$.call(null,".function pre"),jayq.core.$.call(null,".code-box"))));

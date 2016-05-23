@@ -65,11 +65,25 @@
                     ($/has-class $el "code") ($/val ($ "input" $el)))))
        (clojure.string/join "")))
 
-(defn input-is-empty? [el]
-  (clojure.string/blank? ($/val ($ el))))
+(defn invalid-input? [el]
+  ;; It was once possible to "cheat" on some koans, including all koans of the
+  ;; form `(= :__ the-answer)`, by submitting an effectively empty input string
+  ;; consisting entirely of characters from the following set:
+  ;;
+  ;; * Whitespace
+  ;; * Comma (,)        – treated as whitespace by the Clojure reader
+  ;; * Single-quote (') – attaches to next form, even if separated by whitespace
+  ;; * Backquote (`)    – same as single-quote
+  ;;
+  ;; To prevent this kind of "cheating", we require input strings to contain at
+  ;; least one character that does not belong to this set.
+  ;;
+  ;; TODO: Should we also try to disallow the use of the #_ reader macro, which
+  ;; tells the reader to discard the following form?
+  (.test #"^[\s\xa0,'`]*$" ($/val ($ el))))
 
 (defn input-string []
-  (if (some input-is-empty? ($ ".code-box input"))
+  (if (some invalid-input? ($ ".code-box input"))
     ""
     (->> (concat ($ ".function pre")
                  ($ ".code-box"))
