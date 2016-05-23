@@ -2,6 +2,7 @@
 goog.provide('koans.core');
 goog.require('cljs.core');
 goog.require('cljs.js');
+goog.require('cljs.tools.reader');
 goog.require('dommy.core');
 goog.require('koans.meditations');
 goog.require('clojure.set');
@@ -169,11 +170,15 @@ return null;
 }
 }),jayq.core.children.call(null,jayq.core.$.call(null,el))));
 });
-koans.core.invalid_input_QMARK_ = (function koans$core$invalid_input_QMARK_(el){
-return /^[\s\xa0,'`]*$/.test(jayq.core.val.call(null,jayq.core.$.call(null,el)));
+koans.core.valid_input_QMARK_ = (function koans$core$valid_input_QMARK_(el){
+var input = jayq.core.val.call(null,jayq.core.$.call(null,el));
+return (cljs.core.some_QMARK_.call(null,(function (){try{return cljs.tools.reader.read_string.call(null,input);
+}catch (e13230){var _ = e13230;
+return null;
+}})())) || (cljs.core._EQ_.call(null,cljs.core.subs.call(null,input,(0),(3)),"nil"));
 });
 koans.core.input_string = (function koans$core$input_string(){
-if(cljs.core.truth_(cljs.core.some.call(null,koans.core.invalid_input_QMARK_,jayq.core.$.call(null,".code-box input")))){
+if(cljs.core.not_every_QMARK_.call(null,koans.core.valid_input_QMARK_,jayq.core.$.call(null,".code-box input"))){
 return "";
 } else {
 return clojure.string.join.call(null," ",cljs.core.map.call(null,koans.core.input_with_element_content,cljs.core.concat.call(null,jayq.core.$.call(null,".function pre"),jayq.core.$.call(null,".code-box"))));
@@ -333,27 +338,27 @@ return koans.core.load_next_koan.call(null);
 );
 });
 koans.core.handle_document_ready = (function koans$core$handle_document_ready(){
-var $doc_13229 = jayq.core.$.call(null,document);
-jayq.core.on.call(null,$doc_13229,new cljs.core.Keyword(null,"click","click",1912301393),new cljs.core.Keyword(null,".text",".text",657723494),((function ($doc_13229){
+var $doc_13233 = jayq.core.$.call(null,document);
+jayq.core.on.call(null,$doc_13233,new cljs.core.Keyword(null,"click","click",1912301393),new cljs.core.Keyword(null,".text",".text",657723494),((function ($doc_13233){
 return (function (){
 return cljs.core.first.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,"input","input",556931961))).focus();
-});})($doc_13229))
+});})($doc_13233))
 );
 
-jayq.core.on.call(null,$doc_13229,new cljs.core.Keyword(null,"keypress","keypress",1625181642),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13229){
-return (function (p1__13227_SHARP_){
-if(cljs.core._EQ_.call(null,p1__13227_SHARP_.which,koans.core.enter_key)){
+jayq.core.on.call(null,$doc_13233,new cljs.core.Keyword(null,"keypress","keypress",1625181642),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13233){
+return (function (p1__13231_SHARP_){
+if(cljs.core._EQ_.call(null,p1__13231_SHARP_.which,koans.core.enter_key)){
 return koans.core.evaluate_koan.call(null);
 } else {
 return null;
 }
-});})($doc_13229))
+});})($doc_13233))
 );
 
-jayq.core.on.call(null,$doc_13229,new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13229){
-return (function (p1__13228_SHARP_){
-return koans.core.resize_input.call(null,p1__13228_SHARP_.target);
-});})($doc_13229))
+jayq.core.on.call(null,$doc_13233,new cljs.core.Keyword(null,"input","input",556931961),new cljs.core.Keyword(null,"input","input",556931961),((function ($doc_13233){
+return (function (p1__13232_SHARP_){
+return koans.core.resize_input.call(null,p1__13232_SHARP_.target);
+});})($doc_13233))
 );
 
 return koans.core.render_current_koan.call(null);
