@@ -37,9 +37,9 @@ goog.require('clojure.string');
  * @implements {cljs.core.IMap}
  * @implements {cljs.core.ILookup}
 */
-koans.meditations.Koan = (function (description,code_strings,fn_strings,__meta,__extmap,__hash){
+koans.meditations.Koan = (function (description,code_parts,fn_strings,__meta,__extmap,__hash){
 this.description = description;
-this.code_strings = code_strings;
+this.code_parts = code_parts;
 this.fn_strings = fn_strings;
 this.__meta = __meta;
 this.__extmap = __extmap;
@@ -62,8 +62,8 @@ case "description":
 return self__.description;
 
 break;
-case "code-strings":
-return self__.code_strings;
+case "code-parts":
+return self__.code_parts;
 
 break;
 case "fn-strings":
@@ -84,7 +84,7 @@ return (function (keyval__6774__auto__){
 return cljs.core.pr_sequential_writer.call(null,writer__6771__auto__,cljs.core.pr_writer,""," ","",opts__6772__auto__,keyval__6774__auto__);
 });})(this__6770__auto____$1))
 ;
-return cljs.core.pr_sequential_writer.call(null,writer__6771__auto__,pr_pair__6773__auto__,"#koans.meditations.Koan{",", ","}",opts__6772__auto__,cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"description","description",-1428560544),self__.description],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"code-strings","code-strings",200839020),self__.code_strings],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),self__.fn_strings],null))], null),self__.__extmap));
+return cljs.core.pr_sequential_writer.call(null,writer__6771__auto__,pr_pair__6773__auto__,"#koans.meditations.Koan{",", ","}",opts__6772__auto__,cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"description","description",-1428560544),self__.description],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),self__.code_parts],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),self__.fn_strings],null))], null),self__.__extmap));
 });
 
 koans.meditations.Koan.prototype.cljs$core$IIterable$ = true;
@@ -92,7 +92,7 @@ koans.meditations.Koan.prototype.cljs$core$IIterable$ = true;
 koans.meditations.Koan.prototype.cljs$core$IIterable$_iterator$arity$1 = (function (G__13150){
 var self__ = this;
 var G__13150__$1 = this;
-return (new cljs.core.RecordIter((0),G__13150__$1,3,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"description","description",-1428560544),new cljs.core.Keyword(null,"code-strings","code-strings",200839020),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829)], null),cljs.core._iterator.call(null,self__.__extmap)));
+return (new cljs.core.RecordIter((0),G__13150__$1,3,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null,"description","description",-1428560544),new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829)], null),cljs.core._iterator.call(null,self__.__extmap)));
 });
 
 koans.meditations.Koan.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__6754__auto__){
@@ -104,7 +104,7 @@ return self__.__meta;
 koans.meditations.Koan.prototype.cljs$core$ICloneable$_clone$arity$1 = (function (this__6750__auto__){
 var self__ = this;
 var this__6750__auto____$1 = this;
-return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,self__.__meta,self__.__extmap,self__.__hash));
+return (new koans.meditations.Koan(self__.description,self__.code_parts,self__.fn_strings,self__.__meta,self__.__extmap,self__.__hash));
 });
 
 koans.meditations.Koan.prototype.cljs$core$ICounted$_count$arity$1 = (function (this__6760__auto__){
@@ -151,10 +151,10 @@ return false;
 koans.meditations.Koan.prototype.cljs$core$IMap$_dissoc$arity$2 = (function (this__6765__auto__,k__6766__auto__){
 var self__ = this;
 var this__6765__auto____$1 = this;
-if(cljs.core.contains_QMARK_.call(null,new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"description","description",-1428560544),null,new cljs.core.Keyword(null,"code-strings","code-strings",200839020),null,new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),null], null), null),k__6766__auto__)){
+if(cljs.core.contains_QMARK_.call(null,new cljs.core.PersistentHashSet(null, new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"description","description",-1428560544),null,new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),null,new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),null], null), null),k__6766__auto__)){
 return cljs.core.dissoc.call(null,cljs.core.with_meta.call(null,cljs.core.into.call(null,cljs.core.PersistentArrayMap.EMPTY,this__6765__auto____$1),self__.__meta),k__6766__auto__);
 } else {
-return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,self__.__meta,cljs.core.not_empty.call(null,cljs.core.dissoc.call(null,self__.__extmap,k__6766__auto__)),null));
+return (new koans.meditations.Koan(self__.description,self__.code_parts,self__.fn_strings,self__.__meta,cljs.core.not_empty.call(null,cljs.core.dissoc.call(null,self__.__extmap,k__6766__auto__)),null));
 }
 });
 
@@ -164,15 +164,15 @@ var this__6763__auto____$1 = this;
 var pred__13154 = cljs.core.keyword_identical_QMARK_;
 var expr__13155 = k__6764__auto__;
 if(cljs.core.truth_(pred__13154.call(null,new cljs.core.Keyword(null,"description","description",-1428560544),expr__13155))){
-return (new koans.meditations.Koan(G__13150,self__.code_strings,self__.fn_strings,self__.__meta,self__.__extmap,null));
+return (new koans.meditations.Koan(G__13150,self__.code_parts,self__.fn_strings,self__.__meta,self__.__extmap,null));
 } else {
-if(cljs.core.truth_(pred__13154.call(null,new cljs.core.Keyword(null,"code-strings","code-strings",200839020),expr__13155))){
+if(cljs.core.truth_(pred__13154.call(null,new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),expr__13155))){
 return (new koans.meditations.Koan(self__.description,G__13150,self__.fn_strings,self__.__meta,self__.__extmap,null));
 } else {
 if(cljs.core.truth_(pred__13154.call(null,new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),expr__13155))){
-return (new koans.meditations.Koan(self__.description,self__.code_strings,G__13150,self__.__meta,self__.__extmap,null));
+return (new koans.meditations.Koan(self__.description,self__.code_parts,G__13150,self__.__meta,self__.__extmap,null));
 } else {
-return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__6764__auto__,G__13150),null));
+return (new koans.meditations.Koan(self__.description,self__.code_parts,self__.fn_strings,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__6764__auto__,G__13150),null));
 }
 }
 }
@@ -181,13 +181,13 @@ return (new koans.meditations.Koan(self__.description,self__.code_strings,self__
 koans.meditations.Koan.prototype.cljs$core$ISeqable$_seq$arity$1 = (function (this__6768__auto__){
 var self__ = this;
 var this__6768__auto____$1 = this;
-return cljs.core.seq.call(null,cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"description","description",-1428560544),self__.description],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"code-strings","code-strings",200839020),self__.code_strings],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),self__.fn_strings],null))], null),self__.__extmap));
+return cljs.core.seq.call(null,cljs.core.concat.call(null,new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"description","description",-1428560544),self__.description],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),self__.code_parts],null)),(new cljs.core.PersistentVector(null,2,(5),cljs.core.PersistentVector.EMPTY_NODE,[new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829),self__.fn_strings],null))], null),self__.__extmap));
 });
 
 koans.meditations.Koan.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__6755__auto__,G__13150){
 var self__ = this;
 var this__6755__auto____$1 = this;
-return (new koans.meditations.Koan(self__.description,self__.code_strings,self__.fn_strings,G__13150,self__.__extmap,self__.__hash));
+return (new koans.meditations.Koan(self__.description,self__.code_parts,self__.fn_strings,G__13150,self__.__extmap,self__.__hash));
 });
 
 koans.meditations.Koan.prototype.cljs$core$ICollection$_conj$arity$2 = (function (this__6761__auto__,entry__6762__auto__){
@@ -201,7 +201,7 @@ return cljs.core.reduce.call(null,cljs.core._conj,this__6761__auto____$1,entry__
 });
 
 koans.meditations.Koan.getBasis = (function (){
-return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"description","description",211970983,null),new cljs.core.Symbol(null,"code-strings","code-strings",1841370547,null),new cljs.core.Symbol(null,"fn-strings","fn-strings",2098823356,null)], null);
+return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"description","description",211970983,null),new cljs.core.Symbol(null,"code-parts","code-parts",234577400,null),new cljs.core.Symbol(null,"fn-strings","fn-strings",2098823356,null)], null);
 });
 
 koans.meditations.Koan.cljs$lang$type = true;
@@ -214,12 +214,12 @@ koans.meditations.Koan.cljs$lang$ctorPrWriter = (function (this__6790__auto__,wr
 return cljs.core._write.call(null,writer__6791__auto__,"koans.meditations/Koan");
 });
 
-koans.meditations.__GT_Koan = (function koans$meditations$__GT_Koan(description,code_strings,fn_strings){
-return (new koans.meditations.Koan(description,code_strings,fn_strings,null,null,null));
+koans.meditations.__GT_Koan = (function koans$meditations$__GT_Koan(description,code_parts,fn_strings){
+return (new koans.meditations.Koan(description,code_parts,fn_strings,null,null,null));
 });
 
 koans.meditations.map__GT_Koan = (function koans$meditations$map__GT_Koan(G__13152){
-return (new koans.meditations.Koan(new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(G__13152),new cljs.core.Keyword(null,"code-strings","code-strings",200839020).cljs$core$IFn$_invoke$arity$1(G__13152),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829).cljs$core$IFn$_invoke$arity$1(G__13152),null,cljs.core.dissoc.call(null,G__13152,new cljs.core.Keyword(null,"description","description",-1428560544),new cljs.core.Keyword(null,"code-strings","code-strings",200839020),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829)),null));
+return (new koans.meditations.Koan(new cljs.core.Keyword(null,"description","description",-1428560544).cljs$core$IFn$_invoke$arity$1(G__13152),new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127).cljs$core$IFn$_invoke$arity$1(G__13152),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829).cljs$core$IFn$_invoke$arity$1(G__13152),null,cljs.core.dissoc.call(null,G__13152,new cljs.core.Keyword(null,"description","description",-1428560544),new cljs.core.Keyword(null,"code-parts","code-parts",-1405954127),new cljs.core.Keyword(null,"fn-strings","fn-strings",458291829)),null));
 });
 
 
@@ -659,38 +659,49 @@ return (new koans.meditations.KoanIndex(koans.meditations.next_category.call(nul
 }
 });
 koans.meditations.expr_to_array = (function koans$meditations$expr_to_array(expr){
-var full_text = koans.meditations.expr_to_string.call(null,expr);
-var splitted = clojure.string.split.call(null,full_text,/:__/);
-return cljs.core.apply.call(null,cljs.core.concat,cljs.core.map.call(null,((function (full_text,splitted){
-return (function (text){
-if(cljs.core._EQ_.call(null,text,cljs.core.last.call(null,splitted))){
-return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [text], null);
+return new cljs.core.Keyword(null,"result","result",1415092211).cljs$core$IFn$_invoke$arity$1(cljs.core.reduce.call(null,(function (p__13183,c){
+var map__13184 = p__13183;
+var map__13184__$1 = ((((!((map__13184 == null)))?((((map__13184.cljs$lang$protocol_mask$partition0$ & (64))) || (map__13184.cljs$core$ISeq$))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__13184):map__13184);
+var index = cljs.core.get.call(null,map__13184__$1,new cljs.core.Keyword(null,"index","index",-1531685915));
+var result = cljs.core.get.call(null,map__13184__$1,new cljs.core.Keyword(null,"result","result",1415092211));
+var change = cljs.core.get.call(null,map__13184__$1,new cljs.core.Keyword(null,"change","change",-1163046502));
+var pred__13186 = cljs.core._EQ_;
+var expr__13187 = c;
+if(cljs.core.truth_(pred__13186.call(null,"(",expr__13187))){
+return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"index","index",-1531685915),(index + (1)),new cljs.core.Keyword(null,"change","change",-1163046502),true,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.conj.call(null,result,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [c,index], null))], null);
 } else {
-return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [text,new cljs.core.Keyword(null,"input","input",556931961)], null);
+if(cljs.core.truth_(pred__13186.call(null,")",expr__13187))){
+return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"index","index",-1531685915),(index - (1)),new cljs.core.Keyword(null,"change","change",-1163046502),true,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.conj.call(null,result,new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [c,(index - (1))], null))], null);
+} else {
+if(cljs.core.truth_(pred__13186.call(null,"$",expr__13187))){
+return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"index","index",-1531685915),index,new cljs.core.Keyword(null,"change","change",-1163046502),true,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.conj.call(null,result,new cljs.core.Keyword(null,"input","input",556931961))], null);
+} else {
+return new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"index","index",-1531685915),index,new cljs.core.Keyword(null,"result","result",1415092211),(cljs.core.truth_(change)?cljs.core.conj.call(null,result,c):cljs.core.update.call(null,result,(cljs.core.count.call(null,result) - (1)),((function (pred__13186,expr__13187,map__13184,map__13184__$1,index,result,change){
+return (function (p1__13176_SHARP_){
+return [cljs.core.str(p1__13176_SHARP_),cljs.core.str(c)].join('');
+});})(pred__13186,expr__13187,map__13184,map__13184__$1,index,result,change))
+)),new cljs.core.Keyword(null,"change","change",-1163046502),false], null);
 }
-});})(full_text,splitted))
-,splitted));
+}
+}
+}),new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"index","index",-1531685915),(0),new cljs.core.Keyword(null,"change","change",-1163046502),false,new cljs.core.Keyword(null,"result","result",1415092211),cljs.core.PersistentVector.EMPTY], null),clojure.string.replace.call(null,koans.meditations.expr_to_string.call(null,expr),/:__/,"$")));
 });
 koans.meditations.koan_for_index = (function koans$meditations$koan_for_index(koan_index){
 var category = koans.meditations.category_from_koan_index.call(null,koan_index);
 var category_list = cljs.core.partition.call(null,(2),new cljs.core.Keyword(null,"koans","koans",-1278507730).cljs$core$IFn$_invoke$arity$1(category));
 var item = (function (){try{return cljs.core.nth.call(null,category_list,new cljs.core.Keyword(null,"index","index",-1531685915).cljs$core$IFn$_invoke$arity$1(koan_index));
-}catch (e13178){if((e13178 instanceof Object)){
-var _ = e13178;
+}catch (e13190){if((e13190 instanceof Object)){
+var _ = e13190;
 return cljs.core.first.call(null,category_list);
 } else {
-throw e13178;
+throw e13190;
 
 }
 }})();
 var description = cljs.core.first.call(null,item);
-var code_strings = koans.meditations.expr_to_array.call(null,cljs.core.last.call(null,item));
-var fn_strings = cljs.core.map.call(null,((function (category,category_list,item,description,code_strings){
-return (function (p1__13176_SHARP_){
-return koans.meditations.expr_to_array.call(null,p1__13176_SHARP_);
-});})(category,category_list,item,description,code_strings))
-,new cljs.core.Keyword(null,"fns","fns",1185138786).cljs$core$IFn$_invoke$arity$1(category));
-return (new koans.meditations.Koan(description,code_strings,fn_strings,null,null,null));
+var code_parts = koans.meditations.expr_to_array.call(null,cljs.core.last.call(null,item));
+var fn_strings = cljs.core.map.call(null,koans.meditations.expr_to_array,new cljs.core.Keyword(null,"fns","fns",1185138786).cljs$core$IFn$_invoke$arity$1(category));
+return (new koans.meditations.Koan(description,code_parts,fn_strings,null,null,null));
 });
 
 //# sourceMappingURL=meditations.js.map

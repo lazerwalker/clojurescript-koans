@@ -6,14 +6,14 @@ return setTimeout(func, ms);
 });
 jayq.util.log = (function jayq$util$log(var_args){
 var args__7207__auto__ = [];
-var len__7200__auto___13183 = arguments.length;
-var i__7201__auto___13184 = (0);
+var len__7200__auto___13195 = arguments.length;
+var i__7201__auto___13196 = (0);
 while(true){
-if((i__7201__auto___13184 < len__7200__auto___13183)){
-args__7207__auto__.push((arguments[i__7201__auto___13184]));
+if((i__7201__auto___13196 < len__7200__auto___13195)){
+args__7207__auto__.push((arguments[i__7201__auto___13196]));
 
-var G__13185 = (i__7201__auto___13184 + (1));
-i__7201__auto___13184 = G__13185;
+var G__13197 = (i__7201__auto___13196 + (1));
+i__7201__auto___13196 = G__13197;
 continue;
 } else {
 }
@@ -33,10 +33,10 @@ return v;
 
 jayq.util.log.cljs$lang$maxFixedArity = (1);
 
-jayq.util.log.cljs$lang$applyTo = (function (seq13181){
-var G__13182 = cljs.core.first.call(null,seq13181);
-var seq13181__$1 = cljs.core.next.call(null,seq13181);
-return jayq.util.log.cljs$core$IFn$_invoke$arity$variadic(G__13182,seq13181__$1);
+jayq.util.log.cljs$lang$applyTo = (function (seq13193){
+var G__13194 = cljs.core.first.call(null,seq13193);
+var seq13193__$1 = cljs.core.next.call(null,seq13193);
+return jayq.util.log.cljs$core$IFn$_invoke$arity$variadic(G__13194,seq13193__$1);
 });
 
 //# sourceMappingURL=util.js.map
