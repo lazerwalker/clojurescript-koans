@@ -220,6 +220,7 @@ a {
 .koan input {
   background-color: transparent;
   border: none;
+  border-bottom: 1px dashed #AAA;
   font-size: 24px;
   font-family: Monaco, Inconsolata, Menlo, Courier;
   color: #0068a7;
@@ -231,7 +232,7 @@ a {
   width: 56px;
   -webkit-appearance: none;
 }
-/* line 142, sass/style.sass */
+/* line 143, sass/style.sass */
 .koan input:focus {
   outline: none;
 }
