@@ -20,7 +20,7 @@
     [koans.meditations.datatypes :as datatypes]
     [koans.meditations.partition :as partition]))
 
-(defrecord Koan [description code-strings fn-strings])
+(defrecord Koan [description code-parts fn-strings])
 (defrecord KoanIndex [category index])
 (defrecord Category [name koans fns])
 
@@ -72,13 +72,27 @@
         (KoanIndex. (next-category koan) 0))))
 
 (defn expr-to-array [expr]
-  (let [full-text (expr-to-string expr)
-        splitted (clojure.string/split full-text #":__")]
-    (apply concat (map (fn [text]
-      (if (= text (last splitted))
-        [text]
-        [text :input]
-      )) splitted))))
+  (->> (clojure.string/replace (expr-to-string expr) #":__" "$")
+       (reduce (fn [{:keys [index result change]} c]
+                 (condp = c
+                   "(" {:index (inc index)
+                        :change true
+                        :result (conj result [c index])}
+                   ")" {:index (dec index)
+                        :change true
+                        :result (conj result [c (dec index)])}
+                   "$" {:index index
+                        :change true
+                        :result (conj result :input)}
+                   {:index index
+                    :result (if change
+                              (conj result c)
+                              (update result (dec (count result)) #(str % c)))
+                    :change false}))
+               {:index 0
+                :change false
+                :result []})
+       :result))
 
 (defn koan-for-index [koan-index]
   (let [category (category-from-koan-index koan-index)
@@ -87,6 +101,6 @@
           (nth category-list (:index koan-index))
           (catch js/Object _ (first category-list)))
         description (first item)
-        code-strings (expr-to-array (last item))
-        fn-strings (map #(expr-to-array %) (:fns category))]
-    (Koan. description code-strings fn-strings)))
+        code-parts (expr-to-array (last item))
+        fn-strings (map expr-to-array (:fns category))]
+    (Koan. description code-parts fn-strings)))

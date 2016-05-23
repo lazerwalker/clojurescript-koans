@@ -24,42 +24,57 @@
 (def fadeout-time 600)
 (def char-width 14)
 (def enter-key 13)
+(def parentheses-classes-count 7)
+
+(defn parentheses-class-name [index]
+  (str "parentheses-" (mod index parentheses-classes-count)))
+
+(defn input-with-code-block [parts]
+  (for [part parts]
+    (cond
+      (= part :input)
+        [:span {:class "code"}
+          [:span {:class "shadow"}]
+          [:input {:name "code"}]]
+      (vector? part)
+        [:span {:class (str "text " (parentheses-class-name (second part)))}
+          (first part)]
+      :else
+        [:span {:class "text"}
+          part])))
 
 (deftemplate input-with-code [koan]
   [:div {:class (str "koan koan-" (:index (current-koan-index)))}
     [:div {:class "description"} (:description koan)]
     [:div {:class "code-box"}
-      (for [text (:code-strings koan)]
-        (if (= text :input)
-          [:span {:class "code"}
-            [:span {:class "shadow"}]
-            [:input {:name "code"}]]
-          [:span {:class "text"} text]))]
+      (input-with-code-block (:code-parts koan))]
       (if-not (nil? (:fn-strings koan))
         [:div {:class "functions"}
           (for [function (:fn-strings koan)]
             [:div {:class "function"}
-              (for [text function]
-                (if (= text :input)
-                  [:span {:class "code"}
-                    [:span {:class "shadow"}]
-                    [:input {:name "code"}]]
-                  [:pre {:class "text"} text]))])])])
+              [:pre
+                (input-with-code-block function)]])])])
 
 (deftemplate error-message []
   [:div {:class "error"} "You have not yet attained enlightenment."])
 
+(defn input-with-element-content [el]
+  (->> ($/children ($ el))
+       (map #(let [$el ($ %)]
+              (cond ($/has-class $el "text") ($/text $el)
+                    ($/has-class $el "code") ($/val ($ "input" $el)))))
+       (clojure.string/join "")))
+
+(defn input-is-empty? [el]
+  (clojure.string/blank? ($/val ($ el))))
+
 (defn input-string []
-  (letfn [(input-is-empty? [el] (clojure.string/blank? (.-value el)))
-          (get-input-string [el]
-            (cond (= "text" (.-className el)) ($/text ($ el))
-                  (= "INPUT" (.-tagName el)) (.-value el)))]
-    (if (some input-is-empty? ($ ".code-box input"))
-      ""
-      (->> (concat ($ ".functions .text, .functions input")
-                   ($ ".code-box .text, .code-box input"))
-           (map get-input-string)
-           (clojure.string/join " ")))))
+  (if (some input-is-empty? ($ ".code-box input"))
+    ""
+    (->> (concat ($ ".function pre")
+                 ($ ".code-box"))
+         (map input-with-element-content)
+         (clojure.string/join " "))))
 
 (defn load-next-koan []
   (update-location-hash))
@@ -151,7 +166,7 @@
     (cljs/eval-str compiler-state input nil
       {:eval cljs/js-eval}
       (fn [result]
-        (log result)
+        (log (clj->js result))
         (if (or (:error result) (not= (:value result) true))
           (show-error-message)
           (load-next-koan))))))
