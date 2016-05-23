@@ -9,6 +9,10 @@ goog.require('clojure.set');
 goog.require('jayq.core');
 goog.require('clojure.string');
 goog.require('jayq.util');
+if(typeof koans.core.transitioning_QMARK_ !== 'undefined'){
+} else {
+koans.core.transitioning_QMARK_ = cljs.core.volatile_BANG_.call(null,false);
+}
 koans.core.hash_objects = (function koans$core$hash_objects(){
 return clojure.string.split.call(null,location.hash,"/");
 });
@@ -230,7 +234,9 @@ jayq.core.fade_in.call(null,$elem);
 
 jayq.core.fade_in.call(null,$category);
 
-return cljs.core.first.call(null,jayq.core.find.call(null,$elem,new cljs.core.Keyword(null,"input","input",556931961))).focus();
+cljs.core.first.call(null,jayq.core.find.call(null,$elem,new cljs.core.Keyword(null,"input","input",556931961))).focus();
+
+return cljs.core.vreset_BANG_.call(null,koans.core.transitioning_QMARK_,false);
 });})($elem,$category,current_category))
 );
 });
@@ -245,7 +251,9 @@ return jayq.util.wait.call(null,koans.core.fadeout_time,((function ($el,$other){
 return (function (){
 jayq.core.fade_out.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,".category",".category",-384109441)));
 
-return jayq.core.fade_in.call(null,$el);
+jayq.core.fade_in.call(null,$el);
+
+return cljs.core.vreset_BANG_.call(null,koans.core.transitioning_QMARK_,false);
 });})($el,$other))
 );
 });
@@ -299,7 +307,7 @@ jayq.core.fade_out.call(null,$error);
 
 return jayq.util.wait.call(null,(300),((function ($error,$code_box){
 return (function (){
-return jayq.core.add_class.call(null,$code_box,"incorrect").call(null,jayq.core.fade_in.call(null,$error));
+return jayq.core.add_class.call(null,$code_box,"incorrect").call(null,jayq.core.fade_in.call(null,$error),cljs.core.vreset_BANG_.call(null,koans.core.transitioning_QMARK_,false));
 });})($error,$code_box))
 );
 } else {
@@ -308,7 +316,9 @@ jayq.core.add_class.call(null,$code_box,"incorrect");
 
 jayq.core.after.call(null,jayq.core.$.call(null,new cljs.core.Keyword(null,".code-box",".code-box",297345993)),$error);
 
-return jayq.core.fade_in.call(null,$error);
+jayq.core.fade_in.call(null,$error);
+
+return cljs.core.vreset_BANG_.call(null,koans.core.transitioning_QMARK_,false);
 }
 });
 if(typeof koans.core.compiler_state !== 'undefined'){
@@ -316,7 +326,10 @@ if(typeof koans.core.compiler_state !== 'undefined'){
 koans.core.compiler_state = cljs.js.empty_state.call(null);
 }
 koans.core.evaluate_koan = (function koans$core$evaluate_koan(){
+if(cljs.core.not.call(null,cljs.core.deref.call(null,koans.core.transitioning_QMARK_))){
 var input = koans.core.input_string.call(null);
+cljs.core.vreset_BANG_.call(null,koans.core.transitioning_QMARK_,true);
+
 jayq.util.log.call(null,"Evaluating ",input);
 
 return cljs.js.eval_str.call(null,koans.core.compiler_state,input,null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"eval","eval",-1103567905),cljs.js.js_eval], null),((function (input){
@@ -336,6 +349,9 @@ return koans.core.load_next_koan.call(null);
 }
 });})(input))
 );
+} else {
+return null;
+}
 });
 koans.core.handle_document_ready = (function koans$core$handle_document_ready(){
 var $doc_13233 = jayq.core.$.call(null,document);
