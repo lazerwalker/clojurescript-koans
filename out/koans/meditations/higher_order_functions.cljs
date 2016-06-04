@@ -30,6 +30,6 @@
 
   "Numbers are not the only things one can reduce"
   (= "longest" (reduce (fn [a b]
-                         (if (< :__ ) b a))
-                       ["which" "word" "is" "longest"]))
+                         (if (< :__) b a))
+                       ["which" "is" "the" "longest" "word"]))
 ))
