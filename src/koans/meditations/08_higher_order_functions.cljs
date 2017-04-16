@@ -26,7 +26,7 @@
   (= :__ (reduce (fn [a b] (* a b)) [1 2 3 4]))
 
   "You can start somewhere else"
-  (= 2400 (reduce (fn [a b] (* a b)) :__ [1 2 3 4]))
+  (= 2400 (reduce (fn [a b] (* a b)) :__ [1 2 3 4])))
 
   "Numbers are not the only things one can reduce"
   (= "longest" (reduce (fn [a b]
