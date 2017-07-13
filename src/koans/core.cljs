@@ -38,7 +38,7 @@
       (= part :input)
         [:span {:class "code"}
           [:span {:class "shadow"}]
-          [:input {:name "code"}]]
+          [:input {:name "code" :autocorrect "off" :autocapitalize "off"}]]
       (vector? part)
         [:span {:class (str "text " (parentheses-class-name (second part)))}
           (first part)]
